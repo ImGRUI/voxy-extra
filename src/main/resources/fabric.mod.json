@@ -1,0 +1,34 @@
+{
+	"schemaVersion": 1,
+	"id": "voxy-extra",
+	"version": "${version}",
+	"name": "Voxy Extra",
+	"description": "Adds features that shouldn't be in Voxy.",
+	"authors": [
+		"ImGRUI"
+	],
+	"contact": {
+		"issues": "https://github.com/ImGRUI/voxy-extra/issues",
+		"sources": "https://github.com/ImGRUI/voxy-extra"
+	},
+	"license": "LGPLv3",
+	"icon": "assets/voxy-extra/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"me.imgrui.VoxyExtra"
+		],
+        "sodium:config_api_user": [
+          "me.imgrui.config.sodium.VoxyExtraConfigBuilder"
+        ]
+	},
+	"mixins": [
+		"voxy-extra.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.17.3",
+		"minecraft": "1.21.11",
+		"fabric-api": "*",
+        "voxy": ">=0.2.8-alpha"
+	}
+}
