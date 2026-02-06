@@ -13,4 +13,4 @@ All features are configurable in Sodium options.
 
 # Suggestions
 
-If you have any idea for Voxy, which is out of scope for sure, feel free to suggest it here [Issues](https://github.com/ImGRUI/voxy-extra/issues).
+If you have any idea for Voxy, which is out of scope for sure, feel free to suggest it here: [Issues](https://github.com/ImGRUI/voxy-extra/issues).
