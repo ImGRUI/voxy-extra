@@ -1,18 +1,18 @@
 {
-  "voxy_extra.config.flashback_ingest": "Ingest in Replays",
-  "voxy_extra.config.flashback_ingest.tooltip": "Enables ingesting in compatible Flashback replays (which have LoDs copied).",
+  "voxy_extra.sodium.config_page": "Config",
+
+  "voxy_extra.config.fix_nether_fog": "Nether Fog Fix",
+  "voxy_extra.config.fix_nether_fog.tooltip": "Enables or disables fix for nether fog with environmental fog enabled.",
 
   "voxy_extra.config.save_old_lods": "Copy LoDs with Replays",
   "voxy_extra.config.save_old_lods.tooltip": "Enables copying LoDs to special Flashback folder (doesn't support combining replays). If turned off, LoDs location will be written to metadata instead, which can't be ingested in the replay.",
 
-  "voxy_extra.config.fix_nether_fog": "Nether Fog Fix",
-  "voxy_extra.config.fix_nether_fog.tooltip": "Enables or disables fix for nether fog with environmental fog enabled.",
+  "voxy_extra.config.flashback_ingest": "Ingest in Replays",
+  "voxy_extra.config.flashback_ingest.tooltip": "Enables ingesting in compatible Flashback replays (which have LoDs copied).",
 
   "voxy_extra.config.customfog": "EnvironmentalEnd Override",
   "voxy_extra.config.customfog.tooltip": "Enables tweaking EnvironmentalEnd by slider.",
 
   "voxy_extra.config.environmental_end": "EnvironmentalEnd",
-  "voxy_extra.config.environmental_end.tooltip": "EnvironmentalEnd slider (higher is less foggy).",
-
-  "voxy_extra.sodium.config_page": "Config"
+  "voxy_extra.config.environmental_end.tooltip": "EnvironmentalEnd slider (higher is less foggy)."
 }
