@@ -39,11 +39,12 @@ public class FlashbackCopy {
             try {
                 FileUtils.copyDirectory(newBasePath.toFile(), newCopyPath.toFile(), filter);
                 FileUtils.copyFile(basePath.resolve("config.json").toFile(), copyPath.resolve("config.json").toFile());
-                VoxyExtra.LOGGER.info("[Voxy Extra] Copied LoDs for {}", replayIdentifier);
             } catch (IOException e) {
                 VoxyExtra.LOGGER.error("[Voxy Extra] Failed to copy lods for {}", replayIdentifier, e);
+                return;
             }
         }
+        VoxyExtra.LOGGER.info("[Voxy Extra] Copied LoDs for {}", replayIdentifier);
     }
 
     public static void CheckReplays() {
