@@ -9,7 +9,8 @@
 	],
 	"contact": {
 		"issues": "https://github.com/ImGRUI/voxy-extra/issues",
-		"sources": "https://github.com/ImGRUI/voxy-extra"
+		"sources": "https://github.com/ImGRUI/voxy-extra",
+        "homepage": "https://github.com/ImGRUI/voxy-extra"
 	},
 	"license": "LGPLv3",
 	"icon": "assets/voxy-extra/icon.png",
