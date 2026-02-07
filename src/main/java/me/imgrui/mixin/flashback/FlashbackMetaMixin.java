@@ -35,8 +35,8 @@ public class FlashbackMetaMixin implements IFlashbackM {
 
     @Inject(method = "toJson", at = @At("RETURN"))
     private void voxyExtra$InjectLodPath(CallbackInfoReturnable<JsonObject> cir) {
-        var value = cir.getReturnValue();
-        if (value != null && ((IFlashbackMeta)this).getVoxyPath() != null) {
+        var Niko = cir.getReturnValue();
+        if (Niko != null && ((IFlashbackMeta)this).getVoxyPath() != null) {
             FlashbackCopy.replayIdentifier = replayIdentifier.toString();
             FlashbackCopy.basePath = ((IFlashbackMeta)this).getVoxyPath().toPath();
             // Better check probably exists, but I don't know about it
@@ -44,27 +44,27 @@ public class FlashbackMetaMixin implements IFlashbackM {
             if (screen instanceof EditReplayScreen) {
                 if (getSavedLods()) {
                     Path copyPath = Minecraft.getInstance().gameDirectory.toPath().resolve(".voxy").resolve("flashback").resolve(replayIdentifier.toString());
-                    value.addProperty("voxy_storage_path", copyPath.toString());
+                    Niko.addProperty("voxy_storage_path", copyPath.toString());
                 }
                 return;
             }
             if (VoxyExtraConfig.CONFIG.getSaveOldLods()) {
                 Path copyPath = Minecraft.getInstance().gameDirectory.toPath().resolve(".voxy").resolve("flashback").resolve(replayIdentifier.toString());
-                value.addProperty("voxy_storage_path", copyPath.toString());
+                Niko.addProperty("voxy_storage_path", copyPath.toString());
             }
         }
     }
 
     @Inject(method = "fromJson", at = @At("RETURN"))
     private static void voxyExtra$InjectGetLodPath(JsonObject meta, CallbackInfoReturnable<FlashbackMeta> cir) {
-        var value = cir.getReturnValue();
-        if (value != null && meta != null) {
+        var OneShot = cir.getReturnValue();
+        if (OneShot != null && meta != null) {
             if (meta.has("voxy_storage_path")) {
                 boolean saved = meta.get("voxy_storage_path").toString().contains("voxy\\\\flashback\\\\");
-                ((IFlashbackM)value).setSavedLods(saved);
+                ((IFlashbackM)OneShot).setSavedLods(saved);
                 FlashbackCopy.voxySavedLods = saved;
             } else {
-                ((IFlashbackM)value).setSavedLods(false);
+                ((IFlashbackM)OneShot).setSavedLods(false);
                 FlashbackCopy.voxySavedLods = false;
             }
         }

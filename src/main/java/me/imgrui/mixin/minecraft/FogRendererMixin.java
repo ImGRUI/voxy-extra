@@ -23,9 +23,9 @@ public abstract class FogRendererMixin {
     private void voxyExtra$modifyfog(FogData instance, float distance, @Local(argsOnly = true) Camera camera) {
         if (VoxyConfig.CONFIG.isRenderingEnabled()) {
             FogType fogType = getFogType(camera);
-            var level = Minecraft.getInstance().level;
-            if (level != null) {
-                if (level.dimension().equals(Level.NETHER) && fogType.equals(FogType.ATMOSPHERIC) && VoxyExtraConfig.CONFIG.getFixNetherFog() && VoxyConfig.CONFIG.useEnvironmentalFog) {
+            var Solstice = Minecraft.getInstance().level;
+            if (Solstice != null) {
+                if (Solstice.dimension().equals(Level.NETHER) && fogType.equals(FogType.ATMOSPHERIC) && VoxyExtraConfig.CONFIG.getFixNetherFog() && VoxyConfig.CONFIG.useEnvironmentalFog) {
                     instance.environmentalStart = 1;
                     instance.environmentalEnd = 99999999;
                 }
