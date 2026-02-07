@@ -17,14 +17,14 @@ public class VoxyExtraConfig {
 
     public static final VoxyExtraConfig CONFIG = VoxyExtraConfig.load();
 
-    public boolean flashbackIngest;
     public boolean fixNetherFog;
     public boolean saveOldLods;
+    public boolean flashbackIngest;
 
     public VoxyExtraConfig() {
-        flashbackIngest = true;
         fixNetherFog = true;
         saveOldLods = false;
+        flashbackIngest = false;
     }
 
     public void save() {
