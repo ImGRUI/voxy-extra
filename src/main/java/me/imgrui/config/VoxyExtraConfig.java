@@ -20,15 +20,11 @@ public class VoxyExtraConfig {
     public boolean flashbackIngest;
     public boolean fixNetherFog;
     public boolean saveOldLods;
-    public boolean customFog;
-    public int environmentalEnd;
 
     public VoxyExtraConfig() {
         flashbackIngest = true;
         fixNetherFog = true;
         saveOldLods = false;
-        customFog = false;
-        environmentalEnd = 500;
     }
 
     public void save() {
@@ -46,7 +42,7 @@ public class VoxyExtraConfig {
             try (FileReader reader = new FileReader(CONFIG_PATH.toFile())) {
                 config = GSON.fromJson(reader, VoxyExtraConfig.class);
             } catch (IOException e) {
-                throw new RuntimeException("Could not parse Voxy Extra config");
+                throw new RuntimeException("Could not parse Voxy Extra config", e);
             }
         } else {
             config = new VoxyExtraConfig();
@@ -55,7 +51,7 @@ public class VoxyExtraConfig {
         try {
             config.write();
         } catch (IOException e) {
-            throw new RuntimeException("Could not parse Voxy Extra config");
+            throw new RuntimeException("Could not parse Voxy Extra config", e);
         }
 
         return config;
@@ -91,22 +87,6 @@ public class VoxyExtraConfig {
 
     public void setSaveOldLods(boolean saveOldLods) {
         this.saveOldLods = saveOldLods;
-    }
-
-    public boolean getCustomFog() {
-        return customFog;
-    }
-
-    public void setCustomFog(boolean customFog) {
-        this.customFog = customFog;
-    }
-
-    public int getEnvironmentalEnd() {
-        return environmentalEnd;
-    }
-
-    public void setEnvironmentalEnd(int environmentalEnd) {
-        this.environmentalEnd = environmentalEnd;
     }
 
 }

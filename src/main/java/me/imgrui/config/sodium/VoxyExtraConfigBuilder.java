@@ -3,7 +3,6 @@ package me.imgrui.config.sodium;
 import net.caffeinemc.mods.sodium.api.config.ConfigEntryPoint;
 import net.caffeinemc.mods.sodium.api.config.structure.ConfigBuilder;
 import net.caffeinemc.mods.sodium.api.config.structure.OptionPageBuilder;
-import net.caffeinemc.mods.sodium.client.gui.options.control.ControlValueFormatterImpls;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 
@@ -42,27 +41,6 @@ public class VoxyExtraConfigBuilder implements ConfigEntryPoint {
                                         .setStorageHandler(CONFIG::save)
                                         .setBinding(CONFIG::setFlashbackIngest, CONFIG::getFlashbackIngest)
                                         .setDefaultValue(true)
-                                )
-                );
-
-        VoxyExtraPage.addOptionGroup(builder.createOptionGroup()
-                        .addOption(
-                                builder.createBooleanOption(Identifier.parse("voxy-extra:customfog"))
-                                        .setName(Component.translatable("voxy_extra.config.customfog"))
-                                        .setTooltip(Component.translatable("voxy_extra.config.customfog.tooltip"))
-                                        .setStorageHandler(CONFIG::save)
-                                        .setBinding(CONFIG::setCustomFog, CONFIG::getCustomFog)
-                                        .setDefaultValue(false)
-                                )
-                        .addOption(
-                                builder.createIntegerOption(Identifier.parse("voxy-extra:environmentalend"))
-                                        .setName(Component.translatable("voxy_extra.config.environmental_end"))
-                                        .setTooltip(Component.translatable("voxy_extra.config.environmental_end.tooltip"))
-                                        .setStorageHandler(CONFIG::save)
-                                        .setBinding(CONFIG::setEnvironmentalEnd, CONFIG::getEnvironmentalEnd)
-                                        .setDefaultValue(500)
-                                        .setRange(10,1000,10)
-                                        .setValueFormatter(ControlValueFormatterImpls.number())
                                 )
                 );
 

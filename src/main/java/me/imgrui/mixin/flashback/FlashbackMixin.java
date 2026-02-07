@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(value = Flashback.class, remap = false)
 public class FlashbackMixin {
     @Inject(method = "finishRecordingReplay()V", at = @At("TAIL"))
-    private static void voxyExtra$copylods(CallbackInfo ci) {
+    private static void voxyExtra$copyLods(CallbackInfo ci) {
         if (!VoxyConfig.CONFIG.isRenderingEnabled()) return;
         if (VoxyExtraConfig.CONFIG.getSaveOldLods()) FlashbackCopy.CopyLods();
         FlashbackCopy.IDENTIFIERS.clear();

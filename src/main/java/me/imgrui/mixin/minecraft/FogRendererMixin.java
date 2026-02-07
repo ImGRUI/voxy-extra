@@ -7,6 +7,7 @@ import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.fog.FogData;
 import net.minecraft.client.renderer.fog.FogRenderer;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.material.FogType;
 import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;
@@ -24,13 +25,7 @@ public abstract class FogRendererMixin {
             FogType fogType = getFogType(camera);
             var level = Minecraft.getInstance().level;
             if (level != null) {
-                String dim = level.dimension().toString();
-                if (VoxyExtraConfig.CONFIG.getCustomFog() && fogType.equals(FogType.ATMOSPHERIC) && !dim.equals("ResourceKey[minecraft:dimension / minecraft:the_nether]")) {
-                    instance.environmentalEnd = VoxyExtraConfig.CONFIG.getEnvironmentalEnd();
-                }
-                // please tell me how to properly fix this it's so bad
-                // No more DIMENSION_OR_BOSS in FogType
-                if (dim.equals("ResourceKey[minecraft:dimension / minecraft:the_nether]") && fogType.equals(FogType.ATMOSPHERIC) && VoxyExtraConfig.CONFIG.getFixNetherFog() && VoxyConfig.CONFIG.useEnvironmentalFog) {
+                if (level.dimension().equals(Level.NETHER) && fogType.equals(FogType.ATMOSPHERIC) && VoxyExtraConfig.CONFIG.getFixNetherFog() && VoxyConfig.CONFIG.useEnvironmentalFog) {
                     instance.environmentalStart = 1;
                     instance.environmentalEnd = 99999999;
                 }

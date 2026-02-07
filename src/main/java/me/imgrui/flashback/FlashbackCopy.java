@@ -28,7 +28,7 @@ public class FlashbackCopy {
     static FileFilter filter = file -> !file.getName().contains("LOG") && !file.getName().equals("LOCK");
 
     public static void CopyLods() {
-        Path copyPath = Minecraft.getInstance().gameDirectory.toPath().resolve(".voxy").resolve("flashback").resolve(replayIdentifier).toAbsolutePath();
+        Path copyPath = Minecraft.getInstance().gameDirectory.toPath().resolve(".voxy").resolve("flashback").resolve(replayIdentifier);
         CopyLods(basePath, copyPath);
     }
 
@@ -48,8 +48,8 @@ public class FlashbackCopy {
     }
 
     public static void CheckReplays() {
-        Path replays = Minecraft.getInstance().gameDirectory.toPath().resolve("flashback").resolve("replays").toAbsolutePath();
-        Path flashbackLodFolder = Minecraft.getInstance().gameDirectory.toPath().resolve(".voxy").resolve("flashback").toAbsolutePath();
+        Path replays = Minecraft.getInstance().gameDirectory.toPath().resolve("flashback").resolve("replays");
+        Path flashbackLodFolder = Minecraft.getInstance().gameDirectory.toPath().resolve(".voxy").resolve("flashback");
         List<Path> flashbackLodFolders = new ArrayList<>();
         if (!Files.exists(flashbackLodFolder)) return;
         if (Files.exists(replays)) {
@@ -67,7 +67,8 @@ public class FlashbackCopy {
                             }
                         });
             } catch (IOException e) {
-                VoxyExtra.LOGGER.warn("[Voxy Extra] Failed to walk replays files");
+                VoxyExtra.LOGGER.warn("[Voxy Extra] Failed to walk replays files, stopping check");
+                return;
             }
         }
 
@@ -81,7 +82,7 @@ public class FlashbackCopy {
                                 VoxyExtra.LOGGER.warn("[Voxy Extra] Deleted permanently {}", path);
                             }
                         } catch (Exception e) {
-                            VoxyExtra.LOGGER.warn("[Voxy Extra] Failed to delete {}", path);
+                            VoxyExtra.LOGGER.error("[Voxy Extra] Failed to delete {}", path, e);
                         }
                     });
         } catch (IOException e) {
