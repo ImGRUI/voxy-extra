@@ -38,11 +38,14 @@ public class FlashbackCopy {
             Path newCopyPath = copyPath.resolve(worldId);
             try {
                 FileUtils.copyDirectory(newBasePath.toFile(), newCopyPath.toFile(), filter);
-                FileUtils.copyFile(basePath.resolve("config.json").toFile(), copyPath.resolve("config.json").toFile());
             } catch (IOException e) {
-                VoxyExtra.LOGGER.error("[Voxy Extra] Failed to copy lods for {}", replayIdentifier, e);
-                return;
+                VoxyExtra.LOGGER.error("[Voxy Extra] Failed to copy LoDs for world {}", worldId, e);
             }
+        }
+        try {
+            FileUtils.copyFile(basePath.resolve("config.json").toFile(), copyPath.resolve("config.json").toFile());
+        } catch (IOException e) {
+            VoxyExtra.LOGGER.error("[Voxy Extra] Failed to copy LoDs config.json", e);
         }
         VoxyExtra.LOGGER.info("[Voxy Extra] Copied LoDs for {}", replayIdentifier);
     }
@@ -67,7 +70,7 @@ public class FlashbackCopy {
                             }
                         });
             } catch (IOException e) {
-                VoxyExtra.LOGGER.warn("[Voxy Extra] Failed to walk replays files, stopping check");
+                VoxyExtra.LOGGER.warn("[Voxy Extra] Failed to walk replays, stopping check");
                 return;
             }
         }
@@ -87,6 +90,16 @@ public class FlashbackCopy {
                     });
         } catch (IOException e) {
             VoxyExtra.LOGGER.warn("[Voxy Extra] Failed to walk flashback LoDs files");
+        }
+    }
+
+    public static void deleteReplayLOD() {
+        Path flashbackLod = Minecraft.getInstance().gameDirectory.toPath().resolve(".voxy").resolve("flashback").resolve(replayIdentifier);
+        try {
+            FileUtils.deleteDirectory(flashbackLod.toFile());
+            VoxyExtra.LOGGER.info("[Voxy Extra] Deleted LoD for {}", replayIdentifier);
+        } catch (IOException e) {
+            VoxyExtra.LOGGER.error("[Voxy Extra] Failed to delete LoD for {}", replayIdentifier);
         }
     }
 

@@ -11,10 +11,11 @@
     "requireAnnotations": true
   },
   "client": [
+    "flashback.FlashbackMetaMixin",
     "flashback.FlashbackMixin",
     "flashback.FlashbackRecorderMixin",
+    "flashback.FlashbackSaveReplayScreenMixin",
     "minecraft.FogRendererMixin",
-    "voxy.VoxyClientInstanceMixin",
-    "flashback.FlashbackMetaMixin"
+    "voxy.VoxyClientInstanceMixin"
   ]
 }

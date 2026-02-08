@@ -1,7 +1,7 @@
 package me.imgrui.mixin.voxy;
 
+import com.llamalad7.mixinextras.sugar.Local;
 import me.cortex.voxy.client.VoxyClientInstance;
-import me.cortex.voxy.client.compat.FlashbackCompat;
 import me.imgrui.config.VoxyExtraConfig;
 import me.imgrui.flashback.FlashbackCopy;
 import org.objectweb.asm.Opcodes;
@@ -22,8 +22,7 @@ public class VoxyClientInstanceMixin {
     private boolean noIngestOverride;
 
     @Redirect(method = "<init>()V", at = @At(value = "FIELD", target = "Lme/cortex/voxy/client/VoxyClientInstance;noIngestOverride:Z", opcode = Opcodes.PUTFIELD))
-    private void voxyExtra$redirectIngest(VoxyClientInstance instance, boolean value) {
-        Path path = FlashbackCompat.getReplayStoragePath();
+    private void voxyExtra$redirectIngest(VoxyClientInstance instance, boolean value, @Local(name = "path") Path path) {
         if (VoxyExtraConfig.CONFIG.getFlashbackIngest()) {
             this.noIngestOverride = path != null && !FlashbackCopy.voxySavedLods;
         } else {
