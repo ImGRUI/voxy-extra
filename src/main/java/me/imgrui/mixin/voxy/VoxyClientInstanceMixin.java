@@ -33,8 +33,8 @@ public class VoxyClientInstanceMixin {
     @Inject(method = "<init>()V", at = @At(value = "INVOKE_ASSIGN", target = "Lme/cortex/voxy/client/VoxyClientInstance;getBasePath()Ljava/nio/file/Path;"))
     private void voxyExtra$serverBlacklist(CallbackInfo ci, @Local(name = "path") Path path) {
         if (VoxyExtraConfig.CONFIG.getServerBlacklist() && VoxyConfig.CONFIG.enabled) {
-            String value = path.toString();
-            String ip = value.substring(value.lastIndexOf("\\") + 1).replace("_", ":");
+            String value = path.toString().replace("\\", "/");
+            String ip = value.substring(value.lastIndexOf("/") + 1).replace("_", ":");
             if (VoxyExtraConfig.CONFIG.serverBlacklistList.contains(ip)) {
                 VoxyExtra.LOGGER.info("[Voxy Extra] Server {} in blacklist, disabling Voxy", ip);
                 VoxyConfig.CONFIG.enabled = false;
