@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.lang.reflect.Modifier;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 
 public class VoxyExtraConfig {
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).excludeFieldsWithModifiers(Modifier.PRIVATE, Modifier.STATIC).create();
@@ -20,11 +21,14 @@ public class VoxyExtraConfig {
     public boolean fixNetherFog;
     public boolean saveOldLods;
     public boolean flashbackIngest;
+    public boolean serverBlacklist;
+    public ArrayList<String> serverBlacklistList = new ArrayList<>();
 
     public VoxyExtraConfig() {
         fixNetherFog = true;
         saveOldLods = false;
         flashbackIngest = false;
+        serverBlacklist = false;
     }
 
     public void save() {
@@ -87,6 +91,14 @@ public class VoxyExtraConfig {
 
     public void setSaveOldLods(boolean saveOldLods) {
         this.saveOldLods = saveOldLods;
+    }
+
+    public boolean getServerBlacklist() {
+        return serverBlacklist;
+    }
+
+    public void setServerBlacklist(boolean serverBlacklist) {
+        this.serverBlacklist = serverBlacklist;
     }
 
 }

@@ -44,6 +44,17 @@ public class VoxyExtraConfigBuilder implements ConfigEntryPoint {
                                 )
                 );
 
+        VoxyExtraPage.addOptionGroup(builder.createOptionGroup()
+                .addOption(
+                        builder.createBooleanOption(Identifier.parse("voxy-extra:serverblacklist"))
+                                .setName(Component.translatable("voxy_extra.config.server_blacklist"))
+                                .setTooltip(Component.translatable("voxy_extra.config.server_blacklist.tooltip"))
+                                .setStorageHandler(CONFIG::save)
+                                .setBinding(CONFIG::setServerBlacklist, CONFIG::getServerBlacklist)
+                                .setDefaultValue(false)
+                )
+        );
+
         builder.registerOwnModOptions()
                 .setNonTintedIcon(Identifier.parse("voxy-extra:icon.png"))
                 .setColorTheme(builder.createColorTheme().setBaseThemeRGB(0xfdff93))

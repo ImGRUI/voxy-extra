@@ -16,6 +16,7 @@
     "flashback.FlashbackRecorderMixin",
     "flashback.FlashbackSaveReplayScreenMixin",
     "minecraft.FogRendererMixin",
+    "minecraft.MinecraftMixin",
     "voxy.VoxyClientInstanceMixin"
   ]
 }
