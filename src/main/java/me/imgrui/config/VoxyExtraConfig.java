@@ -23,12 +23,15 @@ public class VoxyExtraConfig {
     public boolean flashbackIngest;
     public boolean serverBlacklist;
     public ArrayList<String> serverBlacklistList = new ArrayList<>();
+    public boolean lodMirror;
+    public ArrayList<ArrayList<String>> lodMirrorList = new ArrayList<>();
 
     public VoxyExtraConfig() {
         fixNetherFog = true;
         saveOldLods = false;
         flashbackIngest = false;
         serverBlacklist = false;
+        lodMirror = false;
     }
 
     public void save() {
@@ -99,6 +102,14 @@ public class VoxyExtraConfig {
 
     public void setServerBlacklist(boolean serverBlacklist) {
         this.serverBlacklist = serverBlacklist;
+    }
+
+    public boolean getLodMirror() {
+        return lodMirror;
+    }
+
+    public void setLodMirror(boolean lodMirror) {
+        this.lodMirror = lodMirror;
     }
 
 }
