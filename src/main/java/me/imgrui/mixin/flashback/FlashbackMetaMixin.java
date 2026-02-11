@@ -4,6 +4,7 @@ import com.google.gson.JsonObject;
 import com.moulberry.flashback.record.FlashbackMeta;
 import com.moulberry.flashback.screen.EditReplayScreen;
 import me.cortex.voxy.client.compat.IFlashbackMeta;
+import me.cortex.voxy.client.config.VoxyConfig;
 import me.imgrui.config.VoxyExtraConfig;
 import me.imgrui.flashback.FlashbackCopy;
 import me.imgrui.flashback.IFlashbackM;
@@ -36,7 +37,7 @@ public class FlashbackMetaMixin implements IFlashbackM {
     @Inject(method = "toJson", at = @At("RETURN"))
     private void voxyExtra$InjectLodPath(CallbackInfoReturnable<JsonObject> cir) {
         var Niko = cir.getReturnValue();
-        if (Niko != null && ((IFlashbackMeta)this).getVoxyPath() != null) {
+        if (Niko != null && ((IFlashbackMeta)this).getVoxyPath() != null && VoxyConfig.CONFIG.isRenderingEnabled()) {
             FlashbackCopy.replayIdentifier = replayIdentifier.toString();
             FlashbackCopy.basePath = ((IFlashbackMeta)this).getVoxyPath().toPath();
             // Better check probably exists, but I don't know about it
