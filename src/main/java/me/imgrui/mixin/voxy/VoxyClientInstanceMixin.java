@@ -62,7 +62,7 @@ public class VoxyClientInstanceMixin {
                 var list = VoxyExtraConfig.CONFIG.lodMirrorList.get(i);
                 if (list.getFirst().equals(ip)) return path;
                 if (list.contains(ip)) {
-                    var listf = list.getFirst();
+                    String listf = list.getFirst();
                     path = path.resolveSibling(listf);
                     VoxyExtra.LOGGER.info("[Voxy Extra] Successfully replaced path to {}", listf);
                     break;
