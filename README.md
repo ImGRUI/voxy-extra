@@ -10,7 +10,7 @@ Current list of implemented features:
  - Server Blacklist: Allows disabling Voxy on specific servers;
  - LoD Mirror: Allows setting one LoD storage for multiple IP addresses.
 
-All features are configurable in Sodium options.
+All features are configurable in Sodium options (besides lists).
 
 # Suggestions
 
