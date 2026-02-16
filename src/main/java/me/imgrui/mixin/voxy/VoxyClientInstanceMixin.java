@@ -3,6 +3,7 @@ package me.imgrui.mixin.voxy;
 import com.llamalad7.mixinextras.sugar.Local;
 import me.cortex.voxy.client.VoxyClientInstance;
 import me.cortex.voxy.client.config.VoxyConfig;
+import me.cortex.voxy.client.core.util.IrisUtil;
 import me.imgrui.VoxyExtra;
 import me.imgrui.config.VoxyExtraConfig;
 import me.imgrui.flashback.FlashbackCopy;
@@ -39,7 +40,7 @@ public class VoxyClientInstanceMixin {
             String ip = value.substring(value.lastIndexOf("/") + 1).replace("_", ":");
             if (VoxyExtraConfig.CONFIG.serverBlacklistList.contains(ip)) {
                 VoxyExtra.LOGGER.info("[Voxy Extra] Server {} in blacklist, disabling Voxy", ip);
-                VoxyConfig.CONFIG.enabled = false;
+                VoxyConfig.CONFIG.enabled = false; IrisUtil.reload();
                 VoxyExtra.isInBlacklist = true;
             }
         } else {
