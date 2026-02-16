@@ -5,13 +5,13 @@
   "voxy_extra.config.fix_nether_fog.tooltip": "Disables nether fog with environmental fog enabled.",
 
   "voxy_extra.config.save_old_lods": "Copy LoDs with Replays",
-  "voxy_extra.config.save_old_lods.tooltip": "Enables copying LoDs to special Flashback folder (doesn't support combining replays). If turned off, LoDs location will be written to metadata instead, which can't be ingested in the replay.",
+  "voxy_extra.config.save_old_lods.tooltip": "Enables copying LoDs to special folder (doesn't support combining replays). If turned off, LoD location will be written to metadata instead, which can't be ingested in the replay.",
 
   "voxy_extra.config.flashback_ingest": "Ingest in Replays",
-  "voxy_extra.config.flashback_ingest.tooltip": "Enables ingesting in compatible Flashback replays (which have LoDs copied).",
+  "voxy_extra.config.flashback_ingest.tooltip": "Enables ingesting in compatible Flashback replays (which have LoD copied).",
 
   "voxy_extra.config.server_blacklist": "Server Blacklist",
-  "voxy_extra.config.server_blacklist.tooltip": "Allows blacklisting servers to disable Voxy in them. Add to server_blacklist_list in voxy-extra.json, format: [\"IP\", \"IP\"].",
+  "voxy_extra.config.server_blacklist.tooltip": "Allows blacklisting servers to disable Voxy in them. Add to server_blacklist_list in voxy-extra.json, format: [\"IP\", \"IP2\"].",
 
   "voxy_extra.config.lod_mirror": "LoD Mirror",
   "voxy_extra.config.lod_mirror.tooltip": "Allows setting one LoD storage for multiple IP addresses. Add to lod_mirror_list in voxy-extra.json, format: [[\"BaseIP\", \"AltIP\", \"AltIP\"], [\"BaseIP2\", \"AltIP2\"]]."
