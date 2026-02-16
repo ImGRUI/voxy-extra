@@ -110,6 +110,7 @@ public class FlashbackCopy {
                 try (InputStream inputStream = zipFile.getInputStream(zipEntry)) {
                     InputStreamReader inputStreamReader = new InputStreamReader(inputStream, StandardCharsets.UTF_8);
                     JsonObject jsonObject = JsonParser.parseReader(inputStreamReader).getAsJsonObject();
+                    if (!jsonObject.has("voxy_storage_path")) return null;
                     if (jsonObject.get("voxy_storage_path").toString().contains("voxy\\\\flashback\\\\")) {
                         return jsonObject.get("uuid").getAsString();
                     }

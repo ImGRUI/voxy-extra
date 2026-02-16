@@ -5,7 +5,7 @@
   "voxy_extra.config.fix_nether_fog.tooltip": "Выключает туман в нижнем мире с включённым environmental fog.",
 
   "voxy_extra.config.save_old_lods": "Копировать LoD с повторами",
-  "voxy_extra.config.save_old_lods.tooltip": "Включает копирование LoD в специальную папку (не поддерживает объединение повторов). Если выключено, локация LoD будет записана в metadata, откуда не будет обновляться в повторе.",
+  "voxy_extra.config.save_old_lods.tooltip": "Включает копирование LoD в специальную папку (не поддерживает объединение повторов). Если выключено, локация LoD будет записана в metadata, откуда не сможет обновляться в повторе.",
 
   "voxy_extra.config.flashback_ingest": "Обновлять LoD в повторах",
   "voxy_extra.config.flashback_ingest.tooltip": "Включает обновление LoD в поддерживаемых повторах Flashback (со скопированными LoD).",
