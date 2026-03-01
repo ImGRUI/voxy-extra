@@ -2,6 +2,7 @@ package me.imgrui.mixin.voxy;
 
 import me.cortex.voxy.client.VoxyClientInstance;
 import me.cortex.voxy.client.config.VoxyConfig;
+import me.cortex.voxy.client.core.util.IrisUtil;
 import me.cortex.voxy.commonImpl.VoxyCommon;
 import me.imgrui.VoxyExtra;
 import me.imgrui.config.VoxyExtraConfig;
@@ -20,6 +21,7 @@ public class VoxyCommonMixin {
                 VoxyConfig.CONFIG.enabled = false;
                 VoxyClientInstance.isInGame = false;
                 ci.cancel();
+                IrisUtil.reload();
 
                 VoxyExtra.isInBlacklist = true;
                 VoxyExtra.LOGGER.info("[Voxy Extra] Server {} in blacklist, disabling Voxy", host);
