@@ -2,8 +2,6 @@ package me.imgrui.mixin.voxy;
 
 import com.llamalad7.mixinextras.sugar.Local;
 import me.cortex.voxy.client.VoxyClientInstance;
-import me.cortex.voxy.client.config.VoxyConfig;
-import me.cortex.voxy.client.core.util.IrisUtil;
 import me.imgrui.VoxyExtra;
 import me.imgrui.config.VoxyExtraConfig;
 import me.imgrui.flashback.FlashbackCopy;

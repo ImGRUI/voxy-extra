@@ -7,6 +7,9 @@
 	"authors": [
 		"ImGRUI"
 	],
+    "contributors": [
+        "Werkhil"
+    ],
 	"contact": {
 		"issues": "https://github.com/ImGRUI/voxy-extra/issues",
 		"sources": "https://github.com/ImGRUI/voxy-extra",
