@@ -48,7 +48,7 @@ public class VoxyClientInstanceMixin {
                 if (list.contains(ip)) {
                     String listf = list.getFirst();
                     path = path.resolveSibling(listf);
-                    VoxyExtra.LOGGER.info("[Voxy Extra] Successfully replaced path to {}", listf);
+                    VoxyExtra.LOGGER.warn("[Voxy Extra] Successfully replaced path to {}", listf);
                     break;
                 }
             }

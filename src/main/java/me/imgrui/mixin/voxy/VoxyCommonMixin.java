@@ -22,14 +22,11 @@ public class VoxyCommonMixin {
                 VoxyClientInstance.isInGame = false;
                 ci.cancel();
                 IrisUtil.reload();
-
                 VoxyExtra.isInBlacklist = true;
-                VoxyExtra.LOGGER.info("[Voxy Extra] Server {} in blacklist, disabling Voxy", host);
-
+                VoxyExtra.LOGGER.warn("[Voxy Extra] Server {} in blacklist, disabling Voxy", host);
                 return;
             }
         }
-
         VoxyExtra.isInBlacklist = false;
     }
 }

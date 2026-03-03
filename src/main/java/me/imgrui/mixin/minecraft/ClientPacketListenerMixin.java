@@ -19,19 +19,12 @@ public abstract class ClientPacketListenerMixin {
     public abstract ServerData getServerData();
 
     @Inject(method = "<init>", at = @At("TAIL"))
-    private void voxyExtra$captureHost(
-            Minecraft minecraft,
-            Connection connection,
-            CommonListenerCookie cookie,
-            CallbackInfo ci
-    ) {
+    private void voxyExtra$captureHost(Minecraft minecraft, Connection connection, CommonListenerCookie cookie, CallbackInfo ci) {
         ServerData data = this.getServerData();
-
         if (data == null || data.ip.isBlank()) {
             VoxyExtra.HOST = null;
             return;
         }
-
         VoxyExtra.HOST = ServerAddress.parseString(data.ip).getHost();
     }
 }

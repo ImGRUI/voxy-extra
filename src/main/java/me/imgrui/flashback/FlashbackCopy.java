@@ -97,7 +97,7 @@ public class FlashbackCopy {
         Path flashbackLod = Minecraft.getInstance().gameDirectory.toPath().resolve(".voxy").resolve("flashback").resolve(replayIdentifier);
         try {
             FileUtils.deleteDirectory(flashbackLod.toFile());
-            VoxyExtra.LOGGER.info("[Voxy Extra] Deleted LoD for {}", replayIdentifier);
+            VoxyExtra.LOGGER.warn("[Voxy Extra] Deleted LoD for {}", replayIdentifier);
         } catch (IOException e) {
             VoxyExtra.LOGGER.error("[Voxy Extra] Failed to delete LoD for {}", replayIdentifier);
         }

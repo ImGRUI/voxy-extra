@@ -3,6 +3,7 @@ package me.imgrui.config;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import me.imgrui.VoxyExtra;
 import net.fabricmc.loader.api.FabricLoader;
 
 import java.io.FileReader;
@@ -48,8 +49,9 @@ public class VoxyExtraConfig {
         if (Files.exists(CONFIG_PATH)) {
             try (FileReader reader = new FileReader(CONFIG_PATH.toFile())) {
                 config = GSON.fromJson(reader, VoxyExtraConfig.class);
-            } catch (IOException e) {
-                throw new RuntimeException("Could not parse Voxy Extra config", e);
+            } catch (Exception e) {
+                VoxyExtra.LOGGER.error("Could not parse Voxy Extra config, resetting", e);
+                config = new VoxyExtraConfig();
             }
         } else {
             config = new VoxyExtraConfig();
@@ -58,7 +60,7 @@ public class VoxyExtraConfig {
         try {
             config.write();
         } catch (IOException e) {
-            throw new RuntimeException("Could not parse Voxy Extra config", e);
+            throw new RuntimeException("Could not write Voxy Extra config", e);
         }
 
         return config;
