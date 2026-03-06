@@ -42,6 +42,8 @@ dependencies {
     modImplementation "maven.modrinth:sodium:${project.sodium}"
 
     modImplementation "net.caffeinemc:sodium-fabric-api:${project.sodium_api}"
+
+    modImplementation "maven.modrinth:modmenu:${project.mod_menu}"
 }
 
 processResources {

@@ -24,6 +24,9 @@
 		],
         "sodium:config_api_user": [
           "me.imgrui.config.sodium.VoxyExtraConfigBuilder"
+        ],
+        "modmenu": [
+          "me.imgrui.config.ModMenuIntegration"
         ]
 	},
 	"mixins": [

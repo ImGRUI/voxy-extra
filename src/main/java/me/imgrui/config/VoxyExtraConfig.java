@@ -5,7 +5,9 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import me.imgrui.VoxyExtra;
 import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.util.Util;
 
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Modifier;
@@ -72,6 +74,10 @@ public class VoxyExtraConfig {
             Files.createDirectories(path);
         }
         Files.writeString(CONFIG_PATH, GSON.toJson(this));
+    }
+
+    public static void openConfig() {
+        Util.getPlatform().openFile(new File(CONFIG_PATH.toString()));
     }
 
     public boolean getFlashbackIngest() {
