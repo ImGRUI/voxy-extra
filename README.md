@@ -5,12 +5,12 @@ Voxy Extra is a Voxy addon, which adds features that shouldn't be in Voxy. It ma
 # Features
 
 Current list of implemented features:
- - **Nether Fog Fix**: Disables nether fog with environmental fog enabled;
+ - **Nether Fog Settings**: Adds configurable Nether fog options;
  - **Copying LoDs with Flashback replays**: Allows to show proper LoD state in old replays, also enabling ingesting (eats your disk yummy);
- - **Server Blacklist**: Allows disabling Voxy on specific servers;
- - **LoD Mirror**: Allows setting one LoD storage for multiple IP addresses.
+ - **Linked Servers**: Allows using a single LoD storage for multiple server addresses;
+ - **Server Blacklist**: Allows disabling Voxy on specific servers.
 
-You can turn on and off each feature in Sodium menu. To add lists (e.g. with IPs), you can open config file in Mod Menu.
+You can turn on and off each feature in Sodium menu. To add lists (e.g. with server addresses), you can open config file in Mod Menu.
 
 # Suggestions
 
