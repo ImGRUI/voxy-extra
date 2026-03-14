@@ -23,7 +23,7 @@
 			"me.imgrui.VoxyExtra"
 		],
         "sodium:config_api_user": [
-          "me.imgrui.config.SodiumConfigBuilder"
+          "me.imgrui.config.sodium.SodiumConfigBuilder"
         ],
         "modmenu": [
           "me.imgrui.config.ModMenuIntegration"

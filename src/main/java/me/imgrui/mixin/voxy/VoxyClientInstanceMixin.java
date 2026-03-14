@@ -5,6 +5,7 @@ import me.cortex.voxy.client.VoxyClientInstance;
 import me.imgrui.VoxyExtra;
 import me.imgrui.config.VoxyExtraConfig;
 import me.imgrui.flashback.FlashbackCopy;
+
 import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.At;
@@ -13,6 +14,8 @@ import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.nio.file.Path;
+import java.util.Map;
+import java.util.Set;
 
 @Mixin(value = VoxyClientInstance.class, remap = false)
 public class VoxyClientInstanceMixin {
@@ -39,18 +42,23 @@ public class VoxyClientInstanceMixin {
     private Path voxyExtra$lodMirrorCheck(Path path) {
         if (!VoxyExtraConfig.CONFIG.isLinkedServersEnabled()) return path;
         if (VoxyExtraConfig.CONFIG.linkedServers.isEmpty()) return path;
-        var IP = VoxyExtra.IP;
-        if (IP == null) return path;
-        for (int i = 0; i < VoxyExtraConfig.CONFIG.linkedServers.size(); i++) {
-            var list = VoxyExtraConfig.CONFIG.linkedServers.get(i);
-            var listFirst = list.getFirst();
-            if (listFirst.equals(IP)) return path;
-            if (list.contains(IP)) {
-                path = path.resolveSibling(listFirst);
-                VoxyExtra.LOGGER.warn("[Voxy Extra] Successfully replaced path to {}", listFirst);
+
+        String currentHost = VoxyExtra.currentHost;
+        if (currentHost == null) return path;
+
+        for (Map.Entry<String, Set<String>> entry : VoxyExtraConfig.CONFIG.linkedServers.entrySet()) {
+            String primaryHost = entry.getKey();
+            Set<String> linkedHosts = entry.getValue();
+
+            if (primaryHost.equals(currentHost)) return path;
+
+            if (linkedHosts.contains(currentHost)) {
+                path = path.resolveSibling(primaryHost);
+                VoxyExtra.LOGGER.warn("[Voxy Extra] Successfully replaced path to {}", primaryHost);
                 break;
             }
         }
+
         return path;
     }
 }

@@ -24,15 +24,15 @@ public class VoxyExtraMixinPlugin implements IMixinConfigPlugin {
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
         FabricLoader instance = FabricLoader.getInstance();
 
+        if (mixinClassName.endsWith("minecraft.FogEnvironmentMixin")) {
+            return instance.isModLoaded("sodium-extra");
+        }
+
         if (mixinClassName.endsWith("flashback.FlashbackMetaMixin") || 
             mixinClassName.endsWith("flashback.FlashbackMixin") || 
             mixinClassName.endsWith("flashback.FlashbackRecorderMixin") || 
             mixinClassName.endsWith("flashback.FlashbackSaveReplayScreenMixin")) {
             return instance.isModLoaded("flashback");
-        }
-
-        if (mixinClassName.endsWith("minecraft.FogEnvironmentMixin")) {
-            return instance.isModLoaded("sodium-extra");
         }
 
         return true;

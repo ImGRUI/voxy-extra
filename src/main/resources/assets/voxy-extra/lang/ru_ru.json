@@ -1,28 +1,32 @@
 {
-  "voxy-extra.config.rendering": "Рендеринг",
+  "voxy-extra.option.rendering": "Рендеринг",
 
-  "voxy-extra.config.nether_fog": "Туман в нижнем мире",
-  "voxy-extra.config.nether_fog.tooltip": "Управляет туманом в нижнем мире.",
+  "voxy-extra.option.nether_fog": "Туман в нижнем мире",
+  "voxy-extra.option.nether_fog.tooltip": "Управляет туманом в нижнем мире.",
 
-  "voxy-extra.config.nether_fog.start": "Начало тумана в нижнем мире",
-  "voxy-extra.config.nether_fog.start.tooltip": "Управляет тем, где начинает появляться туман (начальный множитель).",
+  "voxy-extra.option.nether_fog.start": "Начало тумана в нижнем мире",
+  "voxy-extra.option.nether_fog.start.tooltip": "Управляет тем, где начинает появляться туман (начальный множитель).",
 
-  "voxy-extra.config.nether_fog.end": "Конец тумана в нижнем мире",
-  "voxy-extra.config.nether_fog.end.tooltip": "Управляет тем, как далеко распространяется туман (конечный множитель).",
+  "voxy-extra.option.nether_fog.end": "Конец тумана в нижнем мире",
+  "voxy-extra.option.nether_fog.end.tooltip": "Управляет тем, как далеко распространяется туман (конечный множитель).",
 
-  "voxy-extra.config.flashback": "Flashback",
+  "voxy-extra.option.flashback_copy_lods": "Копировать LoD с повторами",
+  "voxy-extra.option.flashback_copy_lods.tooltip": "Включает копирование LoD в специальную папку (не поддерживает объединение повторов). Если выключено, локация LoD будет записана в metadata, откуда не сможет обновляться в повторе.",
 
-  "voxy-extra.config.flashback_copy_lods": "Копировать LoD с повторами",
-  "voxy-extra.config.flashback_copy_lods.tooltip": "Включает копирование LoD в специальную папку (не поддерживает объединение повторов). Если выключено, локация LoD будет записана в metadata, откуда не сможет обновляться в повторе.",
+  "voxy-extra.option.flashback_ingest": "Обновлять LoD в повторах",
+  "voxy-extra.option.flashback_ingest.tooltip": "Включает обновление LoD в поддерживаемых повторах (со скопированными LoD).",
 
-  "voxy-extra.config.flashback_ingest": "Обновлять LoD в повторах",
-  "voxy-extra.config.flashback_ingest.tooltip": "Включает обновление LoD в поддерживаемых повторах (со скопированными LoD).",
+  "voxy-extra.option.multiplayer": "Сетевая игра",
 
-  "voxy-extra.config.multiplayer": "Сетевая игра",
+  "voxy-extra.option.linked_servers": "Связанные серверы",
+  "voxy-extra.option.linked_servers.tooltip": "Позволяет использовать одно хранилище LoD для нескольких серверов.",
+  "voxy-extra.option.edit_linked_servers": "Редактировать связанные серверы",
 
-  "voxy-extra.config.linked_servers": "Связанные серверы",
-  "voxy-extra.config.linked_servers.tooltip": "Позволяет использовать одно хранилище LoD для нескольких адресов сервера. Редактируйте 'linked_servers' в voxy-extra.json\n\nФормат: [[\"Основной адрес\", \"Доп. адрес\", ...], [...]]",
+  "voxy-extra.option.server_blacklist": "Чёрный список серверов",
+  "voxy-extra.option.server_blacklist.tooltip": "Позволяет добавлять серверы в чёрный список, чтобы отключать Voxy на них.",
+  "voxy-extra.option.edit_server_blacklist": "Редактировать чёрный список серверов",
 
-  "voxy-extra.config.server_blacklist": "Чёрный список",
-  "voxy-extra.config.server_blacklist.tooltip": "Позволяет добавлять серверы в чёрный список, чтобы отключать Voxy на них. Редактируйте 'server_blacklist' в voxy-extra.json\n\nФормат: [\"Адрес\", \"Адрес\", ...]"
+  "voxy-extra.modal.open_editor_modal.tooltip": "Откроет модальное окно для редактирования.",
+  "voxy-extra.modal.server_address": "Адрес сервера",
+  "voxy-extra.modal.linked_servers.primary_server": "Основной сервер: %s"
 }

@@ -13,7 +13,10 @@ import java.io.IOException;
 import java.lang.reflect.Modifier;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
+import java.util.Map;
+import java.util.Set;
 
 public class VoxyExtraConfig {
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).excludeFieldsWithModifiers(Modifier.PRIVATE, Modifier.STATIC).create();
@@ -27,9 +30,9 @@ public class VoxyExtraConfig {
     public boolean flashbackCopyLodsEnabled;
     public boolean flashbackIngestEnabled;
     public boolean linkedServersEnabled;
-    public ArrayList<ArrayList<String>> linkedServers = new ArrayList<>();
+    public Map<String, Set<String>> linkedServers = new LinkedHashMap<>();
     public boolean serverBlacklistEnabled;
-    public ArrayList<String> serverBlacklist = new ArrayList<>();
+    public Set<String> serverBlacklist = new LinkedHashSet<>();
     
     public VoxyExtraConfig() {
         this.netherFogEnabled = true;

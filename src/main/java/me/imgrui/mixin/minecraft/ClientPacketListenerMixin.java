@@ -1,6 +1,5 @@
 package me.imgrui.mixin.minecraft;
 
-import me.imgrui.VoxyExtra;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientPacketListener;
 import net.minecraft.client.multiplayer.CommonListenerCookie;
@@ -13,6 +12,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import me.imgrui.VoxyExtra;
+
 @Mixin(ClientPacketListener.class)
 public abstract class ClientPacketListenerMixin {
     @Shadow
@@ -22,9 +23,10 @@ public abstract class ClientPacketListenerMixin {
     private void voxyExtra$captureHost(Minecraft minecraft, Connection connection, CommonListenerCookie cookie, CallbackInfo ci) {
         ServerData data = this.getServerData();
         if (data == null || data.ip.isBlank()) {
-            VoxyExtra.IP = null;
+            VoxyExtra.currentHost = null;
             return;
         }
-        VoxyExtra.IP = ServerAddress.parseString(data.ip).getHost();
+        
+        VoxyExtra.currentHost = ServerAddress.parseString(data.ip).getHost();
     }
 }
