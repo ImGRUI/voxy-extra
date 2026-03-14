@@ -1,6 +1,7 @@
 package me.imgrui.gui.modal.widgets;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.input.KeyEvent;
 import net.minecraft.client.resources.sounds.SimpleSoundInstance;
@@ -187,7 +188,7 @@ public class FlowLayoutWidget extends ModalWidget {
             this.buttons = new ArrayList<>(buttons);
         }
 
-        public void calculateDimensions(net.minecraft.client.gui.Font font) {
+        public void calculateDimensions(Font font) {
             this.textWidth = font.width(text) + 6;
             this.totalWidth = textWidth;
             for (ActionButton btn : buttons) {

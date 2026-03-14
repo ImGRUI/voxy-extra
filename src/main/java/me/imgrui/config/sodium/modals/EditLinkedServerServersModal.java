@@ -13,7 +13,6 @@ import net.caffeinemc.mods.sodium.client.gui.prompt.ScreenPromptable;
 import net.minecraft.network.chat.Component;
 
 public class EditLinkedServerServersModal {
- 
     public static Modal create(ScreenPromptable parent, String primaryHost) {
         FlowLayoutWidget flowLayout = new FlowLayoutWidget(220, 110);
  

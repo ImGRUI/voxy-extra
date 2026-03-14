@@ -204,6 +204,6 @@ public class Modal extends ScreenPrompt {
     }
 
     public void setVanillaFocus(GuiEventListener listener) {
-        ((net.minecraft.client.gui.screens.Screen) this.parent).setFocused(listener);
+        ((Screen) this.parent).setFocused(listener);
     }
 }
