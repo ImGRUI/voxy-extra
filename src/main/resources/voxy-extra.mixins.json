@@ -2,6 +2,7 @@
   "required": true,
   "package": "me.imgrui.mixin",
   "compatibilityLevel": "JAVA_21",
+  "plugin": "me.imgrui.mixin.VoxyExtraMixinPlugin",
   "mixins": [
   ],
   "injectors": {
@@ -16,6 +17,7 @@
     "flashback.FlashbackRecorderMixin",
     "flashback.FlashbackSaveReplayScreenMixin",
     "minecraft.ClientPacketListenerMixin",
+    "minecraft.FogEnvironmentMixin",
     "minecraft.FogRendererMixin",
     "minecraft.MinecraftMixin",
     "voxy.VoxyClientInstanceMixin",

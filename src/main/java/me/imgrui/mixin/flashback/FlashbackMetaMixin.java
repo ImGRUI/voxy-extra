@@ -49,7 +49,7 @@ public class FlashbackMetaMixin implements IFlashbackM {
                 }
                 return;
             }
-            if (VoxyExtraConfig.CONFIG.getSaveOldLods()) {
+            if (VoxyExtraConfig.CONFIG.isFlashbackCopyLodsEnabled()) {
                 Path copyPath = Minecraft.getInstance().gameDirectory.toPath().resolve(".voxy").resolve("flashback").resolve(replayIdentifier.toString());
                 Niko.addProperty("voxy_storage_path", copyPath.toString());
             }

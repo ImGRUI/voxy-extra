@@ -13,7 +13,10 @@ import java.io.IOException;
 import java.lang.reflect.Modifier;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
+import java.util.Map;
+import java.util.Set;
 
 public class VoxyExtraConfig {
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).excludeFieldsWithModifiers(Modifier.PRIVATE, Modifier.STATIC).create();
@@ -21,20 +24,24 @@ public class VoxyExtraConfig {
 
     public static final VoxyExtraConfig CONFIG = VoxyExtraConfig.load();
 
-    public boolean fixNetherFog;
-    public boolean saveOldLods;
-    public boolean flashbackIngest;
-    public boolean serverBlacklist;
-    public ArrayList<String> serverBlacklistList = new ArrayList<>();
-    public boolean lodMirror;
-    public ArrayList<ArrayList<String>> lodMirrorList = new ArrayList<>();
-
+    public boolean netherFogEnabled;
+    public int netherFogStartMultiplier;
+    public int netherFogEndMultiplier;
+    public boolean flashbackCopyLodsEnabled;
+    public boolean flashbackIngestEnabled;
+    public boolean linkedServersEnabled;
+    public Map<String, Set<String>> linkedServers = new LinkedHashMap<>();
+    public boolean serverBlacklistEnabled;
+    public Set<String> serverBlacklist = new LinkedHashSet<>();
+    
     public VoxyExtraConfig() {
-        fixNetherFog = true;
-        saveOldLods = false;
-        flashbackIngest = false;
-        serverBlacklist = false;
-        lodMirror = false;
+        this.netherFogEnabled = true;
+        this.netherFogStartMultiplier = 100;
+        this.netherFogEndMultiplier = 100;
+        this.flashbackCopyLodsEnabled = false;
+        this.flashbackIngestEnabled = false;
+        this.linkedServersEnabled = false;
+        this.serverBlacklistEnabled = false;
     }
 
     public void save() {
@@ -80,44 +87,59 @@ public class VoxyExtraConfig {
         Util.getPlatform().openFile(new File(CONFIG_PATH.toString()));
     }
 
-    public boolean getFlashbackIngest() {
-        return flashbackIngest;
+    public boolean isNetherFogEnabled() {
+        return netherFogEnabled;
     }
 
-    public void setFlashbackIngest(boolean flashbackIngest) {
-        this.flashbackIngest = flashbackIngest;
+    public void setNetherFogEnabled(Boolean value) {
+        this.netherFogEnabled = value;
     }
 
-    public boolean getFixNetherFog() {
-        return fixNetherFog;
+    public int getNetherFogStartMultiplier() {
+        return netherFogStartMultiplier;
     }
 
-    public void setFixNetherFog(boolean fixNetherFog) {
-        this.fixNetherFog = fixNetherFog;
+    public void setNetherFogStartMultiplier(Integer multiplier) {
+        this.netherFogStartMultiplier = multiplier;
     }
 
-    public boolean getSaveOldLods() {
-        return saveOldLods;
+    public int getNetherFogEndMultiplier() {
+        return netherFogEndMultiplier;
     }
 
-    public void setSaveOldLods(boolean saveOldLods) {
-        this.saveOldLods = saveOldLods;
+    public void setNetherFogEndMultiplier(Integer multiplier) {
+        this.netherFogEndMultiplier = multiplier;
     }
 
-    public boolean getServerBlacklist() {
-        return serverBlacklist;
+    public boolean isFlashbackCopyLodsEnabled() { 
+        return flashbackCopyLodsEnabled; 
+    }
+    
+    public void setFlashbackCopyLodsEnable(Boolean value) { 
+        this.flashbackCopyLodsEnabled = value; 
     }
 
-    public void setServerBlacklist(boolean serverBlacklist) {
-        this.serverBlacklist = serverBlacklist;
+    public boolean isFlashbackIngestEnabled() { 
+        return flashbackIngestEnabled; 
+    }
+    
+    public void setFlashbackIngestEnabled(Boolean value) { 
+        this.flashbackIngestEnabled = value; 
     }
 
-    public boolean getLodMirror() {
-        return lodMirror;
+    public boolean isLinkedServersEnabled() {
+        return linkedServersEnabled;
     }
 
-    public void setLodMirror(boolean lodMirror) {
-        this.lodMirror = lodMirror;
+    public void setLinkedServersEnabled(Boolean value) {
+        this.linkedServersEnabled = value;
     }
 
+    public boolean isServerBlacklistEnabled() {
+        return serverBlacklistEnabled;
+    }
+
+    public void setServerBlacklistEnabled(Boolean value) {
+        this.serverBlacklistEnabled = value;
+    }
 }

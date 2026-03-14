@@ -1,18 +1,32 @@
 {
-  "voxy_extra.sodium.config_page": "Config",
+  "voxy-extra.option.rendering": "Rendering",
 
-  "voxy_extra.config.fix_nether_fog": "Nether Fog Fix",
-  "voxy_extra.config.fix_nether_fog.tooltip": "Disables nether fog with environmental fog enabled.",
+  "voxy-extra.option.nether_fog": "Fog in the Nether",
+  "voxy-extra.option.nether_fog.tooltip": "Controls fog in the nether.",
 
-  "voxy_extra.config.save_old_lods": "Copy LoDs with Replays",
-  "voxy_extra.config.save_old_lods.tooltip": "Enables copying LoDs to special folder (doesn't support combining replays). If turned off, LoD location will be written to metadata instead, which can't be ingested in the replay.",
+  "voxy-extra.option.nether_fog.start": "Nether Fog Start",
+  "voxy-extra.option.nether_fog.start.tooltip": "Controls when the fog begins to appear (start multiplier).",
 
-  "voxy_extra.config.flashback_ingest": "Ingest in Replays",
-  "voxy_extra.config.flashback_ingest.tooltip": "Enables ingesting in compatible Flashback replays (which have LoD copied).",
+  "voxy-extra.option.nether_fog.end": "Nether Fog End",
+  "voxy-extra.option.nether_fog.end.tooltip": "Controls how far the fog extends (end multiplier).",
 
-  "voxy_extra.config.server_blacklist": "Server Blacklist",
-  "voxy_extra.config.server_blacklist.tooltip": "Allows blacklisting servers to disable Voxy in them. Add to server_blacklist_list in voxy-extra.json, format: [\"IP\", \"IP2\"].",
+  "voxy-extra.option.flashback_copy_lods": "Copy LoDs with Replays",
+  "voxy-extra.option.flashback_copy_lods.tooltip": "Enables copying LoDs to special folder (doesn't support combining replays). If turned off, LoD location will be written to metadata instead, which can't be ingested in the replay.",
 
-  "voxy_extra.config.lod_mirror": "LoD Mirror",
-  "voxy_extra.config.lod_mirror.tooltip": "Allows setting one LoD storage for multiple IP addresses. Add to lod_mirror_list in voxy-extra.json, format: [[\"BaseIP\", \"AltIP\", \"AltIP\"], [\"BaseIP2\", \"AltIP2\"]]."
+  "voxy-extra.option.flashback_ingest": "Ingest in Replays",
+  "voxy-extra.option.flashback_ingest.tooltip": "Enables ingesting in compatible Flashback replays (which have LoD copied).",
+
+  "voxy-extra.option.multiplayer": "Multiplayer",
+
+  "voxy-extra.option.linked_servers": "Linked Servers",
+  "voxy-extra.option.linked_servers.tooltip": "Allows using a single LoD storage for multiple servers.",
+  "voxy-extra.option.edit_linked_servers": "Edit Linked Servers",
+
+  "voxy-extra.option.server_blacklist": "Server Blacklist",
+  "voxy-extra.option.server_blacklist.tooltip": "Allows blacklisting servers to disable Voxy on them.",
+  "voxy-extra.option.edit_server_blacklist": "Edit Server Blacklist",
+
+  "voxy-extra.modal.open_editor_modal.tooltip": "Opens a modal screen for editing.",
+  "voxy-extra.modal.server_address": "Server address",
+  "voxy-extra.modal.linked_servers.primary_server": "Primary Server: %s"
 }
