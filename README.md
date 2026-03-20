@@ -10,7 +10,7 @@ Current list of implemented features:
  - **Server Blacklist**: Allows disabling Voxy on specific servers;
  - **LoD Mirror**: Allows setting one LoD storage for multiple IP addresses.
 
-You can turn on and off each feature in Sodium menu. To add lists (e.g. with IPs), you can open config file in Mod Menu.
+All options are configurable in Sodium menu.
 
 # Suggestions
 
