@@ -1,5 +1,7 @@
 package me.imgrui.config.sodium;
 
+import me.imgrui.VoxyExtra;
+import me.imgrui.config.VoxyExtraConfig;
 import net.caffeinemc.mods.sodium.api.config.ConfigEntryPoint;
 import net.caffeinemc.mods.sodium.api.config.structure.ConfigBuilder;
 import net.caffeinemc.mods.sodium.api.config.structure.OptionPageBuilder;
@@ -29,19 +31,29 @@ public class VoxyExtraConfigBuilder implements ConfigEntryPoint {
                         .addOption(
                                 builder.createBooleanOption(Identifier.parse("voxy-extra:flashbacksaveoldlods"))
                                         .setName(Component.translatable("voxy_extra.config.save_old_lods"))
-                                        .setTooltip(Component.translatable("voxy_extra.config.save_old_lods.tooltip"))
+                                        .setTooltip(
+                                                VoxyExtra.IsFlashbackLoaded
+                                                        ? Component.translatable("voxy_extra.config.save_old_lods.tooltip")
+                                                        : Component.translatable("voxy_extra.config.flashback_not_available.tooltip")
+                                        )
                                         .setStorageHandler(CONFIG::save)
                                         .setBinding(CONFIG::setSaveOldLods, CONFIG::getSaveOldLods)
                                         .setDefaultValue(false)
+                                        .setEnabled(VoxyExtra.IsFlashbackLoaded)
                                 )
                         .addOption(
                                 builder.createBooleanOption(Identifier.parse("voxy-extra:flashbackingest"))
                                         .setName(Component.translatable("voxy_extra.config.flashback_ingest"))
-                                        .setTooltip(Component.translatable("voxy_extra.config.flashback_ingest.tooltip"))
+                                        .setTooltip(
+                                                VoxyExtra.IsFlashbackLoaded
+                                                        ? Component.translatable("voxy_extra.config.flashback_ingest.tooltip")
+                                                        : Component.translatable("voxy_extra.config.flashback_not_available.tooltip")
+                                        )
                                         .setStorageHandler(CONFIG::save)
                                         .setBinding(CONFIG::setFlashbackIngest, CONFIG::getFlashbackIngest)
                                         .setDefaultValue(true)
-                                )
+                                        .setEnabled(VoxyExtra.IsFlashbackLoaded)
+                        )
                 );
 
         VoxyExtraPage.addOptionGroup(builder.createOptionGroup()
@@ -53,9 +65,6 @@ public class VoxyExtraConfigBuilder implements ConfigEntryPoint {
                                 .setBinding(CONFIG::setServerBlacklist, CONFIG::getServerBlacklist)
                                 .setDefaultValue(false)
                 )
-        );
-
-        VoxyExtraPage.addOptionGroup(builder.createOptionGroup()
                 .addOption(
                         builder.createBooleanOption(Identifier.parse("voxy-extra:redirectlod"))
                                 .setName(Component.translatable("voxy_extra.config.lod_mirror"))
@@ -63,6 +72,15 @@ public class VoxyExtraConfigBuilder implements ConfigEntryPoint {
                                 .setStorageHandler(CONFIG::save)
                                 .setBinding(CONFIG::setLodMirror, CONFIG::getLodMirror)
                                 .setDefaultValue(false)
+                )
+        );
+
+        VoxyExtraPage.addOptionGroup(builder.createOptionGroup()
+                .addOption(
+                        builder.createExternalButtonOption(Identifier.parse("voxy-extra:editconfig"))
+                                .setName(Component.translatable("voxy_extra.config.edit"))
+                                .setTooltip(Component.translatable("voxy_extra.config.edit.tooltip"))
+                                .setScreenConsumer(screen -> VoxyExtraConfig.openConfig())
                 )
         );
 
