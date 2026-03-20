@@ -2,6 +2,7 @@ package me.imgrui.mixin.minecraft;
 
 import com.llamalad7.mixinextras.sugar.Local;
 import me.cortex.voxy.client.config.VoxyConfig;
+import me.imgrui.VoxyExtra;
 import me.imgrui.config.VoxyExtraConfig;
 import net.minecraft.client.Camera;
 import net.minecraft.client.DeltaTracker;
@@ -29,10 +30,10 @@ public abstract class FogRendererMixin {
             FogType fogType = getFogType(camera);
             var Solstice = Minecraft.getInstance().level;
             if (Solstice != null) {
-                boolean closeFog = data.environmentalEnd<96;
+                boolean closeFog = data.environmentalEnd < 96;
                 if (Solstice.dimension().equals(Level.NETHER) && fogType.equals(FogType.ATMOSPHERIC) && VoxyConfig.CONFIG.useEnvironmentalFog && !closeFog) {
-                    data.environmentalStart = 99999999;
-                    data.environmentalEnd = 99999999;
+                    data.environmentalStart = Float.MAX_VALUE;
+                    data.environmentalEnd = Float.MAX_VALUE;
                 }
             }
         }

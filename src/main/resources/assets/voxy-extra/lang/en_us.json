@@ -17,7 +17,7 @@
   "voxy_extra.config.lod_mirror.tooltip": "Allows setting one LoD storage for multiple servers. Add to lod_mirror_list in voxy-extra.json, format: [[\"BaseIP\", \"AltIP\", \"AltIP\"], [\"BaseIP2\", \"AltIP2\"]].",
 
   "voxy_extra.config.edit": "Open Config File",
-  "voxy_extra.config.edit.tooltip": "Opens config file.",
+  "voxy_extra.config.edit.tooltip": "Opens config file. Restart after changes.",
 
   "voxy_extra.config.flashback_not_available.tooltip": "Flashback isn't installed."
 }
