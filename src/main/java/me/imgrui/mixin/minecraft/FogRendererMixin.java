@@ -2,7 +2,6 @@ package me.imgrui.mixin.minecraft;
 
 import com.llamalad7.mixinextras.sugar.Local;
 import me.cortex.voxy.client.config.VoxyConfig;
-import me.imgrui.VoxyExtra;
 import me.imgrui.config.VoxyExtraConfig;
 import net.minecraft.client.Camera;
 import net.minecraft.client.DeltaTracker;
