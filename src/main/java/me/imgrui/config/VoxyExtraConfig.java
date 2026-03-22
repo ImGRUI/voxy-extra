@@ -24,24 +24,24 @@ public class VoxyExtraConfig {
 
     public static final VoxyExtraConfig CONFIG = VoxyExtraConfig.load();
 
-    public boolean netherFogEnabled;
+    public boolean netherFog;
     public int netherFogStartMultiplier;
     public int netherFogEndMultiplier;
-    public boolean flashbackCopyLodsEnabled;
-    public boolean flashbackIngestEnabled;
-    public boolean linkedServersEnabled;
-    public Map<String, Set<String>> linkedServers = new LinkedHashMap<>();
-    public boolean serverBlacklistEnabled;
-    public Set<String> serverBlacklist = new LinkedHashSet<>();
+    public boolean flashbackCopyLods;
+    public boolean flashbackIngest;
+    public boolean lodMirror;
+    public Map<String, Set<String>> lodMirrorMap = new LinkedHashMap<>();
+    public boolean serverBlacklist;
+    public Set<String> serverBlacklistList = new LinkedHashSet<>();
     
     public VoxyExtraConfig() {
-        this.netherFogEnabled = true;
+        this.netherFog = true;
         this.netherFogStartMultiplier = 100;
         this.netherFogEndMultiplier = 100;
-        this.flashbackCopyLodsEnabled = false;
-        this.flashbackIngestEnabled = false;
-        this.linkedServersEnabled = false;
-        this.serverBlacklistEnabled = false;
+        this.flashbackCopyLods = false;
+        this.flashbackIngest = false;
+        this.lodMirror = false;
+        this.serverBlacklist = false;
     }
 
     public void save() {
@@ -87,12 +87,12 @@ public class VoxyExtraConfig {
         Util.getPlatform().openFile(new File(CONFIG_PATH.toString()));
     }
 
-    public boolean isNetherFogEnabled() {
-        return netherFogEnabled;
+    public boolean getNetherFog() {
+        return netherFog;
     }
 
-    public void setNetherFogEnabled(Boolean value) {
-        this.netherFogEnabled = value;
+    public void setNetherFog(Boolean value) {
+        this.netherFog = value;
     }
 
     public int getNetherFogStartMultiplier() {
@@ -111,35 +111,35 @@ public class VoxyExtraConfig {
         this.netherFogEndMultiplier = multiplier;
     }
 
-    public boolean isFlashbackCopyLodsEnabled() { 
-        return flashbackCopyLodsEnabled; 
+    public boolean getFlashbackCopyLods() { 
+        return flashbackCopyLods; 
     }
     
     public void setFlashbackCopyLodsEnable(Boolean value) { 
-        this.flashbackCopyLodsEnabled = value; 
+        this.flashbackCopyLods = value; 
     }
 
-    public boolean isFlashbackIngestEnabled() { 
-        return flashbackIngestEnabled; 
+    public boolean getFlashbackIngest() { 
+        return flashbackIngest; 
     }
     
-    public void setFlashbackIngestEnabled(Boolean value) { 
-        this.flashbackIngestEnabled = value; 
+    public void setFlashbackIngest(Boolean value) { 
+        this.flashbackIngest = value; 
     }
 
-    public boolean isLinkedServersEnabled() {
-        return linkedServersEnabled;
+    public boolean getLodMirror() {
+        return lodMirror;
     }
 
-    public void setLinkedServersEnabled(Boolean value) {
-        this.linkedServersEnabled = value;
+    public void setLodMirror(Boolean value) {
+        this.lodMirror = value;
     }
 
-    public boolean isServerBlacklistEnabled() {
-        return serverBlacklistEnabled;
+    public boolean getServerBlacklist() {
+        return serverBlacklist;
     }
 
-    public void setServerBlacklistEnabled(Boolean value) {
-        this.serverBlacklistEnabled = value;
+    public void setServerBlacklist(Boolean value) {
+        this.serverBlacklist = value;
     }
 }

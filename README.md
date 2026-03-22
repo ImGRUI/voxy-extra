@@ -10,7 +10,7 @@ Current list of implemented features:
  - **Linked Servers**: Allows using a single LoD storage for multiple servers;
  - **Server Blacklist**: Allows disabling Voxy on specific servers.
 
-You can enable or disable each feature in the Sodium menu. Lists, such as server addresses, can be edited directly.
+All options are configurable in the Sodium menu. Lists, such as server addresses, can be edited directly.
 
 # Suggestions
 

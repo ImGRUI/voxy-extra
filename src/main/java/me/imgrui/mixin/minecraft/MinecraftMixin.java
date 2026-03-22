@@ -19,6 +19,6 @@ public class MinecraftMixin {
             IrisUtil.reload();
         }
         VoxyExtra.isInBlacklist = false;
-        VoxyExtra.currentHost = null;
+        VoxyExtra.IP = null;
     }
 }

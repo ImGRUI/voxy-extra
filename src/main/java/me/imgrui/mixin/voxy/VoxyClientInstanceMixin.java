@@ -26,7 +26,7 @@ public class VoxyClientInstanceMixin {
 
     @Inject(method = "<init>()V", at = @At(value = "FIELD", target = "Lme/cortex/voxy/client/VoxyClientInstance;noIngestOverride:Z", opcode = Opcodes.PUTFIELD))
     private void voxyExtra$flashbackIngest(CallbackInfo ci, @Local(name = "path") Path path) {
-        if (VoxyExtraConfig.CONFIG.isFlashbackIngestEnabled()) {
+        if (VoxyExtraConfig.CONFIG.getFlashbackIngest()) {
             this.noIngestOverride = path != null && !FlashbackCopy.voxySavedLods;
         } else {
             this.noIngestOverride = path != null;
@@ -40,13 +40,13 @@ public class VoxyClientInstanceMixin {
 
     @Unique
     private Path voxyExtra$lodMirrorCheck(Path path) {
-        if (!VoxyExtraConfig.CONFIG.isLinkedServersEnabled()) return path;
-        if (VoxyExtraConfig.CONFIG.linkedServers.isEmpty()) return path;
+        if (!VoxyExtraConfig.CONFIG.getLodMirror()) return path;
+        if (VoxyExtraConfig.CONFIG.lodMirrorMap.isEmpty()) return path;
 
-        String currentHost = VoxyExtra.currentHost;
+        String currentHost = VoxyExtra.IP;
         if (currentHost == null) return path;
 
-        for (Map.Entry<String, Set<String>> entry : VoxyExtraConfig.CONFIG.linkedServers.entrySet()) {
+        for (Map.Entry<String, Set<String>> entry : VoxyExtraConfig.CONFIG.lodMirrorMap.entrySet()) {
             String primaryHost = entry.getKey();
             Set<String> linkedHosts = entry.getValue();
 

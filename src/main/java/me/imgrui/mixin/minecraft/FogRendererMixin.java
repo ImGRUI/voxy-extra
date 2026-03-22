@@ -28,7 +28,7 @@ public abstract class FogRendererMixin {
         if (clientLevel != null && clientLevel.dimension() == Level.NETHER && fogType == FogType.ATMOSPHERIC) {
             var config = VoxyExtraConfig.CONFIG;
 
-            if (!config.isNetherFogEnabled()) {
+            if (!config.getNetherFog()) {
                 data.environmentalStart = Float.MAX_VALUE;
                 data.environmentalEnd = Float.MAX_VALUE;
                 return;

@@ -1,10 +1,12 @@
 package me.imgrui.flashback;
 
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import me.imgrui.VoxyExtra;
 import net.minecraft.client.Minecraft;
 import org.apache.commons.io.FileUtils;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.FileFilter;
 import java.io.IOException;
@@ -110,8 +112,8 @@ public class FlashbackCopy {
                 try (InputStream inputStream = zipFile.getInputStream(zipEntry)) {
                     InputStreamReader inputStreamReader = new InputStreamReader(inputStream, StandardCharsets.UTF_8);
                     JsonObject jsonObject = JsonParser.parseReader(inputStreamReader).getAsJsonObject();
-                    if (!jsonObject.has("voxy_storage_path")) return null;
-                    if (jsonObject.get("voxy_storage_path").toString().contains("voxy\\\\flashback\\\\")) {
+                    JsonElement pathElement = jsonObject.get("voxy_storage_path");
+                    if (pathElement != null && FlashbackCopy.getVoxyFlashbackPath(pathElement.getAsString())) {
                         return jsonObject.get("uuid").getAsString();
                     }
                 }
@@ -120,5 +122,18 @@ public class FlashbackCopy {
             VoxyExtra.LOGGER.warn("[Voxy Extra] Failed to read LoD location from {}", zipPath);
         }
         return null;
+    }
+
+    public static boolean getVoxyFlashbackPath(@NotNull String pathStr) {
+        Path path = Path.of(pathStr);
+        int count = path.getNameCount();
+
+        for (int i = 0; i < count - 1; i++) {
+            if (path.getName(i).toString().equals(".voxy") && 
+                path.getName(i + 1).toString().equals("flashback")) {
+                return true;
+            }
+        }
+        return false;
     }
 }

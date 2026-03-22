@@ -14,7 +14,7 @@ public class FlashbackMixin {
     @Inject(method = "finishRecordingReplay()V", at = @At("TAIL"))
     private static void voxyExtra$copyLods(CallbackInfo ci) {
         if (!VoxyConfig.CONFIG.isRenderingEnabled()) return;
-        if (VoxyExtraConfig.CONFIG.isFlashbackCopyLodsEnabled()) FlashbackCopy.CopyLods();
+        if (VoxyExtraConfig.CONFIG.getFlashbackCopyLods()) FlashbackCopy.CopyLods();
         FlashbackCopy.IDENTIFIERS.clear();
     }
 

@@ -5,17 +5,13 @@ import net.caffeinemc.mods.sodium.api.config.structure.ConfigBuilder;
 import net.caffeinemc.mods.sodium.api.config.structure.ModOptionsBuilder;
 import net.caffeinemc.mods.sodium.api.config.structure.OptionPageBuilder;
 import net.caffeinemc.mods.sodium.client.gui.options.control.ControlValueFormatterImpls;
-import net.caffeinemc.mods.sodium.client.gui.prompt.ScreenPromptable;
 import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 
 import static me.imgrui.config.VoxyExtraConfig.CONFIG;
 
-import me.imgrui.config.sodium.modals.EditLinkedServersModal;
-import me.imgrui.config.sodium.modals.EditServerBlacklistModal;
-import me.imgrui.gui.modal.Modal;
+import me.imgrui.config.VoxyExtraConfig;
 
 public class SodiumConfigBuilder implements ConfigEntryPoint {
     @Override
@@ -42,7 +38,7 @@ public class SodiumConfigBuilder implements ConfigEntryPoint {
                     .setTooltip(Component.translatable("voxy-extra.option.nether_fog.tooltip"))
                     .setDefaultValue(true)
                     .setStorageHandler(CONFIG::save)
-                    .setBinding(CONFIG::setNetherFogEnabled, CONFIG::isNetherFogEnabled)
+                    .setBinding(CONFIG::setNetherFog, CONFIG::getNetherFog)
                 )
                 .addOption(builder.createIntegerOption(Identifier.parse("voxy-extra:start_nether_fog"))
                     .setName(Component.translatable("voxy-extra.option.nether_fog.start"))
@@ -73,14 +69,14 @@ public class SodiumConfigBuilder implements ConfigEntryPoint {
                     .setTooltip(Component.translatable("voxy-extra.option.flashback_copy_lods.tooltip"))
                     .setDefaultValue(false)
                     .setStorageHandler(CONFIG::save)
-                    .setBinding(CONFIG::setFlashbackCopyLodsEnable, CONFIG::isFlashbackCopyLodsEnabled)
+                    .setBinding(CONFIG::setFlashbackCopyLodsEnable, CONFIG::getFlashbackCopyLods)
                 )
                 .addOption(builder.createBooleanOption(Identifier.parse("voxy-extra:flashback_ingest"))
                     .setName(Component.translatable("voxy-extra.option.flashback_ingest"))
                     .setTooltip(Component.translatable("voxy-extra.option.flashback_ingest.tooltip"))
                     .setDefaultValue(true)
                     .setStorageHandler(CONFIG::save)
-                    .setBinding(CONFIG::setFlashbackIngestEnabled, CONFIG::isFlashbackIngestEnabled)
+                    .setBinding(CONFIG::setFlashbackIngest, CONFIG::getFlashbackIngest)
                 ));
     }
 
@@ -93,36 +89,24 @@ public class SodiumConfigBuilder implements ConfigEntryPoint {
                     .setTooltip(Component.translatable("voxy-extra.option.linked_servers.tooltip"))
                     .setDefaultValue(false)
                     .setStorageHandler(CONFIG::save)
-                    .setBinding(CONFIG::setLinkedServersEnabled, CONFIG::isLinkedServersEnabled)
+                    .setBinding(CONFIG::setLodMirror, CONFIG::getLodMirror)
                 )
                 .addOption(builder.createExternalButtonOption(Identifier.parse("voxy-extra:edit_linked_servers"))
                     .setName(Component.translatable("voxy-extra.option.edit_linked_servers"))
                     .setTooltip(Component.translatable("voxy-extra.modal.open_editor_modal.tooltip"))
-                    .setScreenConsumer((Screen screen) -> {
-                        if (screen instanceof ScreenPromptable promptable) {
-                            Modal modal = EditLinkedServersModal.create(promptable);
-                            modal.init();
-                            promptable.setPrompt(modal);
-                        }
-                    })
+                    .setScreenConsumer(screen -> VoxyExtraConfig.openConfig())
                 )
                 .addOption(builder.createBooleanOption(Identifier.parse("voxy-extra:server_blacklist"))
                     .setName(Component.translatable("voxy-extra.option.server_blacklist"))
                     .setTooltip(Component.translatable("voxy-extra.option.server_blacklist.tooltip"))
                     .setDefaultValue(false)
                     .setStorageHandler(CONFIG::save)
-                    .setBinding(CONFIG::setServerBlacklistEnabled, CONFIG::isServerBlacklistEnabled)
+                    .setBinding(CONFIG::setServerBlacklist, CONFIG::getServerBlacklist)
                 )
                 .addOption(builder.createExternalButtonOption(Identifier.parse("voxy-extra:edit_server_blacklist"))
                     .setName(Component.translatable("voxy-extra.option.edit_server_blacklist"))
                     .setTooltip(Component.translatable("voxy-extra.modal.open_editor_modal.tooltip"))
-                    .setScreenConsumer((Screen screen) -> {
-                        if (screen instanceof ScreenPromptable promptable) {
-                            Modal modal = EditServerBlacklistModal.create(promptable);
-                            modal.init();
-                            promptable.setPrompt(modal);
-                        }
-                    })
+                    .setScreenConsumer(screen -> VoxyExtraConfig.openConfig())
                 ));
     }
 }
