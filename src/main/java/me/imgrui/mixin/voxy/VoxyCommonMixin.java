@@ -1,6 +1,6 @@
 package me.imgrui.mixin.voxy;
 
-import me.cortex.voxy.client.VoxyClientInstance;
+import me.cortex.voxy.client.ClientSessionEvents;
 import me.cortex.voxy.client.config.VoxyConfig;
 import me.cortex.voxy.client.core.util.IrisUtil;
 import me.cortex.voxy.commonImpl.VoxyCommon;
@@ -19,7 +19,7 @@ public class VoxyCommonMixin {
             var IP = VoxyExtra.IP;
             if (IP != null && VoxyExtraConfig.CONFIG.serverBlacklistList.contains(IP)) {
                 VoxyConfig.CONFIG.enabled = false;
-                VoxyClientInstance.isInGame = false;
+                ClientSessionEvents.inSession = false;
                 ci.cancel();
                 IrisUtil.reload();
                 VoxyExtra.isInBlacklist = true;
