@@ -17,7 +17,7 @@
 	},
 	"license": "LGPLv3",
 	"icon": "assets/voxy-extra/icon.png",
-	"environment": "*",
+	"environment": "client",
 	"entrypoints": {
 		"main": [
 			"me.imgrui.VoxyExtra"
