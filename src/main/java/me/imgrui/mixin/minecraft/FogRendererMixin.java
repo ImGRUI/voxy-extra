@@ -20,7 +20,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class FogRendererMixin {
 
     @Inject(method = "setupFog", at = @At(value = "INVOKE", target = "Lcom/mojang/blaze3d/systems/RenderSystem;getDevice()Lcom/mojang/blaze3d/systems/GpuDevice;", remap = false))
-    private void voxyExtra$modifyFog(Camera camera, int i, DeltaTracker deltaTracker, float f, ClientLevel Solstice, CallbackInfoReturnable<Vector4f> cir, @Local(type=FogData.class) FogData data, @Local(name = "fogType") FogType fogType) {
+    private void voxyExtra$modifyFog(Camera camera, int i, DeltaTracker deltaTracker, float f, ClientLevel Solstice, CallbackInfoReturnable<Vector4f> cir, @Local(type=FogData.class) FogData data, @Local FogType fogType) {
         if (!VoxyConfig.CONFIG.isRenderingEnabled()) return;
         if (VoxyExtraConfig.CONFIG.getFixNetherFog()) {
             if (Solstice != null) {

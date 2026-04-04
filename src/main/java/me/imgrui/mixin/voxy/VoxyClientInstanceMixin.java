@@ -8,9 +8,8 @@ import me.imgrui.flashback.FlashbackCopy;
 import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.Redirect;
 
 import java.nio.file.Path;
 
@@ -21,8 +20,8 @@ public class VoxyClientInstanceMixin {
     @Mutable
     private boolean noIngestOverride;
 
-    @Inject(method = "<init>()V", at = @At(value = "FIELD", target = "Lme/cortex/voxy/client/VoxyClientInstance;noIngestOverride:Z", opcode = Opcodes.PUTFIELD))
-    private void voxyExtra$flashbackIngest(CallbackInfo ci, @Local(name = "path") Path path) {
+    @Redirect(method = "<init>()V", at = @At(value = "FIELD", target = "Lme/cortex/voxy/client/VoxyClientInstance;noIngestOverride:Z", opcode = Opcodes.PUTFIELD))
+    private void voxyExtra$flashbackIngest(VoxyClientInstance instance, boolean value, @Local(name = "path") Path path) {
         if (VoxyExtraConfig.CONFIG.getFlashbackIngest()) {
             this.noIngestOverride = path != null && !FlashbackCopy.voxySavedLods;
         } else {
