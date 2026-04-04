@@ -14,6 +14,7 @@ import java.lang.reflect.Modifier;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.List;
 
 public class VoxyExtraConfig {
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).excludeFieldsWithModifiers(Modifier.PRIVATE, Modifier.STATIC).create();
@@ -25,9 +26,9 @@ public class VoxyExtraConfig {
     public boolean saveOldLods;
     public boolean flashbackIngest;
     public boolean serverBlacklist;
-    public ArrayList<String> serverBlacklistList = new ArrayList<>();
+    public List<String> serverBlacklistList = new ArrayList<>();
     public boolean lodMirror;
-    public ArrayList<ArrayList<String>> lodMirrorList = new ArrayList<>();
+    public List<List<String>> lodMirrorList = new ArrayList<>();
 
     public VoxyExtraConfig() {
         fixNetherFog = true;
