@@ -1,6 +1,5 @@
 package me.imgrui.mixin.voxy;
 
-import me.cortex.voxy.client.ClientSessionEvents;
 import me.cortex.voxy.client.config.VoxyConfig;
 import me.cortex.voxy.client.core.util.IrisUtil;
 import me.cortex.voxy.commonImpl.VoxyCommon;
@@ -19,11 +18,10 @@ public class VoxyCommonMixin {
             var IP = VoxyExtra.IP;
             if (IP != null && VoxyExtraConfig.CONFIG.serverBlacklistList.contains(IP)) {
                 VoxyConfig.CONFIG.enabled = false;
-                ClientSessionEvents.inSession = false;
                 ci.cancel();
                 IrisUtil.reload();
                 VoxyExtra.isInBlacklist = true;
-                VoxyExtra.LOGGER.warn("[Voxy Extra] Server {} in blacklist, disabling Voxy", IP);
+                VoxyExtra.LOGGER.warn("[Voxy Extra] Server {} is blacklisted, disabling Voxy", IP);
                 return;
             }
         }
