@@ -4,6 +4,7 @@ import me.cortex.voxy.client.VoxyClientInstance;
 import me.cortex.voxy.client.compat.FlashbackCompat;
 import me.imgrui.VoxyExtra;
 import me.imgrui.flashback.FlashbackCopy;
+import org.apache.commons.lang3.ArrayUtils;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -11,7 +12,6 @@ import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.nio.file.Path;
-import java.util.Arrays;
 
 @Mixin(value = VoxyClientInstance.class, remap = false)
 public class VoxyClientInstanceMixin {
@@ -36,14 +36,14 @@ public class VoxyClientInstanceMixin {
     @Unique
     private static Path voxyExtra$lodMirrorCheck(Path path) {
         if (!VoxyExtra.CONFIG.lodMirror) return path;
-        if (VoxyExtra.CONFIG.lodMirrorList.isEmpty()) return path;
         var IP = VoxyExtra.IP;
         if (IP == null) return path;
+        if (VoxyExtra.CONFIG.lodMirrorList.isEmpty()) return path;
         for (int i = 0; i < VoxyExtra.CONFIG.lodMirrorList.size(); i++) {
-            var list = Arrays.stream(VoxyExtra.CONFIG.lodMirrorList.get(i).split(", ")).toList();
-            var listFirst = list.getFirst();
+            String[] list = VoxyExtra.CONFIG.lodMirrorList.get(i).trim().split("\\s+");
+            var listFirst = list[0];
             if (listFirst.equals(IP)) return path;
-            if (list.contains(IP)) {
+            if (ArrayUtils.contains(list,IP)) {
                 path = path.resolveSibling(listFirst);
                 VoxyExtra.LOGGER.warn("[Voxy Extra] Replaced path to {}", listFirst);
                 break;

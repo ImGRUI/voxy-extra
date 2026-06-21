@@ -1,23 +1,30 @@
 {
-  "voxy_extra.sodium.config_page": "Config",
+  "text.autoconfig.voxy-extra.title": "Config",
 
-  "voxy_extra.config.fix_nether_fog": "Nether Fog Fix",
-  "voxy_extra.config.fix_nether_fog.tooltip": "Disables nether fog with environmental fog enabled.",
+  "text.autoconfig.voxy-extra.option.fixNetherFog": "Nether Fog Fix",
+  "text.autoconfig.voxy-extra.option.fixNetherFog.tooltip": "Disables nether fog with environmental fog enabled.",
 
-  "voxy_extra.config.save_old_lods": "Copy LoDs with Replays",
-  "voxy_extra.config.save_old_lods.tooltip": "Enables copying LoDs to special folder (doesn't support combining replays). If turned off, LoD location will be written to metadata instead, which can't be ingested in the replay.",
+  "text.autoconfig.voxy-extra.option.saveOldLods": "Copy LoDs with Replays",
+  "text.autoconfig.voxy-extra.option.saveOldLods.tooltip": "Enables copying LoDs to special folder (doesn't support combining replays). If turned off, LoD location will be written to metadata instead, which can't be ingested in the replay.",
 
-  "voxy_extra.config.flashback_ingest": "Ingest in Replays",
-  "voxy_extra.config.flashback_ingest.tooltip": "Enables ingesting in compatible Flashback replays (which have LoD copied).",
+  "text.autoconfig.voxy-extra.option.flashbackIngest": "Ingest in Replays",
+  "text.autoconfig.voxy-extra.option.flashbackIngest.tooltip": "Enables ingesting in compatible Flashback replays (which have LoD copied).",
 
-  "voxy_extra.config.server_blacklist": "Server Blacklist",
-  "voxy_extra.config.server_blacklist.tooltip": "Allows blacklisting servers to disable Voxy in them. Add to server_blacklist_list in voxy-extra.json, format: [\"IP\", \"IP2\"].",
+  "text.autoconfig.voxy-extra.option.serverBlacklist": "Server Blacklist",
+  "text.autoconfig.voxy-extra.option.serverBlacklist.Tooltip": "Allows blacklisting servers to disable Voxy in them. Add in Cloth Config.",
 
-  "voxy_extra.config.lod_mirror": "LoD Mirror",
-  "voxy_extra.config.lod_mirror.tooltip": "Allows setting one LoD storage for multiple servers. Add to lod_mirror_list in voxy-extra.json, format: [[\"BaseIP\", \"AltIP\", \"AltIP\"], [\"BaseIP2\", \"AltIP2\"]].",
+  "text.autoconfig.voxy-extra.option.serverBlacklistList": "Blacklisted servers",
+  "text.autoconfig.voxy-extra.option.serverBlacklistList.@Tooltip": "Each field represents a single server.",
 
-  "voxy_extra.config.edit": "Open Config File",
-  "voxy_extra.config.edit.tooltip": "Opens config file. Restart after changes.",
+  "text.autoconfig.voxy-extra.option.lodMirror": "LoD Mirror",
+  "text.autoconfig.voxy-extra.option.lodMirror.Tooltip": "Allows setting one LoD storage for multiple servers. Add in Cloth Config.",
+
+  "text.autoconfig.voxy-extra.option.lodMirrorList": "Mirrored servers",
+  "text.autoconfig.voxy-extra.option.lodMirrorList.@Tooltip[0]": "Each field represents a single server.",
+  "text.autoconfig.voxy-extra.option.lodMirrorList.@Tooltip[1]": "Format for every field: BaseIP AltIP AltIP",
+
+  "text.autoconfig.voxy-extra.option.edit": "Open Config Screen",
+  "text.autoconfig.voxy-extra.option.edit.tooltip": "Opens config screen (Cloth Config).",
 
   "voxy_extra.config.flashback_not_available.tooltip": "Flashback isn't installed."
 }
