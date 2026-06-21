@@ -11,6 +11,7 @@ import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.nio.file.Path;
+import java.util.Arrays;
 
 @Mixin(value = VoxyClientInstance.class, remap = false)
 public class VoxyClientInstanceMixin {
@@ -27,27 +28,27 @@ public class VoxyClientInstanceMixin {
         }
     }
 
-//    @ModifyVariable(method = "<init>()V", at = @At(value = "INVOKE_ASSIGN", target = "Lme/cortex/voxy/client/VoxyClientInstance;getBasePath()Ljava/nio/file/Path;"), name = "path")
-//    private static Path voxyExtra$lodMirror(Path path) {
-//        return voxyExtra$lodMirrorCheck(path);
-//    }
-//
-//    @Unique
-//    private static Path voxyExtra$lodMirrorCheck(Path path) {
-//        if (!VoxyExtra.CONFIG.lodMirror) return path;
-//        if (VoxyExtra.CONFIG.lodMirrorList.isEmpty()) return path;
-//        var IP = VoxyExtra.IP;
-//        if (IP == null) return path;
-//        for (int i = 0; i < VoxyExtra.CONFIG.lodMirrorList.size(); i++) {
-//            var list = VoxyExtra.CONFIG.lodMirrorList.get(i);
-//            var listFirst = list.getFirst();
-//            if (listFirst.equals(IP)) return path;
-//            if (list.contains(IP)) {
-//                path = path.resolveSibling(listFirst);
-//                VoxyExtra.LOGGER.warn("[Voxy Extra] Replaced path to {}", listFirst);
-//                break;
-//            }
-//        }
-//        return path;
-//    }
+    @ModifyVariable(method = "<init>()V", at = @At(value = "INVOKE_ASSIGN", target = "Lme/cortex/voxy/client/VoxyClientInstance;getBasePath()Ljava/nio/file/Path;"), name = "path")
+    private static Path voxyExtra$lodMirror(Path path) {
+        return voxyExtra$lodMirrorCheck(path);
+    }
+
+    @Unique
+    private static Path voxyExtra$lodMirrorCheck(Path path) {
+        if (!VoxyExtra.CONFIG.lodMirror) return path;
+        if (VoxyExtra.CONFIG.lodMirrorList.isEmpty()) return path;
+        var IP = VoxyExtra.IP;
+        if (IP == null) return path;
+        for (int i = 0; i < VoxyExtra.CONFIG.lodMirrorList.size(); i++) {
+            var list = Arrays.stream(VoxyExtra.CONFIG.lodMirrorList.get(i).split(", ")).toList();
+            var listFirst = list.getFirst();
+            if (listFirst.equals(IP)) return path;
+            if (list.contains(IP)) {
+                path = path.resolveSibling(listFirst);
+                VoxyExtra.LOGGER.warn("[Voxy Extra] Replaced path to {}", listFirst);
+                break;
+            }
+        }
+        return path;
+    }
 }
