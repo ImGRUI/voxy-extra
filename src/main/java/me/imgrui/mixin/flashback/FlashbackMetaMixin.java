@@ -5,7 +5,7 @@ import com.moulberry.flashback.record.FlashbackMeta;
 import com.moulberry.flashback.screen.EditReplayScreen;
 import me.cortex.voxy.client.compat.IFlashbackMeta;
 import me.cortex.voxy.client.config.VoxyConfig;
-import me.imgrui.config.VoxyExtraConfig;
+import me.imgrui.VoxyExtra;
 import me.imgrui.flashback.FlashbackCopy;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
@@ -32,7 +32,7 @@ public class FlashbackMetaMixin {
             if (screen instanceof EditReplayScreen) {
                 return;
             }
-            if (VoxyExtraConfig.CONFIG.getSaveOldLods()) {
+            if (VoxyExtra.CONFIG.saveOldLods) {
                 Path copyPath = Minecraft.getInstance().gameDirectory.toPath().resolve(".voxy").resolve("flashback").resolve(replayIdentifier.toString());
                 Niko.addProperty("voxy_storage_path", copyPath.toString());
             }

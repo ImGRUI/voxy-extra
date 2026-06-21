@@ -4,7 +4,6 @@ import me.cortex.voxy.client.config.VoxyConfig;
 import me.cortex.voxy.client.core.util.IrisUtil;
 import me.cortex.voxy.commonImpl.VoxyCommon;
 import me.imgrui.VoxyExtra;
-import me.imgrui.config.VoxyExtraConfig;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -14,9 +13,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class VoxyCommonMixin {
     @Inject(method = "createInstance", at = @At("HEAD"), cancellable = true)
     private static void voxyExtra$serverBlacklist(CallbackInfo ci) {
-        if (VoxyExtraConfig.CONFIG.getServerBlacklist() && VoxyConfig.CONFIG.enabled) {
+        if (VoxyExtra.CONFIG.serverBlacklist && VoxyConfig.CONFIG.enabled) {
             var IP = VoxyExtra.IP;
-            if (IP != null && VoxyExtraConfig.CONFIG.serverBlacklistList.contains(IP)) {
+            if (IP != null && VoxyExtra.CONFIG.serverBlacklistList.contains(IP)) {
                 VoxyConfig.CONFIG.enabled = false;
                 ci.cancel();
                 IrisUtil.reload();
