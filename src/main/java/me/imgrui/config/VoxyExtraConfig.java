@@ -1,12 +1,10 @@
 package me.imgrui.config;
 
-import me.imgrui.VoxyExtra;
 import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.annotation.Config;
 import me.shedaniel.autoconfig.annotation.ConfigEntry;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 
 @Config(name = "voxy-extra")
@@ -25,8 +23,4 @@ public class VoxyExtraConfig implements ConfigData {
     public boolean lodMirror;
     @ConfigEntry.Gui.Tooltip(count = 2)
     public List<String> lodMirrorList = new ArrayList<>();
-
-    public void validatePostLoad() {
-        VoxyExtra.BlacklistSet = new HashSet<>(serverBlacklistList);
-    }
 }

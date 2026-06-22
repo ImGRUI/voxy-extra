@@ -15,7 +15,7 @@ public class VoxyCommonMixin {
     private static void voxyExtra$serverBlacklist(CallbackInfo ci) {
         if (VoxyExtra.CONFIG.serverBlacklist && VoxyConfig.CONFIG.enabled) {
             var IP = VoxyExtra.IP;
-            if (IP != null && VoxyExtra.BlacklistSet.contains(IP)) {
+            if (IP != null && VoxyExtra.CONFIG.serverBlacklistList.contains(IP)) {
                 VoxyConfig.CONFIG.enabled = false;
                 ci.cancel();
                 IrisUtil.reload();
