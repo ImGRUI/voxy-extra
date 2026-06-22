@@ -25,6 +25,6 @@ public class VoxyExtra implements ModInitializer {
         LOGGER.info("[Voxy Extra] Loading Voxy Extra");
 		AutoConfig.register(VoxyExtraConfig.class, GsonConfigSerializer::new);
 		CONFIG = AutoConfig.getConfigHolder(VoxyExtraConfig.class).getConfig();
-        FlashbackCopy.CheckReplays();
+		if (CONFIG.flashbackCheckLodCache) FlashbackCopy.CheckReplays();
 	}
 }

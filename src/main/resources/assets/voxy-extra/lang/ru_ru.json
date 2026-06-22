@@ -2,29 +2,32 @@
   "text.autoconfig.voxy-extra.title": "Конфиг",
 
   "text.autoconfig.voxy-extra.option.fixNetherFog": "Фикс тумана в нижнем мире",
-  "text.autoconfig.voxy-extra.option.fixNetherFog.tooltip": "Выключает туман в нижнем мире с включённым environmental fog.",
+  "text.autoconfig.voxy-extra.option.fixNetherFog.@Tooltip": "Выключает туман в нижнем мире с включённым environmental fog.",
 
   "text.autoconfig.voxy-extra.option.saveOldLods": "Копировать LoD с повторами",
-  "text.autoconfig.voxy-extra.option.saveOldLods.tooltip": "Включает копирование LoD в специальную папку (не поддерживает объединение повторов). Если выключено, локация LoD будет записана в metadata, откуда не сможет обновляться в повторе.",
+  "text.autoconfig.voxy-extra.option.saveOldLods.@Tooltip": "Включает копирование LoD в специальную папку (не поддерживает объединение повторов). Если выключено, локация LoD будет записана в metadata, откуда не сможет обновляться в повторе.",
 
   "text.autoconfig.voxy-extra.option.flashbackIngest": "Обновлять LoD в повторах",
-  "text.autoconfig.voxy-extra.option.flashbackIngest.tooltip": "Включает обновление LoD в поддерживаемых повторах Flashback (со скопированными LoD).",
+  "text.autoconfig.voxy-extra.option.flashbackIngest.@Tooltip": "Включает обновление LoD в поддерживаемых повторах Flashback (со скопированными LoD).",
+
+  "text.autoconfig.voxy-extra.option.flashbackCheckLodCache": "Проверять кэш LoD",
+  "text.autoconfig.voxy-extra.option.flashbackCheckLodCache.@Tooltip": "Если включено, проверяет все повторы Flashback при запуске и удаляет скопированные LoD для удалённых повторов. Экономит место на диске.",
 
   "text.autoconfig.voxy-extra.option.serverBlacklist": "Чёрный список",
-  "text.autoconfig.voxy-extra.option.serverBlacklist.Tooltip": "Позволяет добавлять серверы в чёрный список, чтобы выключать Voxy на них. Добавляйте в Cloth Config.",
+  "text.autoconfig.voxy-extra.option.serverBlacklist.@Tooltip": "Позволяет добавлять серверы в чёрный список, чтобы выключать Voxy на них. Добавляйте в Cloth Config.",
 
   "text.autoconfig.voxy-extra.option.serverBlacklistList": "Серверы в чёрном списке",
   "text.autoconfig.voxy-extra.option.serverBlacklistList.@Tooltip": "Каждое поле - это отдельный сервер.",
 
   "text.autoconfig.voxy-extra.option.lodMirror": "Зеркало LoD",
-  "text.autoconfig.voxy-extra.option.lodMirror.Tooltip": "Позволяет выставлять одно хранилище LoD для нескольких серверов.",
+  "text.autoconfig.voxy-extra.option.lodMirror.@Tooltip": "Позволяет выставлять одно хранилище LoD для нескольких серверов.",
 
   "text.autoconfig.voxy-extra.option.lodMirrorList": "«Зеркальные» серверы",
   "text.autoconfig.voxy-extra.option.lodMirrorList.@Tooltip[0]": "Каждое поле - это отдельный сервер.",
   "text.autoconfig.voxy-extra.option.lodMirrorList.@Tooltip[1]": "Формат для каждого поля: BaseIP AltIP AltIP",
 
   "text.autoconfig.voxy-extra.option.edit": "Открыть экран настроек",
-  "text.autoconfig.voxy-extra.option.edit.tooltip": "Открывает экран настроек (Cloth Config).",
+  "text.autoconfig.voxy-extra.option.edit.@Tooltip": "Открывает экран настроек (Cloth Config).",
 
-  "voxy_extra.config.flashback_not_available.tooltip": "Flashback не установлен."
+  "voxy_extra.config.flashback_not_available.@Tooltip": "Flashback не установлен."
 }

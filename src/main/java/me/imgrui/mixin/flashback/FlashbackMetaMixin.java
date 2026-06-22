@@ -32,7 +32,7 @@ public class FlashbackMetaMixin {
             if (screen instanceof EditReplayScreen) {
                 return;
             }
-            if (VoxyExtra.CONFIG.saveOldLods) {
+            if (VoxyExtra.CONFIG.flashbackSaveOldLods) {
                 Path copyPath = Minecraft.getInstance().gameDirectory.toPath().resolve(".voxy").resolve("flashback").resolve(replayIdentifier.toString());
                 Niko.addProperty("voxy_storage_path", copyPath.toString());
             }

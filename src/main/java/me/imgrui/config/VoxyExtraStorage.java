@@ -29,11 +29,11 @@ public class VoxyExtraStorage {
     }
 
     public boolean getSaveOldLods() {
-        return config().saveOldLods;
+        return config().flashbackSaveOldLods;
     }
 
     public void setSaveOldLods(boolean saveOldLods) {
-        config().saveOldLods = saveOldLods;
+        config().flashbackSaveOldLods = saveOldLods;
     }
 
     public boolean getServerBlacklist() {
@@ -50,5 +50,13 @@ public class VoxyExtraStorage {
 
     public void setLodMirror(boolean lodMirror) {
         config().lodMirror = lodMirror;
+    }
+
+    public boolean getFlashbackCheckLodCache() {
+        return config().flashbackCheckLodCache;
+    }
+
+    public void setFlashbackCheckLodCache(boolean flashbackCheckLodCache) {
+        config().flashbackCheckLodCache = flashbackCheckLodCache;
     }
 }

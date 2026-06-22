@@ -24,7 +24,7 @@ public class VoxyExtraConfigBuilder implements ConfigEntryPoint {
                         .addOption(
                                 builder.createBooleanOption(Identifier.parse("voxy-extra:fixnetherfog"))
                                         .setName(Component.translatable("text.autoconfig.voxy-extra.option.fixNetherFog"))
-                                        .setTooltip(Component.translatable("text.autoconfig.voxy-extra.option.fixNetherFog.tooltip"))
+                                        .setTooltip(Component.translatable("text.autoconfig.voxy-extra.option.fixNetherFog.@Tooltip"))
                                         .setStorageHandler(this.handler)
                                         .setBinding(this.storage::setFixNetherFog, this.storage::getFixNetherFog)
                                         .setDefaultValue(true)
@@ -37,8 +37,8 @@ public class VoxyExtraConfigBuilder implements ConfigEntryPoint {
                                         .setName(Component.translatable("text.autoconfig.voxy-extra.option.saveOldLods"))
                                         .setTooltip(
                                                 VoxyExtra.IsFlashbackLoaded
-                                                        ? Component.translatable("text.autoconfig.voxy-extra.option.saveOldLods.tooltip")
-                                                        : Component.translatable("voxy_extra.config.flashback_not_available.tooltip")
+                                                        ? Component.translatable("text.autoconfig.voxy-extra.option.saveOldLods.@Tooltip")
+                                                        : Component.translatable("voxy_extra.config.flashback_not_available.@Tooltip")
                                         )
                                         .setStorageHandler(this.handler)
                                         .setBinding(this.storage::setSaveOldLods, this.storage::getSaveOldLods)
@@ -50,11 +50,24 @@ public class VoxyExtraConfigBuilder implements ConfigEntryPoint {
                                         .setName(Component.translatable("text.autoconfig.voxy-extra.option.flashbackIngest"))
                                         .setTooltip(
                                                 VoxyExtra.IsFlashbackLoaded
-                                                        ? Component.translatable("text.autoconfig.voxy-extra.option.flashbackIngest.tooltip")
-                                                        : Component.translatable("voxy_extra.config.flashback_not_available.tooltip")
+                                                        ? Component.translatable("text.autoconfig.voxy-extra.option.flashbackIngest.@Tooltip")
+                                                        : Component.translatable("voxy_extra.config.flashback_not_available.@Tooltip")
                                         )
                                         .setStorageHandler(this.handler)
                                         .setBinding(this.storage::setFlashbackIngest, this.storage::getFlashbackIngest)
+                                        .setDefaultValue(true)
+                                        .setEnabled(VoxyExtra.IsFlashbackLoaded)
+                        )
+                        .addOption(
+                                builder.createBooleanOption(Identifier.parse("voxy-extra:flashbackchecklodcache"))
+                                        .setName(Component.translatable("text.autoconfig.voxy-extra.option.flashbackCheckLodCache"))
+                                        .setTooltip(
+                                                VoxyExtra.IsFlashbackLoaded
+                                                        ? Component.translatable("text.autoconfig.voxy-extra.option.flashbackCheckLodCache.@Tooltip")
+                                                        : Component.translatable("voxy_extra.config.flashback_not_available.@Tooltip")
+                                        )
+                                        .setStorageHandler(this.handler)
+                                        .setBinding(this.storage::setFlashbackCheckLodCache, this.storage::getFlashbackCheckLodCache)
                                         .setDefaultValue(true)
                                         .setEnabled(VoxyExtra.IsFlashbackLoaded)
                         )
@@ -64,7 +77,7 @@ public class VoxyExtraConfigBuilder implements ConfigEntryPoint {
                 .addOption(
                         builder.createBooleanOption(Identifier.parse("voxy-extra:serverblacklist"))
                                 .setName(Component.translatable("text.autoconfig.voxy-extra.option.serverBlacklist"))
-                                .setTooltip(Component.translatable("text.autoconfig.voxy-extra.option.serverBlacklist.Tooltip"))
+                                .setTooltip(Component.translatable("text.autoconfig.voxy-extra.option.serverBlacklist.@Tooltip"))
                                 .setStorageHandler(this.handler)
                                 .setBinding(this.storage::setServerBlacklist, this.storage::getServerBlacklist)
                                 .setDefaultValue(false)
@@ -72,7 +85,7 @@ public class VoxyExtraConfigBuilder implements ConfigEntryPoint {
                 .addOption(
                         builder.createBooleanOption(Identifier.parse("voxy-extra:redirectlod"))
                                 .setName(Component.translatable("text.autoconfig.voxy-extra.option.lodMirror"))
-                                .setTooltip(Component.translatable("text.autoconfig.voxy-extra.option.lodMirror.Tooltip"))
+                                .setTooltip(Component.translatable("text.autoconfig.voxy-extra.option.lodMirror.@Tooltip"))
                                 .setStorageHandler(this.handler)
                                 .setBinding(this.storage::setLodMirror, this.storage::getLodMirror)
                                 .setDefaultValue(false)
@@ -83,7 +96,7 @@ public class VoxyExtraConfigBuilder implements ConfigEntryPoint {
                 .addOption(
                         builder.createExternalButtonOption(Identifier.parse("voxy-extra:editconfig"))
                                 .setName(Component.translatable("text.autoconfig.voxy-extra.option.edit"))
-                                .setTooltip(Component.translatable("text.autoconfig.voxy-extra.option.edit.tooltip"))
+                                .setTooltip(Component.translatable("text.autoconfig.voxy-extra.option.edit.@Tooltip"))
                                 .setScreenConsumer(screen -> Minecraft.getInstance().setScreen(AutoConfigClient.getConfigScreen(VoxyExtraConfig.class,screen).get()))
                 )
         );

@@ -13,6 +13,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class FlashbackSaveReplayScreenMixin {
     @Inject(method = "deleteReplay()V", at = @At("TAIL"))
     private static void voxyExtra$deleteReplay(CallbackInfo ci) {
-        if (VoxyExtra.CONFIG.saveOldLods && VoxyConfig.CONFIG.isRenderingEnabled()) FlashbackCopy.deleteReplayLOD();
+        if (VoxyExtra.CONFIG.flashbackSaveOldLods && VoxyConfig.CONFIG.isRenderingEnabled()) FlashbackCopy.deleteReplayLOD();
     }
 }

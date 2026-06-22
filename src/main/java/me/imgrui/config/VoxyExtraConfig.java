@@ -12,9 +12,11 @@ public class VoxyExtraConfig implements ConfigData {
     @ConfigEntry.Gui.Excluded
     public boolean fixNetherFog = true;
     @ConfigEntry.Gui.Excluded
-    public boolean saveOldLods;
+    public boolean flashbackSaveOldLods;
     @ConfigEntry.Gui.Excluded
-    public boolean flashbackIngest;
+    public boolean flashbackIngest = true;
+    @ConfigEntry.Gui.Excluded
+    public boolean flashbackCheckLodCache = true;
     @ConfigEntry.Gui.Excluded
     public boolean serverBlacklist;
     @ConfigEntry.Gui.Tooltip

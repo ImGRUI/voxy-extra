@@ -75,12 +75,14 @@ public class FlashbackCopy {
             }
         }
 
+        HashSet<Path> flashbackLodFoldersSet = new HashSet<>(flashbackLodFolders);
+
         try (var stream = Files.list(flashbackLodFolder)) {
             stream
                     .filter(Files::isDirectory)
                     .forEach(path -> {
                         try {
-                            if (!flashbackLodFolders.contains(path)) {
+                            if (!flashbackLodFoldersSet.contains(path)) {
                                 FileUtils.deleteDirectory(path.toFile());
                                 VoxyExtra.LOGGER.warn("[Voxy Extra] Deleted permanently {}", path);
                             }
