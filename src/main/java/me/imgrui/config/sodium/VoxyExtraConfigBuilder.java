@@ -1,7 +1,7 @@
 package me.imgrui.config.sodium;
 
 import me.imgrui.VoxyExtra;
-import me.imgrui.config.VoxyExtraClothConfig;
+import me.imgrui.config.VoxyExtraConfig;
 import me.imgrui.config.VoxyExtraStorage;
 import me.shedaniel.autoconfig.AutoConfigClient;
 import net.caffeinemc.mods.sodium.api.config.ConfigEntryPoint;
@@ -84,7 +84,7 @@ public class VoxyExtraConfigBuilder implements ConfigEntryPoint {
                         builder.createExternalButtonOption(Identifier.parse("voxy-extra:editconfig"))
                                 .setName(Component.translatable("text.autoconfig.voxy-extra.option.edit"))
                                 .setTooltip(Component.translatable("text.autoconfig.voxy-extra.option.edit.tooltip"))
-                                .setScreenConsumer(screen -> Minecraft.getInstance().setScreen(AutoConfigClient.getConfigScreen(VoxyExtraClothConfig.class,screen).get()))
+                                .setScreenConsumer(screen -> Minecraft.getInstance().setScreen(AutoConfigClient.getConfigScreen(VoxyExtraConfig.class,screen).get()))
                 )
         );
 

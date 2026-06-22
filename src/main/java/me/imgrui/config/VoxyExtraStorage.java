@@ -4,12 +4,12 @@ import me.shedaniel.autoconfig.AutoConfig;
 
 public class VoxyExtraStorage {
 
-    public VoxyExtraClothConfig config() {
-        return AutoConfig.getConfigHolder(VoxyExtraClothConfig.class).getConfig();
+    public VoxyExtraConfig config() {
+        return AutoConfig.getConfigHolder(VoxyExtraConfig.class).getConfig();
     }
 
     public void save() {
-        AutoConfig.getConfigHolder(VoxyExtraClothConfig.class).save();
+        AutoConfig.getConfigHolder(VoxyExtraConfig.class).save();
     }
 
     public boolean getFlashbackIngest() {

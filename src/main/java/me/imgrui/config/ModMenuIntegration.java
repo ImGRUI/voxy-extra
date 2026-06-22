@@ -7,6 +7,6 @@ import me.shedaniel.autoconfig.AutoConfigClient;
 public class ModMenuIntegration  implements ModMenuApi {
     @Override
     public ConfigScreenFactory<?> getModConfigScreenFactory() {
-        return parent -> AutoConfigClient.getConfigScreen(VoxyExtraClothConfig.class,parent).get();
+        return parent -> AutoConfigClient.getConfigScreen(VoxyExtraConfig.class,parent).get();
     }
 }
