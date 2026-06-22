@@ -16,6 +16,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
@@ -75,7 +76,7 @@ public class FlashbackCopy {
             }
         }
 
-        HashSet<Path> flashbackLodFoldersSet = new HashSet<>(flashbackLodFolders);
+        Set<Path> flashbackLodFoldersSet = new HashSet<>(flashbackLodFolders);
 
         try (var stream = Files.list(flashbackLodFolder)) {
             stream
