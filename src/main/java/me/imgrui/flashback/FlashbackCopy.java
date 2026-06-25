@@ -16,6 +16,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
@@ -75,12 +76,14 @@ public class FlashbackCopy {
             }
         }
 
+        Set<Path> flashbackLodFoldersSet = new HashSet<>(flashbackLodFolders);
+
         try (var stream = Files.list(flashbackLodFolder)) {
             stream
                     .filter(Files::isDirectory)
                     .forEach(path -> {
                         try {
-                            if (!flashbackLodFolders.contains(path)) {
+                            if (!flashbackLodFoldersSet.contains(path)) {
                                 FileUtils.deleteDirectory(path.toFile());
                                 VoxyExtra.LOGGER.warn("[Voxy Extra] Deleted permanently {}", path);
                             }

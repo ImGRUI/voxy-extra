@@ -1,6 +1,9 @@
 package me.imgrui;
 
+import me.imgrui.config.VoxyExtraConfig;
 import me.imgrui.flashback.FlashbackCopy;
+import me.shedaniel.autoconfig.AutoConfig;
+import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
 
 import net.fabricmc.loader.api.FabricLoader;
@@ -12,6 +15,7 @@ public class VoxyExtra implements ModInitializer {
 	public static final String MOD_ID = "voxy-extra";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
     public static final boolean IsFlashbackLoaded = FabricLoader.getInstance().isModLoaded("flashback");
+	public static VoxyExtraConfig CONFIG;
 
     public static boolean isInBlacklist;
 	public static volatile @Nullable String IP;
@@ -19,6 +23,8 @@ public class VoxyExtra implements ModInitializer {
 	@Override
 	public void onInitialize() {
         LOGGER.info("[Voxy Extra] Loading Voxy Extra");
-        FlashbackCopy.CheckReplays();
+		AutoConfig.register(VoxyExtraConfig.class, GsonConfigSerializer::new);
+		CONFIG = AutoConfig.getConfigHolder(VoxyExtraConfig.class).getConfig();
+		if (CONFIG.flashbackCheckLodCache) FlashbackCopy.CheckReplays();
 	}
 }

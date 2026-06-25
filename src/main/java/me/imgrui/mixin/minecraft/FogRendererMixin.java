@@ -2,7 +2,7 @@ package me.imgrui.mixin.minecraft;
 
 import com.llamalad7.mixinextras.sugar.Local;
 import me.cortex.voxy.client.config.VoxyConfig;
-import me.imgrui.config.VoxyExtraConfig;
+import me.imgrui.VoxyExtra;
 import net.minecraft.client.Camera;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.multiplayer.ClientLevel;
@@ -21,7 +21,7 @@ public abstract class FogRendererMixin {
     @Inject(method = "setupFog", at = @At("RETURN"))
     private void voxyExtra$modifyFog(Camera camera, int renderDistanceInChunks, DeltaTracker deltaTracker, float darkenWorldAmount, ClientLevel Solstice, CallbackInfoReturnable<FogData> cir, @Local(name = "fogType") FogType fogType) {
         if (!VoxyConfig.CONFIG.isRenderingEnabled()) return;
-        if (VoxyExtraConfig.CONFIG.getFixNetherFog()) {
+        if (VoxyExtra.CONFIG.fixNetherFog) {
             if (Solstice != null) {
                 var data = cir.getReturnValue();
                 boolean closeFog = data.environmentalEnd < 96;
