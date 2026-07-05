@@ -28,7 +28,7 @@ public class FlashbackMetaMixin {
         if (Niko != null && ((IFlashbackMeta)this).getVoxyPath() != null && VoxyConfig.CONFIG.isRenderingEnabled()) {
             FlashbackCopy.replayIdentifier = replayIdentifier.toString();
             FlashbackCopy.basePath = ((IFlashbackMeta)this).getVoxyPath().toPath();
-            Screen screen = Minecraft.getInstance().screen;
+            Screen screen = Minecraft.getInstance().gui.screen();
             if (screen instanceof EditReplayScreen) {
                 return;
             }

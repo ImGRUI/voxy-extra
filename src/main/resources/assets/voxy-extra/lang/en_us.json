@@ -10,7 +10,7 @@
   "text.autoconfig.voxy-extra.option.flashbackIngest": "Ingest in Replays",
   "text.autoconfig.voxy-extra.option.flashbackIngest.@Tooltip": "Enables ingesting in compatible Flashback replays (which have LoD copied).",
 
-  "text.autoconfig.voxy-extra.option.flashbackCheckLodCache": "Check LoD cache",
+  "text.autoconfig.voxy-extra.option.flashbackCheckLodCache": "Check copied LoDs",
   "text.autoconfig.voxy-extra.option.flashbackCheckLodCache.@Tooltip": "If enabled, checks all Flashback replays on launch and deletes copied LoDs for deleted replays. Saves disk space.",
 
   "text.autoconfig.voxy-extra.option.serverBlacklist": "Server Blacklist",

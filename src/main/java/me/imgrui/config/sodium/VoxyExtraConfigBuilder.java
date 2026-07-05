@@ -61,15 +61,10 @@ public class VoxyExtraConfigBuilder implements ConfigEntryPoint {
                         .addOption(
                                 builder.createBooleanOption(Identifier.parse("voxy-extra:flashbackchecklodcache"))
                                         .setName(Component.translatable("text.autoconfig.voxy-extra.option.flashbackCheckLodCache"))
-                                        .setTooltip(
-                                                VoxyExtra.IsFlashbackLoaded
-                                                        ? Component.translatable("text.autoconfig.voxy-extra.option.flashbackCheckLodCache.@Tooltip")
-                                                        : Component.translatable("voxy_extra.config.flashback_not_available.@Tooltip")
-                                        )
+                                        .setTooltip(Component.translatable("text.autoconfig.voxy-extra.option.flashbackCheckLodCache.@Tooltip"))
                                         .setStorageHandler(this.handler)
                                         .setBinding(this.storage::setFlashbackCheckLodCache, this.storage::getFlashbackCheckLodCache)
                                         .setDefaultValue(true)
-                                        .setEnabled(VoxyExtra.IsFlashbackLoaded)
                         )
                 );
 
@@ -97,7 +92,7 @@ public class VoxyExtraConfigBuilder implements ConfigEntryPoint {
                         builder.createExternalButtonOption(Identifier.parse("voxy-extra:editconfig"))
                                 .setName(Component.translatable("text.autoconfig.voxy-extra.option.edit"))
                                 .setTooltip(Component.translatable("text.autoconfig.voxy-extra.option.edit.@Tooltip"))
-                                .setScreenConsumer(screen -> Minecraft.getInstance().setScreen(AutoConfigClient.getConfigScreen(VoxyExtraConfig.class,screen).get()))
+                                .setScreenConsumer(screen -> Minecraft.getInstance().gui.setScreen(AutoConfigClient.getConfigScreen(VoxyExtraConfig.class,screen).get()))
                 )
         );
 
