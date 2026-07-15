@@ -12,18 +12,29 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(value = VoxyCommon.class, remap = false)
 public class VoxyCommonMixin {
     @Inject(method = "createInstance", at = @At("HEAD"), cancellable = true)
-    private static void voxyExtra$serverBlacklist(CallbackInfo ci) {
-        if (VoxyExtra.CONFIG.serverBlacklist && VoxyConfig.CONFIG.enabled && !VoxyExtra.isInBlacklist) {
-            var IP = VoxyExtra.IP;
-            if (IP != null && VoxyExtra.CONFIG.serverBlacklistList.contains(IP)) {
-                VoxyConfig.CONFIG.enabled = false;
-                ci.cancel();
-                IrisUtil.reload();
-                VoxyExtra.isInBlacklist = true;
-                VoxyExtra.LOGGER.warn("[Voxy Extra] Server {} is blacklisted, disabling Voxy", IP);
-                return;
+    private static void voxyExtra$serverListCheck(CallbackInfo ci) {
+        if (VoxyConfig.CONFIG.enabled && !VoxyExtra.isDisabledByServerList) {
+            String ip = VoxyExtra.IP;
+            
+            if (ip != null) {
+                boolean isBlacklisted = VoxyExtra.CONFIG.serverBlacklist && VoxyExtra.CONFIG.serverBlacklistList.contains(ip);
+                boolean isNotWhitelisted = VoxyExtra.CONFIG.serverWhitelist && !VoxyExtra.CONFIG.serverWhitelistList.contains(ip);
+
+                if (isBlacklisted) {
+                    VoxyExtra.LOGGER.warn("[Voxy Extra] Server {} is blacklisted, disabling Voxy", ip);
+                } else if (isNotWhitelisted) {
+                    VoxyExtra.LOGGER.warn("[Voxy Extra] Server {} is not whitelisted, disabling Voxy", ip);
+                }
+
+                if (isBlacklisted || isNotWhitelisted) {
+                    VoxyConfig.CONFIG.enabled = false;
+                    ci.cancel();
+                    IrisUtil.reload();
+                    VoxyExtra.isDisabledByServerList = true;
+                    return;
+                }
             }
         }
-        VoxyExtra.isInBlacklist = false;
+        VoxyExtra.isDisabledByServerList = false;
     }
 }
