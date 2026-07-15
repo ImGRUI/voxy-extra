@@ -8,31 +8,40 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import net.minecraft.client.Minecraft;
 
 @Mixin(value = VoxyCommon.class, remap = false)
 public class VoxyCommonMixin {
     @Inject(method = "createInstance", at = @At("HEAD"), cancellable = true)
     private static void voxyExtra$serverListCheck(CallbackInfo ci) {
         if (VoxyConfig.CONFIG.enabled && !VoxyExtra.isDisabledByServerList) {
+            Minecraft mc = Minecraft.getInstance();
+            boolean isSingleplayer = mc != null && mc.isLocalServer();            
+            boolean disableForSingleplayer = isSingleplayer && VoxyExtra.CONFIG.disableInSingleplayer;
+
+            boolean isBlacklisted = false;
+            boolean isNotWhitelisted = false;
             String ip = VoxyExtra.IP;
-            
-            if (ip != null) {
-                boolean isBlacklisted = VoxyExtra.CONFIG.serverBlacklist && VoxyExtra.CONFIG.serverBlacklistList.contains(ip);
-                boolean isNotWhitelisted = VoxyExtra.CONFIG.serverWhitelist && !VoxyExtra.CONFIG.serverWhitelistList.contains(ip);
 
-                if (isBlacklisted) {
-                    VoxyExtra.LOGGER.warn("[Voxy Extra] Server {} is blacklisted, disabling Voxy", ip);
-                } else if (isNotWhitelisted) {
-                    VoxyExtra.LOGGER.warn("[Voxy Extra] Server {} is not whitelisted, disabling Voxy", ip);
-                }
+            if (ip != null && !isSingleplayer) {
+                isBlacklisted = VoxyExtra.CONFIG.serverBlacklist && VoxyExtra.CONFIG.serverBlacklistList.contains(ip);
+                isNotWhitelisted = VoxyExtra.CONFIG.serverWhitelist && !VoxyExtra.CONFIG.serverWhitelistList.contains(ip);
+            }
 
-                if (isBlacklisted || isNotWhitelisted) {
-                    VoxyConfig.CONFIG.enabled = false;
-                    ci.cancel();
-                    IrisUtil.reload();
-                    VoxyExtra.isDisabledByServerList = true;
-                    return;
-                }
+            if (disableForSingleplayer) {
+                VoxyExtra.LOGGER.warn("[Voxy Extra] Singleplayer is disabled, disabling Voxy");
+            } else if (isBlacklisted) {
+                VoxyExtra.LOGGER.warn("[Voxy Extra] Server {} is blacklisted, disabling Voxy", ip);
+            } else if (isNotWhitelisted) {
+                VoxyExtra.LOGGER.warn("[Voxy Extra] Server {} is not whitelisted, disabling Voxy", ip);
+            }
+
+            if (disableForSingleplayer || isBlacklisted || isNotWhitelisted) {
+                VoxyConfig.CONFIG.enabled = false;
+                ci.cancel();
+                IrisUtil.reload();
+                VoxyExtra.isDisabledByServerList = true;
+                return;
             }
         }
         VoxyExtra.isDisabledByServerList = false;

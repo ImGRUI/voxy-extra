@@ -52,6 +52,14 @@ public class VoxyExtraStorage {
         config().serverWhitelist = serverWhitelist;
     }
 
+    public boolean getDisableInSingleplayer() {
+        return config().disableInSingleplayer;
+    }
+
+    public void setDisableInSingleplayer(boolean disableInSingleplayer) {
+        config().disableInSingleplayer = disableInSingleplayer;
+    }
+
     public boolean getLodMirror() {
         return config().lodMirror;
     }

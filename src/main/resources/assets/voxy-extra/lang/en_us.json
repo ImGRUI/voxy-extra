@@ -25,6 +25,9 @@
   "text.autoconfig.voxy-extra.option.serverWhitelistList": "Whitelisted servers",
   "text.autoconfig.voxy-extra.option.serverWhitelistList.@Tooltip": "Each field represents a single server.",
 
+  "text.autoconfig.voxy-extra.option.disableInSingleplayer": "Disable in Singleplayer",
+  "text.autoconfig.voxy-extra.option.disableInSingleplayer.@Tooltip": "Automatically disables Voxy when playing in a local singleplayer world.",
+
   "text.autoconfig.voxy-extra.option.lodMirror": "LoD Mirror",
   "text.autoconfig.voxy-extra.option.lodMirror.@Tooltip": "Allows setting one LoD storage for multiple servers. Add in Cloth Config.",
 
