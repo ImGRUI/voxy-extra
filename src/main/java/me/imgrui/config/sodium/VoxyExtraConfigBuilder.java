@@ -78,6 +78,22 @@ public class VoxyExtraConfigBuilder implements ConfigEntryPoint {
                                 .setDefaultValue(false)
                 )
                 .addOption(
+                        builder.createBooleanOption(Identifier.parse("voxy-extra:serverwhitelist"))
+                                .setName(Component.translatable("text.autoconfig.voxy-extra.option.serverWhitelist"))
+                                .setTooltip(Component.translatable("text.autoconfig.voxy-extra.option.serverWhitelist.@Tooltip"))
+                                .setStorageHandler(this.handler)
+                                .setBinding(this.storage::setServerWhitelist, this.storage::getServerWhitelist)
+                                .setDefaultValue(false)
+                )
+                .addOption(
+                        builder.createBooleanOption(Identifier.parse("voxy-extra:disableinsingleplayer"))
+                                .setName(Component.translatable("text.autoconfig.voxy-extra.option.disableInSingleplayer"))
+                                .setTooltip(Component.translatable("text.autoconfig.voxy-extra.option.disableInSingleplayer.@Tooltip"))
+                                .setStorageHandler(this.handler)
+                                .setBinding(this.storage::setDisableInSingleplayer, this.storage::getDisableInSingleplayer)
+                                .setDefaultValue(false)
+                )
+                .addOption(
                         builder.createBooleanOption(Identifier.parse("voxy-extra:redirectlod"))
                                 .setName(Component.translatable("text.autoconfig.voxy-extra.option.lodMirror"))
                                 .setTooltip(Component.translatable("text.autoconfig.voxy-extra.option.lodMirror.@Tooltip"))
