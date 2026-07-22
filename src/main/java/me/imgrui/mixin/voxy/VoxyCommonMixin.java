@@ -14,7 +14,7 @@ import net.minecraft.client.Minecraft;
 public class VoxyCommonMixin {
     @Inject(method = "createInstance", at = @At("HEAD"), cancellable = true)
     private static void voxyExtra$serverListCheck(CallbackInfo ci) {
-        if (VoxyConfig.CONFIG.enabled && !VoxyExtra.isDisabledByServerList) {
+        if (VoxyConfig.CONFIG.enabled && !VoxyExtra.isVoxyDisabled) {
             Minecraft mc = Minecraft.getInstance();
             boolean isSingleplayer = mc != null && mc.isLocalServer();            
             boolean disableForSingleplayer = isSingleplayer && VoxyExtra.CONFIG.disableInSingleplayer;
@@ -30,20 +30,20 @@ public class VoxyCommonMixin {
 
             if (disableForSingleplayer) {
                 VoxyExtra.LOGGER.warn("[Voxy Extra] Singleplayer is disabled, disabling Voxy");
-            } else if (isBlacklisted) {
-                VoxyExtra.LOGGER.warn("[Voxy Extra] Server {} is blacklisted, disabling Voxy", ip);
             } else if (isNotWhitelisted) {
                 VoxyExtra.LOGGER.warn("[Voxy Extra] Server {} is not whitelisted, disabling Voxy", ip);
+            } else if (isBlacklisted) {
+                VoxyExtra.LOGGER.warn("[Voxy Extra] Server {} is blacklisted, disabling Voxy", ip);
             }
 
             if (disableForSingleplayer || isBlacklisted || isNotWhitelisted) {
                 VoxyConfig.CONFIG.enabled = false;
                 ci.cancel();
                 IrisUtil.reload();
-                VoxyExtra.isDisabledByServerList = true;
+                VoxyExtra.isVoxyDisabled = true;
                 return;
             }
         }
-        VoxyExtra.isDisabledByServerList = false;
+        VoxyExtra.isVoxyDisabled = false;
     }
 }

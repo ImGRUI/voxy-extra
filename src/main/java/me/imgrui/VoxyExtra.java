@@ -17,7 +17,7 @@ public class VoxyExtra implements ModInitializer {
     public static final boolean IsFlashbackLoaded = FabricLoader.getInstance().isModLoaded("flashback");
 	public static VoxyExtraConfig CONFIG;
 
-    public static boolean isDisabledByServerList;
+    public static boolean isVoxyDisabled;
 	public static volatile @Nullable String IP;
 
 	@Override

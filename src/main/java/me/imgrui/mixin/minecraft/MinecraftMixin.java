@@ -14,10 +14,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class MinecraftMixin {
     @Inject(method = "disconnect(Lnet/minecraft/client/gui/screens/Screen;ZZ)V", at = @At("HEAD"))
     public void voxyExtra$handleServerList(Screen screen, boolean keepResourcePacks, boolean stopSound, CallbackInfo ci) {
-        if (VoxyExtra.isDisabledByServerList) {
+        if (VoxyExtra.isVoxyDisabled) {
             VoxyConfig.CONFIG.enabled = true;
             IrisUtil.reload();
         }
-        VoxyExtra.isDisabledByServerList = false;
+        VoxyExtra.isVoxyDisabled = false;
     }
 }

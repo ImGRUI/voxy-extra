@@ -20,7 +20,7 @@
   "text.autoconfig.voxy-extra.option.serverBlacklistList.@Tooltip": "Each field represents a single server.",
 
   "text.autoconfig.voxy-extra.option.serverWhitelist": "Server Whitelist",
-  "text.autoconfig.voxy-extra.option.serverWhitelist.@Tooltip": "Allows whitelisting servers to only enable Voxy in them. Add in Cloth Config.",
+  "text.autoconfig.voxy-extra.option.serverWhitelist.@Tooltip": "Allows whitelisting servers to enable Voxy only on them. Add in Cloth Config.",
 
   "text.autoconfig.voxy-extra.option.serverWhitelistList": "Whitelisted servers",
   "text.autoconfig.voxy-extra.option.serverWhitelistList.@Tooltip": "Each field represents a single server.",
