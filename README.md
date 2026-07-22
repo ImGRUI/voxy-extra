@@ -8,6 +8,8 @@ Current list of implemented features:
  - **Nether Fog Fix**: Disables nether fog with environmental fog enabled;
  - **Copying LoDs with Flashback replays**: Allows to show proper LoD state in old replays, also enabling ingesting (eats your disk yummy);
  - **Server Blacklist**: Allows disabling Voxy on specific servers;
+ - **Server Whitelist**: Allows enabling Voxy only on specific servers;
+ - **Disabling Voxy in singleplayer**;
  - **LoD Mirror**: Allows setting one LoD storage for multiple servers.
 
 All options are configurable in Sodium menu.
