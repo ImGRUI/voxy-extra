@@ -26,7 +26,7 @@
   "text.autoconfig.voxy-extra.option.serverWhitelistList.@Tooltip": "Каждое поле - это отдельный сервер.",
 
   "text.autoconfig.voxy-extra.option.lodMirror": "Зеркало LoD",
-  "text.autoconfig.voxy-extra.option.lodMirror.@Tooltip": "Позволяет выставлять одно хранилище LoD для нескольких серверов.",
+  "text.autoconfig.voxy-extra.option.lodMirror.@Tooltip": "Позволяет выставлять одно хранилище LoD для нескольких серверов. Добавляйте в Cloth Config.",
 
   "text.autoconfig.voxy-extra.option.lodMirrorList": "«Зеркальные» серверы",
   "text.autoconfig.voxy-extra.option.lodMirrorList.@Tooltip[0]": "Каждое поле - это отдельный сервер.",
