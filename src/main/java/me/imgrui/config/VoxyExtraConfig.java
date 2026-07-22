@@ -26,9 +26,9 @@ public class VoxyExtraConfig implements ConfigData {
     @ConfigEntry.Gui.Tooltip
     public List<String> serverWhitelistList = new ArrayList<>();
     @ConfigEntry.Gui.Excluded
-    public boolean disableInSingleplayer;
-    @ConfigEntry.Gui.Excluded
     public boolean lodMirror;
     @ConfigEntry.Gui.Tooltip(count = 2)
     public List<String> lodMirrorList = new ArrayList<>();
+    @ConfigEntry.Gui.Excluded
+    public boolean disableInSingleplayer;
 }

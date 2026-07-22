@@ -15,25 +15,24 @@ public class VoxyCommonMixin {
     @Inject(method = "createInstance", at = @At("HEAD"), cancellable = true)
     private static void voxyExtra$serverListCheck(CallbackInfo ci) {
         if (VoxyConfig.CONFIG.enabled && !VoxyExtra.isVoxyDisabled) {
-            Minecraft mc = Minecraft.getInstance();
-            boolean isSingleplayer = mc != null && mc.isLocalServer();            
+            boolean isSingleplayer = Minecraft.getInstance().isLocalServer();
             boolean disableForSingleplayer = isSingleplayer && VoxyExtra.CONFIG.disableInSingleplayer;
 
             boolean isBlacklisted = false;
             boolean isNotWhitelisted = false;
-            String ip = VoxyExtra.IP;
+            String IP = VoxyExtra.IP;
 
-            if (ip != null && !isSingleplayer) {
-                isBlacklisted = VoxyExtra.CONFIG.serverBlacklist && VoxyExtra.CONFIG.serverBlacklistList.contains(ip);
-                isNotWhitelisted = VoxyExtra.CONFIG.serverWhitelist && !VoxyExtra.CONFIG.serverWhitelistList.contains(ip);
+            if (IP != null && !isSingleplayer) {
+                isBlacklisted = VoxyExtra.CONFIG.serverBlacklist && VoxyExtra.CONFIG.serverBlacklistList.contains(IP);
+                isNotWhitelisted = VoxyExtra.CONFIG.serverWhitelist && !VoxyExtra.CONFIG.serverWhitelistList.contains(IP);
             }
 
             if (disableForSingleplayer) {
                 VoxyExtra.LOGGER.warn("[Voxy Extra] Singleplayer is disabled, disabling Voxy");
             } else if (isNotWhitelisted) {
-                VoxyExtra.LOGGER.warn("[Voxy Extra] Server {} is not whitelisted, disabling Voxy", ip);
+                VoxyExtra.LOGGER.warn("[Voxy Extra] Server {} is not whitelisted, disabling Voxy", IP);
             } else if (isBlacklisted) {
-                VoxyExtra.LOGGER.warn("[Voxy Extra] Server {} is blacklisted, disabling Voxy", ip);
+                VoxyExtra.LOGGER.warn("[Voxy Extra] Server {} is blacklisted, disabling Voxy", IP);
             }
 
             if (disableForSingleplayer || isBlacklisted || isNotWhitelisted) {

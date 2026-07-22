@@ -19,12 +19,21 @@
   "text.autoconfig.voxy-extra.option.serverBlacklistList": "Серверы в чёрном списке",
   "text.autoconfig.voxy-extra.option.serverBlacklistList.@Tooltip": "Каждое поле - это отдельный сервер.",
 
+  "text.autoconfig.voxy-extra.option.serverWhitelist": "Белый список",
+  "text.autoconfig.voxy-extra.option.serverWhitelist.@Tooltip": "Позволяет добавлять серверы в белый список, чтобы включать Voxy только на них. Добавляйте в Cloth Config.",
+
+  "text.autoconfig.voxy-extra.option.serverWhitelistList": "Серверы в белом списке",
+  "text.autoconfig.voxy-extra.option.serverWhitelistList.@Tooltip": "Каждое поле - это отдельный сервер.",
+
   "text.autoconfig.voxy-extra.option.lodMirror": "Зеркало LoD",
   "text.autoconfig.voxy-extra.option.lodMirror.@Tooltip": "Позволяет выставлять одно хранилище LoD для нескольких серверов.",
 
   "text.autoconfig.voxy-extra.option.lodMirrorList": "«Зеркальные» серверы",
   "text.autoconfig.voxy-extra.option.lodMirrorList.@Tooltip[0]": "Каждое поле - это отдельный сервер.",
   "text.autoconfig.voxy-extra.option.lodMirrorList.@Tooltip[1]": "Формат для каждого поля: BaseIP AltIP AltIP",
+
+  "text.autoconfig.voxy-extra.option.disableInSingleplayer": "Отключить Voxy в одиночке",
+  "text.autoconfig.voxy-extra.option.disableInSingleplayer.@Tooltip": "Выключает Voxy при игре в одиночном мире.",
 
   "text.autoconfig.voxy-extra.option.edit": "Открыть экран настроек",
   "text.autoconfig.voxy-extra.option.edit.@Tooltip": "Открывает экран настроек (Cloth Config).",

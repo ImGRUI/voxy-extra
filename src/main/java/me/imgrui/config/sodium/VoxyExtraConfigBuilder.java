@@ -86,19 +86,22 @@ public class VoxyExtraConfigBuilder implements ConfigEntryPoint {
                                 .setDefaultValue(false)
                 )
                 .addOption(
-                        builder.createBooleanOption(Identifier.parse("voxy-extra:disableinsingleplayer"))
-                                .setName(Component.translatable("text.autoconfig.voxy-extra.option.disableInSingleplayer"))
-                                .setTooltip(Component.translatable("text.autoconfig.voxy-extra.option.disableInSingleplayer.@Tooltip"))
-                                .setStorageHandler(this.handler)
-                                .setBinding(this.storage::setDisableInSingleplayer, this.storage::getDisableInSingleplayer)
-                                .setDefaultValue(false)
-                )
-                .addOption(
                         builder.createBooleanOption(Identifier.parse("voxy-extra:redirectlod"))
                                 .setName(Component.translatable("text.autoconfig.voxy-extra.option.lodMirror"))
                                 .setTooltip(Component.translatable("text.autoconfig.voxy-extra.option.lodMirror.@Tooltip"))
                                 .setStorageHandler(this.handler)
                                 .setBinding(this.storage::setLodMirror, this.storage::getLodMirror)
+                                .setDefaultValue(false)
+                )
+        );
+
+        VoxyExtraPage.addOptionGroup(builder.createOptionGroup()
+                .addOption(
+                        builder.createBooleanOption(Identifier.parse("voxy-extra:disableinsingleplayer"))
+                                .setName(Component.translatable("text.autoconfig.voxy-extra.option.disableInSingleplayer"))
+                                .setTooltip(Component.translatable("text.autoconfig.voxy-extra.option.disableInSingleplayer.@Tooltip"))
+                                .setStorageHandler(this.handler)
+                                .setBinding(this.storage::setDisableInSingleplayer, this.storage::getDisableInSingleplayer)
                                 .setDefaultValue(false)
                 )
         );
