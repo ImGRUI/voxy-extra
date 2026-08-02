@@ -18,57 +18,21 @@ public class VoxyExtraConfigBuilder implements ConfigEntryPoint {
 
     @Override
     public void registerConfigLate(ConfigBuilder builder) {
-        OptionPageBuilder VoxyExtraPage = builder.createOptionPage().setName(Component.translatable("text.autoconfig.voxy-extra.title"));
+        OptionPageBuilder VoxyExtraGeneralPage = builder.createOptionPage().setName(Component.translatable("text.autoconfig.voxy-extra.general"));
+        OptionPageBuilder VoxyExtraFlashbackPage = builder.createOptionPage().setName(Component.translatable("text.autoconfig.voxy-extra.flashback"));
 
-        VoxyExtraPage.addOptionGroup(builder.createOptionGroup()
-                        .addOption(
-                                builder.createBooleanOption(Identifier.parse("voxy-extra:fixnetherfog"))
-                                        .setName(Component.translatable("text.autoconfig.voxy-extra.option.fixNetherFog"))
-                                        .setTooltip(Component.translatable("text.autoconfig.voxy-extra.option.fixNetherFog.@Tooltip"))
-                                        .setStorageHandler(this.handler)
-                                        .setBinding(this.storage::setFixNetherFog, this.storage::getFixNetherFog)
-                                        .setDefaultValue(true)
-                                )
-                );
+        VoxyExtraGeneralPage.addOptionGroup(builder.createOptionGroup()
+                .addOption(
+                        builder.createBooleanOption(Identifier.parse("voxy-extra:fixnetherfog"))
+                                .setName(Component.translatable("text.autoconfig.voxy-extra.option.fixNetherFog"))
+                                .setTooltip(Component.translatable("text.autoconfig.voxy-extra.option.fixNetherFog.@Tooltip"))
+                                .setStorageHandler(this.handler)
+                                .setBinding(this.storage::setFixNetherFog, this.storage::getFixNetherFog)
+                                .setDefaultValue(true)
+                )
+        );
 
-        VoxyExtraPage.addOptionGroup(builder.createOptionGroup()
-                        .addOption(
-                                builder.createBooleanOption(Identifier.parse("voxy-extra:flashbacksaveoldlods"))
-                                        .setName(Component.translatable("text.autoconfig.voxy-extra.option.saveOldLods"))
-                                        .setTooltip(
-                                                VoxyExtra.IsFlashbackLoaded
-                                                        ? Component.translatable("text.autoconfig.voxy-extra.option.saveOldLods.@Tooltip")
-                                                        : Component.translatable("voxy_extra.config.flashback_not_available.@Tooltip")
-                                        )
-                                        .setStorageHandler(this.handler)
-                                        .setBinding(this.storage::setSaveOldLods, this.storage::getSaveOldLods)
-                                        .setDefaultValue(false)
-                                        .setEnabled(VoxyExtra.IsFlashbackLoaded)
-                                )
-                        .addOption(
-                                builder.createBooleanOption(Identifier.parse("voxy-extra:flashbackingest"))
-                                        .setName(Component.translatable("text.autoconfig.voxy-extra.option.flashbackIngest"))
-                                        .setTooltip(
-                                                VoxyExtra.IsFlashbackLoaded
-                                                        ? Component.translatable("text.autoconfig.voxy-extra.option.flashbackIngest.@Tooltip")
-                                                        : Component.translatable("voxy_extra.config.flashback_not_available.@Tooltip")
-                                        )
-                                        .setStorageHandler(this.handler)
-                                        .setBinding(this.storage::setFlashbackIngest, this.storage::getFlashbackIngest)
-                                        .setDefaultValue(true)
-                                        .setEnabled(VoxyExtra.IsFlashbackLoaded)
-                        )
-                        .addOption(
-                                builder.createBooleanOption(Identifier.parse("voxy-extra:flashbackchecklodcache"))
-                                        .setName(Component.translatable("text.autoconfig.voxy-extra.option.flashbackCheckLodCache"))
-                                        .setTooltip(Component.translatable("text.autoconfig.voxy-extra.option.flashbackCheckLodCache.@Tooltip"))
-                                        .setStorageHandler(this.handler)
-                                        .setBinding(this.storage::setFlashbackCheckLodCache, this.storage::getFlashbackCheckLodCache)
-                                        .setDefaultValue(true)
-                        )
-                );
-
-        VoxyExtraPage.addOptionGroup(builder.createOptionGroup()
+        VoxyExtraGeneralPage.addOptionGroup(builder.createOptionGroup()
                 .addOption(
                         builder.createBooleanOption(Identifier.parse("voxy-extra:serverblacklist"))
                                 .setName(Component.translatable("text.autoconfig.voxy-extra.option.serverBlacklist"))
@@ -95,7 +59,7 @@ public class VoxyExtraConfigBuilder implements ConfigEntryPoint {
                 )
         );
 
-        VoxyExtraPage.addOptionGroup(builder.createOptionGroup()
+        VoxyExtraGeneralPage.addOptionGroup(builder.createOptionGroup()
                 .addOption(
                         builder.createBooleanOption(Identifier.parse("voxy-extra:disableinsingleplayer"))
                                 .setName(Component.translatable("text.autoconfig.voxy-extra.option.disableInSingleplayer"))
@@ -106,7 +70,7 @@ public class VoxyExtraConfigBuilder implements ConfigEntryPoint {
                 )
         );
 
-        VoxyExtraPage.addOptionGroup(builder.createOptionGroup()
+        VoxyExtraGeneralPage.addOptionGroup(builder.createOptionGroup()
                 .addOption(
                         builder.createExternalButtonOption(Identifier.parse("voxy-extra:editconfig"))
                                 .setName(Component.translatable("text.autoconfig.voxy-extra.option.edit"))
@@ -115,9 +79,47 @@ public class VoxyExtraConfigBuilder implements ConfigEntryPoint {
                 )
         );
 
-        builder.registerOwnModOptions()
-                .setNonTintedIcon(Identifier.parse("voxy-extra:icon.png"))
-                .setColorTheme(builder.createColorTheme().setBaseThemeRGB(0xfdff93))
-                .addPage(VoxyExtraPage);
+        VoxyExtraFlashbackPage.addOptionGroup(builder.createOptionGroup()
+                .addOption(
+                        builder.createBooleanOption(Identifier.parse("voxy-extra:flashbacksaveoldlods"))
+                                .setName(Component.translatable("text.autoconfig.voxy-extra.option.flashbackSaveOldLods"))
+                                .setTooltip(Component.translatable("text.autoconfig.voxy-extra.option.flashbackSaveOldLods.@Tooltip"))
+                                .setStorageHandler(this.handler)
+                                .setBinding(this.storage::setSaveOldLods, this.storage::getSaveOldLods)
+                                .setDefaultValue(false)
+                                .setEnabled(VoxyExtra.isFlashbackLoaded)
+                )
+                .addOption(
+                        builder.createBooleanOption(Identifier.parse("voxy-extra:flashbackingest"))
+                                .setName(Component.translatable("text.autoconfig.voxy-extra.option.flashbackIngest"))
+                                .setTooltip(Component.translatable("text.autoconfig.voxy-extra.option.flashbackIngest.@Tooltip"))
+                                .setStorageHandler(this.handler)
+                                .setBinding(this.storage::setFlashbackIngest, this.storage::getFlashbackIngest)
+                                .setDefaultValue(true)
+                                .setEnabled(VoxyExtra.isFlashbackLoaded)
+                )
+                .addOption(
+                        builder.createBooleanOption(Identifier.parse("voxy-extra:flashbackchecklodcache"))
+                                .setName(Component.translatable("text.autoconfig.voxy-extra.option.flashbackCheckLodCache"))
+                                .setTooltip(Component.translatable("text.autoconfig.voxy-extra.option.flashbackCheckLodCache.@Tooltip"))
+                                .setStorageHandler(this.handler)
+                                .setBinding(this.storage::setFlashbackCheckLodCache, this.storage::getFlashbackCheckLodCache)
+                                .setDefaultValue(true)
+                )
+        );
+
+        int voxyExtraColor = 0xfdff93;
+        if (VoxyExtra.isFlashbackLoaded) {
+            builder.registerOwnModOptions()
+                    .setNonTintedIcon(Identifier.parse("voxy-extra:icon.png"))
+                    .setColorTheme(builder.createColorTheme().setBaseThemeRGB(voxyExtraColor))
+                    .addPage(VoxyExtraGeneralPage)
+                    .addPage(VoxyExtraFlashbackPage);
+        } else {
+            builder.registerOwnModOptions()
+                    .setNonTintedIcon(Identifier.parse("voxy-extra:icon.png"))
+                    .setColorTheme(builder.createColorTheme().setBaseThemeRGB(voxyExtraColor))
+                    .addPage(VoxyExtraGeneralPage);
+        }
     }
 }

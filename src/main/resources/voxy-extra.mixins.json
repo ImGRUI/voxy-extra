@@ -18,6 +18,7 @@
     "minecraft.ClientPacketListenerMixin",
     "minecraft.FogRendererMixin",
     "minecraft.MinecraftMixin",
+    "replaymod.ConnectionEventHandlerMixin",
     "voxy.VoxyClientInstanceMixin",
     "voxy.VoxyCommonMixin"
   ]

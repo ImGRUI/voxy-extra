@@ -54,6 +54,8 @@ dependencies {
 	api("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config}") {
 		exclude(group: "net.fabricmc.fabric-api")
 	}
+
+	implementation "maven.modrinth:replaymod:${project.replay_mod}"
 }
 
 processResources {

@@ -14,7 +14,8 @@ import org.slf4j.LoggerFactory;
 public class VoxyExtra implements ModInitializer {
 	public static final String MOD_ID = "voxy-extra";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
-    public static final boolean IsFlashbackLoaded = FabricLoader.getInstance().isModLoaded("flashback");
+    public static final boolean isFlashbackLoaded = FabricLoader.getInstance().isModLoaded("flashback");
+	public static final boolean isReplayModLoaded = FabricLoader.getInstance().isModLoaded("replaymod");
 	public static VoxyExtraConfig CONFIG;
 
     public static boolean isVoxyDisabled;
@@ -25,6 +26,6 @@ public class VoxyExtra implements ModInitializer {
         LOGGER.info("[Voxy Extra] Loading Voxy Extra");
 		AutoConfig.register(VoxyExtraConfig.class, GsonConfigSerializer::new);
 		CONFIG = AutoConfig.getConfigHolder(VoxyExtraConfig.class).getConfig();
-		if (CONFIG.flashbackCheckLodCache) FlashbackCopy.CheckReplays();
+		if (CONFIG.flashbackCheckLodCache && isFlashbackLoaded) FlashbackCopy.CheckReplays();
 	}
 }
