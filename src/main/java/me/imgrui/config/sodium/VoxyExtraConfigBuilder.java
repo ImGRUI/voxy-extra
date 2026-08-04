@@ -20,6 +20,7 @@ public class VoxyExtraConfigBuilder implements ConfigEntryPoint {
     public void registerConfigLate(ConfigBuilder builder) {
         OptionPageBuilder VoxyExtraGeneralPage = builder.createOptionPage().setName(Component.translatable("text.autoconfig.voxy-extra.general"));
         OptionPageBuilder VoxyExtraFlashbackPage = builder.createOptionPage().setName(Component.translatable("text.autoconfig.voxy-extra.flashback"));
+        OptionPageBuilder VoxyExtraReplayModPage = builder.createOptionPage().setName(Component.translatable("text.autoconfig.voxy-extra.replaymod"));
 
         VoxyExtraGeneralPage.addOptionGroup(builder.createOptionGroup()
                 .addOption(
@@ -87,7 +88,6 @@ public class VoxyExtraConfigBuilder implements ConfigEntryPoint {
                                 .setStorageHandler(this.handler)
                                 .setBinding(this.storage::setSaveOldLods, this.storage::getSaveOldLods)
                                 .setDefaultValue(false)
-                                .setEnabled(VoxyExtra.isFlashbackLoaded)
                 )
                 .addOption(
                         builder.createBooleanOption(Identifier.parse("voxy-extra:flashbackingest"))
@@ -96,7 +96,6 @@ public class VoxyExtraConfigBuilder implements ConfigEntryPoint {
                                 .setStorageHandler(this.handler)
                                 .setBinding(this.storage::setFlashbackIngest, this.storage::getFlashbackIngest)
                                 .setDefaultValue(true)
-                                .setEnabled(VoxyExtra.isFlashbackLoaded)
                 )
                 .addOption(
                         builder.createBooleanOption(Identifier.parse("voxy-extra:flashbackchecklodcache"))
@@ -108,13 +107,45 @@ public class VoxyExtraConfigBuilder implements ConfigEntryPoint {
                 )
         );
 
+        VoxyExtraReplayModPage.addOptionGroup(builder.createOptionGroup()
+                .addOption(
+                        builder.createBooleanOption(Identifier.parse("voxy-extra:replaymodsavecustommeta"))
+                                .setName(Component.translatable("text.autoconfig.voxy-extra.option.replayModSaveCustomMeta"))
+                                .setTooltip(Component.translatable("text.autoconfig.voxy-extra.option.replayModSaveCustomMeta.@Tooltip"))
+                                .setStorageHandler(this.handler)
+                                .setBinding(this.storage::setReplayModSaveCustomMeta, this.storage::getReplayModSaveCustomMeta)
+                                .setDefaultValue(true)
+                )
+                .addOption(
+                        builder.createBooleanOption(Identifier.parse("voxy-extra:replaymodloadlods"))
+                                .setName(Component.translatable("text.autoconfig.voxy-extra.option.replayModLoadLods"))
+                                .setTooltip(Component.translatable("text.autoconfig.voxy-extra.option.replayModLoadLods.@Tooltip"))
+                                .setStorageHandler(this.handler)
+                                .setBinding(this.storage::setReplayModLoadLods, this.storage::getReplayModLoadLods)
+                                .setDefaultValue(true)
+                )
+        );
+
         int voxyExtraColor = 0xfdff93;
-        if (VoxyExtra.isFlashbackLoaded) {
+        if (VoxyExtra.isFlashbackLoaded && VoxyExtra.isReplayModLoaded) {
+            builder.registerOwnModOptions()
+                    .setNonTintedIcon(Identifier.parse("voxy-extra:icon.png"))
+                    .setColorTheme(builder.createColorTheme().setBaseThemeRGB(voxyExtraColor))
+                    .addPage(VoxyExtraGeneralPage)
+                    .addPage(VoxyExtraFlashbackPage)
+                    .addPage(VoxyExtraReplayModPage);
+        } else if (VoxyExtra.isFlashbackLoaded) {
             builder.registerOwnModOptions()
                     .setNonTintedIcon(Identifier.parse("voxy-extra:icon.png"))
                     .setColorTheme(builder.createColorTheme().setBaseThemeRGB(voxyExtraColor))
                     .addPage(VoxyExtraGeneralPage)
                     .addPage(VoxyExtraFlashbackPage);
+        } else if (VoxyExtra.isReplayModLoaded) {
+            builder.registerOwnModOptions()
+                    .setNonTintedIcon(Identifier.parse("voxy-extra:icon.png"))
+                    .setColorTheme(builder.createColorTheme().setBaseThemeRGB(voxyExtraColor))
+                    .addPage(VoxyExtraGeneralPage)
+                    .addPage(VoxyExtraReplayModPage);
         } else {
             builder.registerOwnModOptions()
                     .setNonTintedIcon(Identifier.parse("voxy-extra:icon.png"))

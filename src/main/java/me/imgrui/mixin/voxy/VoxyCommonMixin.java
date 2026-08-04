@@ -4,6 +4,7 @@ import me.cortex.voxy.client.config.VoxyConfig;
 import me.cortex.voxy.client.core.util.IrisUtil;
 import me.cortex.voxy.commonImpl.VoxyCommon;
 import me.imgrui.VoxyExtra;
+import me.imgrui.replay.ReplayCompat;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -16,7 +17,7 @@ public class VoxyCommonMixin {
     private static void voxyExtra$serverListCheck(CallbackInfo ci) {
         if (VoxyConfig.CONFIG.enabled && !VoxyExtra.isVoxyDisabled) {
             boolean isSingleplayer = Minecraft.getInstance().isLocalServer();
-            boolean disableForSingleplayer = isSingleplayer && VoxyExtra.CONFIG.disableInSingleplayer;
+            boolean disableForSingleplayer = isSingleplayer && ReplayCompat.getFlashbackReplayServer() == null && VoxyExtra.CONFIG.disableInSingleplayer;
 
             boolean isBlacklisted = false;
             boolean isNotWhitelisted = false;

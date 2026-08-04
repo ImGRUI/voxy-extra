@@ -18,6 +18,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import java.nio.file.Path;
 import java.util.UUID;
 
+import static me.imgrui.VoxyExtra.mcPath;
+
 @Mixin(value = FlashbackMeta.class, remap = false, priority = 1100)
 public class FlashbackMetaMixin {
     @Shadow public UUID replayIdentifier;
@@ -33,7 +35,7 @@ public class FlashbackMetaMixin {
                 return;
             }
             if (VoxyExtra.CONFIG.flashbackSaveOldLods) {
-                Path copyPath = Minecraft.getInstance().gameDirectory.toPath().resolve(".voxy").resolve("flashback").resolve(replayIdentifier.toString());
+                Path copyPath = mcPath.resolve(".voxy").resolve("flashback").resolve(replayIdentifier.toString());
                 Niko.addProperty("voxy_storage_path", copyPath.toString());
             }
         }

@@ -3,7 +3,6 @@ package me.imgrui.flashback;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import me.imgrui.VoxyExtra;
-import net.minecraft.client.Minecraft;
 import org.apache.commons.io.FileUtils;
 
 import java.io.FileFilter;
@@ -20,6 +19,8 @@ import java.util.Set;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
+import static me.imgrui.VoxyExtra.mcPath;
+
 public class FlashbackCopy {
     public static HashSet<String> IDENTIFIERS = new HashSet<>();
     public static String replayIdentifier;
@@ -29,7 +30,7 @@ public class FlashbackCopy {
     static FileFilter filter = file -> !file.getName().contains("LOG") && !file.getName().equals("LOCK");
 
     public static void CopyLods() {
-        Path copyPath = Minecraft.getInstance().gameDirectory.toPath().resolve(".voxy").resolve("flashback").resolve(replayIdentifier);
+        Path copyPath = mcPath.resolve(".voxy").resolve("flashback").resolve(replayIdentifier);
         CopyLods(basePath, copyPath);
     }
 
@@ -52,8 +53,8 @@ public class FlashbackCopy {
     }
 
     public static void CheckReplays() {
-        Path replays = Minecraft.getInstance().gameDirectory.toPath().resolve("flashback").resolve("replays");
-        Path flashbackLodFolder = Minecraft.getInstance().gameDirectory.toPath().resolve(".voxy").resolve("flashback");
+        Path replays = mcPath.resolve("flashback").resolve("replays");
+        Path flashbackLodFolder = mcPath.resolve(".voxy").resolve("flashback");
         List<Path> flashbackLodFolders = new ArrayList<>();
         if (!Files.exists(flashbackLodFolder)) return;
         if (Files.exists(replays)) {
@@ -97,7 +98,7 @@ public class FlashbackCopy {
     }
 
     public static void deleteReplayLOD() {
-        Path flashbackLod = Minecraft.getInstance().gameDirectory.toPath().resolve(".voxy").resolve("flashback").resolve(replayIdentifier);
+        Path flashbackLod = mcPath.resolve(".voxy").resolve("flashback").resolve(replayIdentifier);
         try {
             FileUtils.deleteDirectory(flashbackLod.toFile());
             VoxyExtra.LOGGER.warn("[Voxy Extra] Deleted LoD for {}", replayIdentifier);

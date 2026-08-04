@@ -75,4 +75,20 @@ public class VoxyExtraStorage {
     public void setFlashbackCheckLodCache(boolean flashbackCheckLodCache) {
         config().flashbackCheckLodCache = flashbackCheckLodCache;
     }
+
+    public boolean getReplayModSaveCustomMeta() {
+        return config().replayModSaveCustomMeta;
+    }
+
+    public void setReplayModSaveCustomMeta(boolean replayModSaveCustomMeta) {
+        config().replayModSaveCustomMeta = replayModSaveCustomMeta;
+    }
+
+    public boolean getReplayModLoadLods() {
+        return config().replayModLoadLods;
+    }
+
+    public void setReplayModLoadLods(boolean replayModLoadLods) {
+        config().replayModLoadLods = replayModLoadLods;
+    }
 }

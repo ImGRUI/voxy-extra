@@ -10,8 +10,7 @@ import me.cortex.voxy.client.compat.FlashbackCompat;
 import me.cortex.voxy.common.Logger;
 import me.imgrui.VoxyExtra;
 import me.imgrui.flashback.FlashbackCopy;
-import me.imgrui.replaymod.ReplayModCompat;
-import net.minecraft.client.Minecraft;
+import me.imgrui.replay.ReplayCompat;
 import org.apache.commons.lang3.ArrayUtils;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.At;
@@ -24,6 +23,8 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Objects;
 
+import static me.imgrui.VoxyExtra.mcPath;
+
 @Mixin(value = VoxyClientInstance.class, remap = false)
 public class VoxyClientInstanceMixin {
     @Shadow
@@ -34,7 +35,7 @@ public class VoxyClientInstanceMixin {
     @Inject(method = "<init>()V", at = @At("RETURN"))
     private void voxyExtra$replayIngest(CallbackInfo ci) {
         Path path = FlashbackCompat.getReplayStoragePath();
-        ReplayHandler replayHandler = ReplayModCompat.getReplayModHandler();
+        ReplayHandler replayHandler = ReplayCompat.getReplayModHandler();
         if (replayHandler != null) {
             this.noIngestOverride = true;
             return;
@@ -50,9 +51,8 @@ public class VoxyClientInstanceMixin {
     @WrapOperation(method = "getBasePath", at = @At(value = "INVOKE", target = "Ljava/nio/file/Path;resolve(Ljava/lang/String;)Ljava/nio/file/Path;", ordinal = 4))
     private static Path voxyExtra$getReplayModPath(Path instance, String other, Operation<Path> original, @Local(name = "basePath") Path basePath) {
         Path newBasePath = original.call(instance, other);
-        ReplayHandler replayHandler = ReplayModCompat.getReplayModHandler();
-        if (replayHandler == null) {
-            // Means we are not in a replay "server", and the error is caused by something else.
+        ReplayHandler replayHandler = ReplayCompat.getReplayModHandler();
+        if (replayHandler == null || !VoxyExtra.CONFIG.replayModLoadLods) {
             Logger.error("Server info null");
             return original.call(instance, other);
         }
@@ -61,20 +61,24 @@ public class VoxyClientInstanceMixin {
             String customServerName = metaData.getCustomServerName();
             String serverNameOrIp = metaData.getServerName();
             if (metaData.isSingleplayer()) {
-                newBasePath = Minecraft.getInstance().gameDirectory.toPath().resolve("saves").resolve(customServerName).resolve("voxy");
+                newBasePath = mcPath.resolve("saves").resolve(customServerName).resolve("voxy");
+                VoxyExtra.LOGGER.info("[Voxy Extra] Loaded LoDs from {}", customServerName);
             }
             else if (Objects.equals(serverNameOrIp, "A Realms Server")) {
                 newBasePath = basePath.resolve("realms");
+                VoxyExtra.LOGGER.info("[Voxy Extra] Loaded LoDs from realms");
             }
             else {
-                newBasePath = basePath.resolve(serverNameOrIp.replace(":", "_"));
+                String serverNameOrIpReplaced = serverNameOrIp.replace(":", "_");
+                newBasePath = basePath.resolve(serverNameOrIpReplaced);
+                VoxyExtra.LOGGER.info("[Voxy Extra] Loaded LoDs from {}", serverNameOrIpReplaced);
             }
         } catch (IOException e) {
             VoxyExtra.LOGGER.error("[Voxy Extra] Failed to load Replay File");
         }
         if (!newBasePath.toFile().exists()) {
             newBasePath = original.call(instance, other);
-            Logger.error("Server info null");
+            VoxyExtra.LOGGER.info("[Voxy Extra] Path to LoDs doesn't exist");
         }
         return newBasePath;
     }

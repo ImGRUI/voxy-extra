@@ -31,4 +31,8 @@ public class VoxyExtraConfig implements ConfigData {
     public List<String> lodMirrorList = new ArrayList<>();
     @ConfigEntry.Gui.Excluded
     public boolean disableInSingleplayer;
+    @ConfigEntry.Gui.Excluded
+    public boolean replayModSaveCustomMeta = true;
+    @ConfigEntry.Gui.Excluded
+    public boolean replayModLoadLods = true;
 }
