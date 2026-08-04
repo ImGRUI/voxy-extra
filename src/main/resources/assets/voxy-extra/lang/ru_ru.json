@@ -11,10 +11,10 @@
   "text.autoconfig.voxy-extra.option.flashbackSaveOldLods.@Tooltip": "Включает копирование LoD в специальную папку (не поддерживает объединение повторов). Если выключено, локация LoD будет записана в метаданные (не сможет обновляться в повторе).",
 
   "text.autoconfig.voxy-extra.option.flashbackIngest": "Обновлять LoD в повторах",
-  "text.autoconfig.voxy-extra.option.flashbackIngest.@Tooltip": "Включает обновление LoD в поддерживаемых повторах Flashback (со скопированными LoD).",
+  "text.autoconfig.voxy-extra.option.flashbackIngest.@Tooltip": "Включает обновление LoD в поддерживаемых повторах (со скопированными LoD).",
 
   "text.autoconfig.voxy-extra.option.flashbackCheckLodCache": "Проверять скопированные LoD",
-  "text.autoconfig.voxy-extra.option.flashbackCheckLodCache.@Tooltip": "Если включено, проверяет все повторы Flashback при запуске и удаляет скопированные LoD для удалённых повторов. Экономит место на диске.",
+  "text.autoconfig.voxy-extra.option.flashbackCheckLodCache.@Tooltip": "Если включено, проверяет все повторы при запуске и удаляет скопированные LoD для удалённых повторов. Экономит место на диске.",
 
   "text.autoconfig.voxy-extra.option.serverBlacklist": "Чёрный список",
   "text.autoconfig.voxy-extra.option.serverBlacklist.@Tooltip": "Позволяет добавлять серверы в чёрный список, чтобы выключать Voxy на них. Добавляйте в Cloth Config.",
