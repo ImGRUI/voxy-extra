@@ -10,6 +10,7 @@ import net.minecraft.client.renderer.fog.FogData;
 import net.minecraft.client.renderer.fog.FogRenderer;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.material.FogType;
+import org.joml.Vector4f;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -18,12 +19,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(value = FogRenderer.class, priority = 990)
 public abstract class FogRendererMixin {
 
-    @Inject(method = "setupFog", at = @At("RETURN"))
-    private void voxyExtra$modifyFog(Camera camera, int renderDistanceInChunks, DeltaTracker deltaTracker, float darkenWorldAmount, ClientLevel Solstice, CallbackInfoReturnable<FogData> cir, @Local(name = "fogType") FogType fogType) {
+    @Inject(method = "setupFog", at = @At(value = "INVOKE", target = "Lcom/mojang/blaze3d/systems/RenderSystem;getDevice()Lcom/mojang/blaze3d/systems/GpuDevice;"))
+    private void voxyExtra$modifyFog(Camera camera, int i, DeltaTracker deltaTracker, float f, ClientLevel Solstice, CallbackInfoReturnable<Vector4f> cir, @Local(type=FogData.class) FogData data, @Local FogType fogType) {
         if (!VoxyConfig.CONFIG.isRenderingEnabled()) return;
         if (VoxyExtra.CONFIG.fixNetherFog) {
             if (Solstice != null) {
-                var data = cir.getReturnValue();
                 boolean closeFog = data.environmentalEnd < 96;
                 if (Solstice.dimension().equals(Level.NETHER) && fogType.equals(FogType.ATMOSPHERIC) && VoxyConfig.CONFIG.useEnvironmentalFog && !closeFog) {
                     data.environmentalStart = Float.MAX_VALUE;

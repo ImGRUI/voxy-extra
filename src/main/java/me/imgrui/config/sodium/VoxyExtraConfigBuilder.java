@@ -76,7 +76,7 @@ public class VoxyExtraConfigBuilder implements ConfigEntryPoint {
                         builder.createExternalButtonOption(Identifier.parse("voxy-extra:editconfig"))
                                 .setName(Component.translatable("text.autoconfig.voxy-extra.option.edit"))
                                 .setTooltip(Component.translatable("text.autoconfig.voxy-extra.option.edit.@Tooltip"))
-                                .setScreenConsumer(screen -> Minecraft.getInstance().gui.setScreen(AutoConfigClient.getConfigScreen(VoxyExtraConfig.class,screen).get()))
+                                .setScreenConsumer(screen -> Minecraft.getInstance().setScreen(AutoConfigClient.getConfigScreen(VoxyExtraConfig.class,screen).get()))
                 )
         );
 

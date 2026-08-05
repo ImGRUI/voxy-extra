@@ -1,5 +1,5 @@
 plugins {
-	id 'net.fabricmc.fabric-loom' version "${loom_version}"
+	id 'net.fabricmc.fabric-loom-remap' version "${loom_version}"
 	id 'maven-publish'
 }
 
@@ -36,26 +36,26 @@ repositories {
 
 dependencies {
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
+	mappings loom.officialMojangMappings()
+	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
-	implementation "net.fabricmc:fabric-loader:${project.loader_version}"
+	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
 
-	implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+	modImplementation "maven.modrinth:voxy:${project.voxy}"
 
-	implementation "maven.modrinth:voxy:${project.voxy}"
+	modImplementation "maven.modrinth:flashback:${project.flashback}"
 
-	implementation "maven.modrinth:flashback:${project.flashback}"
+	modImplementation "maven.modrinth:sodium:${project.sodium}"
 
-	implementation "maven.modrinth:sodium:${project.sodium}"
+	modImplementation "net.caffeinemc:sodium-fabric-api:${project.sodium_api}"
 
-	implementation "net.caffeinemc:sodium-fabric-api:${project.sodium_api}"
+	modImplementation "maven.modrinth:modmenu:${project.mod_menu}"
 
-	implementation "maven.modrinth:modmenu:${project.mod_menu}"
-
-	api("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config}") {
+	modApi("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config}") {
 		exclude(group: "net.fabricmc.fabric-api")
 	}
 
-	implementation "maven.modrinth:replaymod:${project.replay_mod}"
+	modImplementation "maven.modrinth:replaymod:${project.replay_mod}"
 }
 
 processResources {
@@ -67,7 +67,7 @@ processResources {
 }
 
 tasks.withType(JavaCompile).configureEach {
-	it.options.release = 25
+	it.options.release = 21
 }
 
 java {
@@ -76,8 +76,8 @@ java {
 	// If you remove this line, sources will not be generated.
 	withSourcesJar()
 
-	sourceCompatibility = JavaVersion.VERSION_25
-	targetCompatibility = JavaVersion.VERSION_25
+	sourceCompatibility = JavaVersion.VERSION_21
+	targetCompatibility = JavaVersion.VERSION_21
 }
 
 jar {
