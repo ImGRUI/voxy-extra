@@ -34,10 +34,10 @@
 		"voxy-extra.mixins.json"
 	],
 	"depends": {
-		"fabricloader": ">=0.19.3",
-		"minecraft": "~26.2",
+		"fabricloader": ">=0.18.5",
+		"minecraft": "~26.1",
 		"fabric-api": "*",
-        "voxy": ">=0.2.17-alpha",
+        "voxy": ">=0.2.16-beta",
 		"cloth-config": "*"
 	},
 	"breaks": {
