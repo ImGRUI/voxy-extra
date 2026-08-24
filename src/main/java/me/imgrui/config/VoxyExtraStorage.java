@@ -68,6 +68,14 @@ public class VoxyExtraStorage {
         config().lodMirror = lodMirror;
     }
 
+    public boolean getWorldSeedStorage() {
+        return config().worldSeedStorage;
+    }
+
+    public void setWorldSeedStorage(boolean worldSeedStorage) {
+        config().worldSeedStorage = worldSeedStorage;
+    }
+
     public boolean getFlashbackCheckLodCache() {
         return config().flashbackCheckLodCache;
     }

@@ -9,8 +9,10 @@
     "flashback.FlashbackSaveReplayScreenMixin",
     "minecraft.FogRendererMixin",
     "minecraft.MinecraftMixin",
+    "minecraft.MultiPlayerGameModeAccessor",
     "replaymod.ConnectionEventHandlerMixin",
     "voxy.VoxyClientInstanceMixin",
+    "voxy.VoxyClientInstanceStorageMixin",
     "voxy.VoxyCommonMixin"
   ],
   "injectors": {

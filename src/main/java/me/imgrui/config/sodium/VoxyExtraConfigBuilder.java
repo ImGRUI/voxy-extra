@@ -59,6 +59,14 @@ public class VoxyExtraConfigBuilder implements ConfigEntryPoint {
                                 .setBinding(this.storage::setLodMirror, this.storage::getLodMirror)
                                 .setDefaultValue(false)
                 )
+                .addOption(
+                        builder.createBooleanOption(Identifier.parse("voxy-extra:worldseedstorage"))
+                                .setName(Component.translatable("text.autoconfig.voxy-extra.option.worldSeedStorage"))
+                                .setTooltip(Component.translatable("text.autoconfig.voxy-extra.option.worldSeedStorage.@Tooltip"))
+                                .setStorageHandler(this.handler)
+                                .setBinding(this.storage::setWorldSeedStorage, this.storage::getWorldSeedStorage)
+                                .setDefaultValue(false)
+                )
         );
 
         VoxyExtraGeneralPage.addOptionGroup(builder.createOptionGroup()

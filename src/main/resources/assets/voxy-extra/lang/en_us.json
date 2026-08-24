@@ -35,6 +35,9 @@
   "text.autoconfig.voxy-extra.option.lodMirrorList.@Tooltip[0]": "Each field represents a single server.",
   "text.autoconfig.voxy-extra.option.lodMirrorList.@Tooltip[1]": "Format for every field: BaseIP AltIP AltIP",
 
+  "text.autoconfig.voxy-extra.option.worldSeedStorage": "World Seed Storage",
+  "text.autoconfig.voxy-extra.option.worldSeedStorage.@Tooltip": "Stores LoDs by world instead of by address, so every entrance to the same world shares one cache and no mirror list has to be kept up to date. Takes priority over LoD Mirror.\nOnly applies on remote servers; singleplayer, Realms, replays and servers that report no world (waiting rooms) keep storing LoDs by address exactly as before.\nFolders written before this was enabled are left behind untouched and can be deleted by hand. The storage backend settings file stays per address, so a single entrance cannot be pointed at its own backend.\nAnything that wipes LoDs by deleting a server's address folder will silently miss the world folder.\nCopying LoDs alongside Flashback replays is not supported while this is on.\nTwo unrelated servers that report the same world seed, such as a copied world or minigames built from one seed, share a single folder.\nDo not enable this on servers that randomise or rotate the world seed they report: every connection would start a new folder.",
+
   "text.autoconfig.voxy-extra.option.disableInSingleplayer": "Disable Voxy in Singleplayer",
   "text.autoconfig.voxy-extra.option.disableInSingleplayer.@Tooltip": "Disables Voxy when playing in a local singleplayer world.",
 

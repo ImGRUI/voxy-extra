@@ -30,6 +30,8 @@ public class VoxyExtraConfig implements ConfigData {
     @ConfigEntry.Gui.Tooltip(count = 2)
     public List<String> lodMirrorList = new ArrayList<>();
     @ConfigEntry.Gui.Excluded
+    public boolean worldSeedStorage;
+    @ConfigEntry.Gui.Excluded
     public boolean disableInSingleplayer;
     @ConfigEntry.Gui.Excluded
     public boolean replayModSaveCustomMeta = true;

@@ -30,6 +30,9 @@ public class FlashbackCopy {
     static FileFilter filter = file -> !file.getName().contains("LOG") && !file.getName().equals("LOCK");
 
     public static void CopyLods() {
+        if (VoxyExtra.CONFIG.worldSeedStorage) {
+            VoxyExtra.LOGGER.warn("[Voxy Extra] World Seed Storage is enabled, so the LoDs of this session are not stored under the server address Flashback recorded; copying LoDs with this replay is not supported and will find nothing to copy");
+        }
         Path copyPath = mcPath.resolve(".voxy").resolve("flashback").resolve(replayIdentifier);
         CopyLods(basePath, copyPath);
     }
