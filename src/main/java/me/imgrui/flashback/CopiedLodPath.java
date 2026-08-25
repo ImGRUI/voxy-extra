@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
  * <p>
  * {@link FlashbackCopy#CopyLods()} copies a replay's LoDs to {@code .voxy/flashback/<replay uuid>} and
  * {@code FlashbackMetaMixin} writes that destination into the replay's {@code metadata.json} as
- * {@code voxy_storage_path}. {@link FlashbackCopy#CheckReplays()} runs on every launch and deletes every
+ * {@link #STORAGE_PATH_KEY}. {@link FlashbackCopy#CheckReplays()} runs on every launch and deletes every
  * directory under {@code .voxy/flashback} that no surviving replay claims, so a replay whose recorded path
  * is not recognised here loses its copied LoDs permanently.
  * <p>
@@ -23,6 +23,9 @@ public final class CopiedLodPath {
 
     /** The directory {@link FlashbackCopy} copies into, one level below Voxy's own storage root. */
     public static final String FLASHBACK_DIRECTORY = "flashback";
+
+    /** The replay metadata field Voxy stores its storage base path in, and this mod rewrites. */
+    public static final String STORAGE_PATH_KEY = "voxy_storage_path";
 
     /**
      * Voxy's storage root is {@code .voxy}, and a suffix match is what the previous substring check
@@ -43,7 +46,7 @@ public final class CopiedLodPath {
      */
     public static String copiedLodUuid(JsonObject metadata) {
         if (metadata == null) return null;
-        JsonElement storagePath = metadata.get("voxy_storage_path");
+        JsonElement storagePath = metadata.get(STORAGE_PATH_KEY);
         if (storagePath == null || !storagePath.isJsonPrimitive()) return null;
         if (!pointsAtCopiedLods(storagePath.getAsString())) return null;
         JsonElement uuid = metadata.get("uuid");

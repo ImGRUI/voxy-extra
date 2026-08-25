@@ -42,6 +42,15 @@ public class FlashbackCopy {
      */
     private static final Map<String, WorldLodBase> WORLD_BASES = new ConcurrentHashMap<>();
 
+    /**
+     * Topics already warned about, so a warning that is decided over and over is said once.
+     * <p>
+     * Cleared for a new recording and for a new Voxy client instance alike: a reconnection during a
+     * recording refills {@link #WORLD_BASES} from scratch, and what is true of the new connection deserves
+     * to be said again rather than silenced by a latch set for the old one.
+     */
+    private static final Set<WarningTopic> WARNED = ConcurrentHashMap.newKeySet();
+
     public static String replayIdentifier;
     public static Path basePath;
     public static boolean voxySavedLods;
@@ -51,14 +60,54 @@ public class FlashbackCopy {
         WORLD_BASES.put(worldId, new WorldLodBase(base, seedKeyed));
     }
 
-    /** Drops the session's bases, which stop meaning anything once Voxy builds a new client instance. */
+    /**
+     * Drops the session's bases, which stop meaning anything once Voxy builds a new client instance.
+     * <p>
+     * The warning latch goes with them: the bases the warnings were decided from are gone, so a problem
+     * that is still true of the new connection has to be able to say so once more.
+     */
     public static void forgetWorldBases() {
         WORLD_BASES.clear();
+        WARNED.clear();
+    }
+
+    /** The seed keyed directories this session's LoDs went into, for whoever has to record a single path. */
+    public static SessionLodBases sessionLodBases() {
+        return SessionLodBases.of(WORLD_BASES);
+    }
+
+    /**
+     * Drops the replay identity and the warning latch, as Flashback builds the recorder for a new recording.
+     * <p>
+     * {@link #replayIdentifier} and {@link #basePath} are only ever filled in from a replay's metadata, and
+     * Flashback writes that metadata as the recording runs. Left standing they would still name the previous
+     * replay for a recording whose metadata was never written, which would have this session's LoDs copied
+     * into that replay's directory - or that replay's directory deleted on this one's behalf.
+     * <p>
+     * It deliberately does not touch {@link #IDENTIFIERS}. Three different lifetimes meet in this class and
+     * each is cleared where it ends: the visited worlds by {@code FlashbackMixin} when a recording finishes
+     * or is cancelled, the replay identity and warning latch here when the next recording begins, and
+     * {@link #WORLD_BASES} by {@link #forgetWorldBases()} when Voxy builds a new client instance.
+     */
+    public static void startNewRecording() {
+        replayIdentifier = null;
+        basePath = null;
+        WARNED.clear();
+    }
+
+    /**
+     * Whether {@code topic} still has to be warned about, and from now on it does not.
+     * <p>
+     * Flashback rewrites a replay's metadata every time it writes a chunk, so a warning decided while
+     * building that metadata is decided again every few seconds of recording. This makes it one line.
+     */
+    public static boolean shouldWarn(WarningTopic topic) {
+        return WARNED.add(topic);
     }
 
     public static void CopyLods() {
         if (replayIdentifier == null || basePath == null) {
-            VoxyExtra.LOGGER.warn("[Voxy Extra] Flashback has not written this replay's metadata yet, so there is nowhere to copy LoDs to");
+            VoxyExtra.LOGGER.warn("[Voxy Extra] Flashback recorded no storage path for this replay, so no LoDs are copied; going ahead would have copied them into whichever replay was recorded before it");
             return;
         }
         Path copyPath = mcPath.resolve(".voxy").resolve(CopiedLodPath.FLASHBACK_DIRECTORY).resolve(replayIdentifier);
@@ -120,6 +169,10 @@ public class FlashbackCopy {
     }
 
     public static void deleteReplayLOD() {
+        if (replayIdentifier == null) {
+            VoxyExtra.LOGGER.warn("[Voxy Extra] Flashback recorded no storage path for this replay, so no LoDs are deleted; going ahead would have deleted those of whichever replay was recorded before it");
+            return;
+        }
         Path flashbackLod = mcPath.resolve(".voxy").resolve(CopiedLodPath.FLASHBACK_DIRECTORY).resolve(replayIdentifier);
         try {
             FileUtils.deleteDirectory(flashbackLod.toFile());

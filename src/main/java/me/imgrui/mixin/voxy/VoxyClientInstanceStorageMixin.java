@@ -46,6 +46,9 @@ public class VoxyClientInstanceStorageMixin {
     /**
      * A new client instance means a new base path, so whatever was observed about the last one is stale.
      * Recording ends do not clear it; only a new instance does.
+     * <p>
+     * Order against {@code VoxyClientInstanceMixin}'s injection at this same point is not guaranteed and
+     * does not need to be: neither of the two touches anything the other reads.
      */
     @Inject(method = "<init>()V", at = @At("RETURN"))
     private void voxyExtra$resetWorldBases(CallbackInfo ci) {
