@@ -15,7 +15,6 @@ import org.apache.commons.lang3.ArrayUtils;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
@@ -83,22 +82,21 @@ public class VoxyClientInstanceMixin {
         return newBasePath;
     }
 
-    @ModifyVariable(method = "<init>()V", at = @At(value = "INVOKE_ASSIGN", target = "Lme/cortex/voxy/client/VoxyClientInstance;getBasePath()Ljava/nio/file/Path;"), name = "path")
-    private static Path voxyExtra$lodMirror(Path path) {
-        return voxyExtra$lodMirrorCheck(path);
+    @WrapOperation(method = "getBasePath", at = @At(value = "INVOKE", target = "Ljava/nio/file/Path;resolve(Ljava/lang/String;)Ljava/nio/file/Path;", ordinal = 6))
+    private static Path voxyExtra$lodMirror(Path basePath, String serverAddress, Operation<Path> original) {
+        return voxyExtra$lodMirrorCheck(original.call(basePath, serverAddress), serverAddress);
     }
 
     @Unique
-    private static Path voxyExtra$lodMirrorCheck(Path path) {
+    private static Path voxyExtra$lodMirrorCheck(Path path, String serverAddress) {
         if (!VoxyExtra.CONFIG.lodMirror) return path;
-        var IP = VoxyExtra.IP;
-        if (IP == null) return path;
         if (VoxyExtra.CONFIG.lodMirrorList.isEmpty()) return path;
         for (int i = 0; i < VoxyExtra.CONFIG.lodMirrorList.size(); i++) {
             String[] list = VoxyExtra.CONFIG.lodMirrorList.get(i).trim().split("\\s+");
             var listFirst = list[0];
-            if (listFirst.equals(IP)) return path;
-            if (ArrayUtils.contains(list,IP)) {
+            var serverAddressReplaced = serverAddress.replace("_",":");
+            if (listFirst.equals(serverAddressReplaced)) return path;
+            if (ArrayUtils.contains(list, serverAddressReplaced)) {
                 path = path.resolveSibling(listFirst);
                 VoxyExtra.LOGGER.warn("[Voxy Extra] Replaced path to {}", listFirst);
                 break;
