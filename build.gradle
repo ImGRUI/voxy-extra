@@ -88,6 +88,10 @@ jar {
 	}
 }
 
+loom {
+	accessWidenerPath = file("src/main/resources/voxy-extra.accesswidener")
+}
+
 // configure the maven publication
 publishing {
 	publications {

@@ -40,6 +40,7 @@ public class VoxyExtraConfigBuilder implements ConfigEntryPoint {
                                 .setTooltip(Component.translatable("text.autoconfig.voxy-extra.option.serverBlacklist.@Tooltip"))
                                 .setStorageHandler(this.handler)
                                 .setBinding(this.storage::setServerBlacklist, this.storage::getServerBlacklist)
+                                .setEnabledProvider(c -> !c.readBooleanOption(Identifier.parse("voxy-extra:serverwhitelist")), Identifier.parse("voxy-extra:serverwhitelist"))
                                 .setDefaultValue(false)
                 )
                 .addOption(

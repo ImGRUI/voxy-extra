@@ -1,0 +1,3 @@
+accessWidener v1 official
+
+accessible field net/minecraft/client/multiplayer/MultiPlayerGameMode connection Lnet/minecraft/client/multiplayer/ClientPacketListener;
