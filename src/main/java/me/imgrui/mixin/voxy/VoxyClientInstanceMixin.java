@@ -93,9 +93,10 @@ public class VoxyClientInstanceMixin {
         if (VoxyExtra.CONFIG.lodMirrorList.isEmpty()) return path;
         for (int i = 0; i < VoxyExtra.CONFIG.lodMirrorList.size(); i++) {
             String[] list = VoxyExtra.CONFIG.lodMirrorList.get(i).trim().split("\\s+");
-            var listFirst = list[0].replace(":","_");
-            if (listFirst.equals(serverAddress)) return path;
-            if (ArrayUtils.contains(list, serverAddress.replace("_",":"))) {
+            var listFirst = list[0];
+            var serverAddressReplaced = serverAddress.replace("_",":");
+            if (listFirst.equals(serverAddressReplaced)) return path;
+            if (ArrayUtils.contains(list, serverAddressReplaced)) {
                 path = path.resolveSibling(listFirst);
                 VoxyExtra.LOGGER.warn("[Voxy Extra] Replaced path to {}", listFirst);
                 break;
