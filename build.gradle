@@ -32,6 +32,15 @@ repositories {
 	maven {
 		url "https://maven.terraformersmc.com/releases/"
 	}
+	mavenCentral {
+		content {
+			includeGroup "org.junit"
+			includeGroup "org.junit.jupiter"
+			includeGroup "org.junit.platform"
+			includeGroup "org.opentest4j"
+			includeGroup "org.apiguardian"
+		}
+	}
 }
 
 dependencies {
@@ -56,6 +65,17 @@ dependencies {
 	}
 
 	implementation "maven.modrinth:replaymod:${project.replay_mod}"
+
+	testImplementation platform("org.junit:junit-bom:${project.junit_version}")
+	testImplementation "org.junit.jupiter:junit-jupiter"
+	testRuntimeOnly "org.junit.platform:junit-platform-launcher"
+}
+
+test {
+	useJUnitPlatform()
+	testLogging {
+		events "passed", "skipped", "failed"
+	}
 }
 
 processResources {
