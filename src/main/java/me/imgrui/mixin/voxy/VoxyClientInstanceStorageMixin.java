@@ -8,6 +8,7 @@ import me.cortex.voxy.client.compat.FlashbackCompat;
 import me.cortex.voxy.common.config.ConfigBuildCtx;
 import me.cortex.voxy.commonImpl.WorldIdentifier;
 import me.imgrui.VoxyExtra;
+import me.imgrui.flashback.FlashbackCopy;
 import me.imgrui.mixin.minecraft.MultiPlayerGameModeAccessor;
 import me.imgrui.replay.ReplayCompat;
 import me.imgrui.storage.LodStorageContext;
@@ -19,6 +20,8 @@ import net.minecraft.client.multiplayer.ServerData;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.nio.file.Path;
 
@@ -29,12 +32,25 @@ import java.nio.file.Path;
  * The interception sits on {@code createStorage} rather than on the base path the instance is built with,
  * because Voxy builds one client instance per session but one world engine per world: only here is the
  * world (and therefore its seed) known, and only here does each world of a session get its own answer.
+ * <p>
+ * That also makes this the one place where each world's real storage base is known without deriving it a
+ * second time, so it is recorded here for {@link FlashbackCopy}: Voxy tells Flashback the instance wide base
+ * it was built with, which is not where a world this class moved actually ended up.
  */
 @Mixin(value = VoxyClientInstance.class, remap = false)
 public class VoxyClientInstanceStorageMixin {
 
     @Unique
     private static boolean voxyExtra$warnedAboutStorageShape;
+
+    /**
+     * A new client instance means a new base path, so whatever was observed about the last one is stale.
+     * Recording ends do not clear it; only a new instance does.
+     */
+    @Inject(method = "<init>()V", at = @At("RETURN"))
+    private void voxyExtra$resetWorldBases(CallbackInfo ci) {
+        FlashbackCopy.forgetWorldBases();
+    }
 
     @WrapOperation(
             method = "createStorage",
@@ -60,7 +76,9 @@ public class VoxyClientInstanceStorageMixin {
         }
 
         Path basePath = Path.of(value);
+        boolean seedKeyed = WorldSeedKey.appliesTo(context, identifier.biomeSeed);
         Path redirected = WorldSeedKey.redirect(basePath, context, identifier.biomeSeed);
+        FlashbackCopy.rememberWorldBase(identifier.getWorldId(), redirected, seedKeyed);
         if (redirected.equals(basePath)) return original.call(ctx, property, value);
 
         VoxyExtra.LOGGER.info("[Voxy Extra] Storing LoDs by world seed in {}", redirected.getFileName());

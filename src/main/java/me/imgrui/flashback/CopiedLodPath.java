@@ -22,7 +22,7 @@ import java.util.regex.Pattern;
 public final class CopiedLodPath {
 
     /** The directory {@link FlashbackCopy} copies into, one level below Voxy's own storage root. */
-    private static final String FLASHBACK_DIRECTORY = "flashback";
+    public static final String FLASHBACK_DIRECTORY = "flashback";
 
     /**
      * Voxy's storage root is {@code .voxy}, and a suffix match is what the previous substring check

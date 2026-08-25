@@ -5,7 +5,6 @@ import com.google.gson.JsonParser;
 import me.imgrui.VoxyExtra;
 import org.apache.commons.io.FileUtils;
 
-import java.io.FileFilter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -15,49 +14,69 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
 import static me.imgrui.VoxyExtra.mcPath;
 
 public class FlashbackCopy {
-    public static HashSet<String> IDENTIFIERS = new HashSet<>();
+    /**
+     * The worlds the recording in progress has visited, added to from the recorder's tick and read again
+     * when the recording ends, so it is written and read from different threads and cannot be a plain set.
+     * Its clearing points are unchanged: the end of a recording, and a cancelled one.
+     */
+    public static final Set<String> IDENTIFIERS = ConcurrentHashMap.newKeySet();
+
+    /**
+     * Where each world of the current session actually stores its LoDs, filled in as Voxy builds storage.
+     * <p>
+     * Its lifetime is one Voxy client instance, not one recording: the base path it describes is fixed when
+     * that instance is built, and {@link #forgetWorldBases()} drops it when the next one is. It deliberately
+     * survives the end of a recording, unlike {@link #IDENTIFIERS}, because Flashback writes a replay's
+     * metadata at a moment that moves - inside {@code finishRecordingReplay} when quicksave is on, only once
+     * the player has named the replay when it is off - so anything cleared there is sometimes cleared too
+     * early to still answer for the recording that just finished.
+     */
+    private static final Map<String, WorldLodBase> WORLD_BASES = new ConcurrentHashMap<>();
+
     public static String replayIdentifier;
     public static Path basePath;
     public static boolean voxySavedLods;
 
-    static FileFilter filter = file -> !file.getName().contains("LOG") && !file.getName().equals("LOCK");
-
-    public static void CopyLods() {
-        if (VoxyExtra.CONFIG.worldSeedStorage) {
-            VoxyExtra.LOGGER.warn("[Voxy Extra] World Seed Storage is enabled, so the LoDs of this session are not stored under the server address Flashback recorded; copying LoDs with this replay is not supported and will find nothing to copy");
-        }
-        Path copyPath = mcPath.resolve(".voxy").resolve("flashback").resolve(replayIdentifier);
-        CopyLods(basePath, copyPath);
+    /** Records where a world of this session really stores its LoDs, as Voxy builds that world's storage. */
+    public static void rememberWorldBase(String worldId, Path base, boolean seedKeyed) {
+        WORLD_BASES.put(worldId, new WorldLodBase(base, seedKeyed));
     }
 
-    private static void CopyLods(Path basePath, Path copyPath) {
-        for (String worldId : IDENTIFIERS) {
-            Path newBasePath = basePath.resolve(worldId);
-            Path newCopyPath = copyPath.resolve(worldId);
-            try {
-                FileUtils.copyDirectory(newBasePath.toFile(), newCopyPath.toFile(), filter);
-            } catch (IOException e) {
-                VoxyExtra.LOGGER.error("[Voxy Extra] Failed to copy LoDs for world {}", worldId, e);
-            }
+    /** Drops the session's bases, which stop meaning anything once Voxy builds a new client instance. */
+    public static void forgetWorldBases() {
+        WORLD_BASES.clear();
+    }
+
+    public static void CopyLods() {
+        if (replayIdentifier == null || basePath == null) {
+            VoxyExtra.LOGGER.warn("[Voxy Extra] Flashback has not written this replay's metadata yet, so there is nowhere to copy LoDs to");
+            return;
         }
-        try {
-            FileUtils.copyFile(basePath.resolve("config.json").toFile(), copyPath.resolve("config.json").toFile());
-        } catch (IOException e) {
-            VoxyExtra.LOGGER.error("[Voxy Extra] Failed to copy LoDs config.json", e);
+        Path copyPath = mcPath.resolve(".voxy").resolve(CopiedLodPath.FLASHBACK_DIRECTORY).resolve(replayIdentifier);
+        LodCopyPlan plan = LodCopyPlan.of(IDENTIFIERS, WORLD_BASES, basePath, copyPath);
+        if (plan.voxyLooksSeedAware()) {
+            VoxyExtra.LOGGER.warn("[Voxy Extra] Voxy now reports the seed keyed storage path itself for {}, so Voxy Extra is redirecting a path that no longer needs it; please report this so the redirect can be retired before it starts copying from the wrong place", plan.seedAwareWorlds());
         }
-        VoxyExtra.LOGGER.info("[Voxy Extra] Copied LoDs for {}", replayIdentifier);
+        LodCopier.Report report = LodCopier.copy(plan, LodCopier.JOURNAL_FILTER, VoxyExtra.LOGGER);
+        if (report.copiedNothing()) {
+            VoxyExtra.LOGGER.warn("[Voxy Extra] Copied no LoDs for {}, nothing was stored for any of its {} worlds", replayIdentifier, plan.entries().size());
+            return;
+        }
+        VoxyExtra.LOGGER.info("[Voxy Extra] Copied LoDs for {}, {} of its {} worlds had something stored", replayIdentifier, report.copied().size(), plan.entries().size());
     }
 
     public static void CheckReplays() {
         Path replays = mcPath.resolve("flashback").resolve("replays");
-        Path flashbackLodFolder = mcPath.resolve(".voxy").resolve("flashback");
+        Path flashbackLodFolder = mcPath.resolve(".voxy").resolve(CopiedLodPath.FLASHBACK_DIRECTORY);
         List<Path> flashbackLodFolders = new ArrayList<>();
         if (!Files.exists(flashbackLodFolder)) return;
         if (Files.exists(replays)) {
@@ -101,7 +120,7 @@ public class FlashbackCopy {
     }
 
     public static void deleteReplayLOD() {
-        Path flashbackLod = mcPath.resolve(".voxy").resolve("flashback").resolve(replayIdentifier);
+        Path flashbackLod = mcPath.resolve(".voxy").resolve(CopiedLodPath.FLASHBACK_DIRECTORY).resolve(replayIdentifier);
         try {
             FileUtils.deleteDirectory(flashbackLod.toFile());
             VoxyExtra.LOGGER.warn("[Voxy Extra] Deleted LoD for {}", replayIdentifier);
