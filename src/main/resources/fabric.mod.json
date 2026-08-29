@@ -37,7 +37,7 @@
 		"fabricloader": "*",
 		"minecraft": "~26.1",
 		"fabric-api": "*",
-        "voxy": ">=0.2.16-beta",
+        "voxy": ">=0.2.14-alpha",
 		"cloth-config": "*"
 	},
 	"breaks": {
