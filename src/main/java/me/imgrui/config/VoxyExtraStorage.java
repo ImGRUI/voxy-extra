@@ -91,4 +91,28 @@ public class VoxyExtraStorage {
     public void setReplayModLoadLods(boolean replayModLoadLods) {
         config().replayModLoadLods = replayModLoadLods;
     }
+
+    public boolean getCustomFogFade() {
+        return config().customFogFade;
+    }
+
+    public void setCustomFogFade(boolean customFogFade) {
+        config().customFogFade = customFogFade;
+    }
+
+    public int getFogStart() {
+        return config().fadeFogStart;
+    }
+
+    public void setFogStart(int fogStart) {
+        config().fadeFogStart = fogStart;
+    }
+
+    public int getFogEnd() {
+        return config().fadeFogEnd;
+    }
+
+    public void setFogEnd(int fogEnd) {
+        config().fadeFogEnd = fogEnd;
+    }
 }

@@ -2,6 +2,7 @@ package me.imgrui.mixin.minecraft;
 
 import com.llamalad7.mixinextras.sugar.Local;
 import me.cortex.voxy.client.config.VoxyConfig;
+import me.cortex.voxy.client.core.NormalRenderPipeline;
 import me.imgrui.VoxyExtra;
 import net.minecraft.client.Camera;
 import net.minecraft.client.DeltaTracker;
@@ -17,17 +18,19 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(value = FogRenderer.class, priority = 990)
 public abstract class FogRendererMixin {
-
     @Inject(method = "setupFog", at = @At("RETURN"))
     private void voxyExtra$modifyFog(Camera camera, int renderDistanceInChunks, DeltaTracker deltaTracker, float darkenWorldAmount, ClientLevel Solstice, CallbackInfoReturnable<FogData> cir, @Local(name = "fogType") FogType fogType) {
         if (!VoxyConfig.CONFIG.isRenderingEnabled()) return;
         if (VoxyExtra.CONFIG.fixNetherFog) {
-            if (Solstice != null) {
-                var data = cir.getReturnValue();
-                boolean closeFog = data.environmentalEnd < 96;
-                if (Solstice.dimension().equals(Level.NETHER) && fogType.equals(FogType.ATMOSPHERIC) && VoxyConfig.CONFIG.useEnvironmentalFog && !closeFog) {
-                    data.environmentalStart = Float.MAX_VALUE;
-                    data.environmentalEnd = Float.MAX_VALUE;
+            NormalRenderPipeline.FogMode voxyFogMode = VoxyConfig.CONFIG.getFogMode();
+            if (voxyFogMode.equals(NormalRenderPipeline.FogMode.FOG_AND_FADE) || voxyFogMode.equals(NormalRenderPipeline.FogMode.FOG)) {
+                if (Solstice != null) {
+                    var data = cir.getReturnValue();
+                    boolean closeFog = data.environmentalEnd < 96;
+                    if (Solstice.dimension().equals(Level.NETHER) && fogType.equals(FogType.ATMOSPHERIC) && !closeFog) {
+                        data.environmentalStart = Float.MAX_VALUE;
+                        data.environmentalEnd = Float.MAX_VALUE;
+                    }
                 }
             }
         }

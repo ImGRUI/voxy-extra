@@ -4,8 +4,17 @@
   "text.autoconfig.voxy-extra.flashback": "Flashback",
   "text.autoconfig.voxy-extra.replaymod": "Replay Mod",
 
-  "text.autoconfig.voxy-extra.option.fixNetherFog": "Фикс тумана в нижнем мире",
-  "text.autoconfig.voxy-extra.option.fixNetherFog.@Tooltip": "Выключает туман в нижнем мире с включённым «environmental fog».",
+  "text.autoconfig.voxy-extra.option.fixNetherFog": "«Фикс» тумана в нижнем мире",
+  "text.autoconfig.voxy-extra.option.fixNetherFog.@Tooltip": "Когда выставлен режим тумана «Fog and fade» или «Fog only», чанки Voxy скрыты туманом в нижнем мире. Эта настройка изменяет поведение тумана в этом случае на «Fade only» с «Fog and fade», и выключает туман с «Fog only».",
+
+  "text.autoconfig.voxy-extra.option.customFogFade": "Настройки Fade Fog",
+  "text.autoconfig.voxy-extra.option.customFogFade.@Tooltip": "Позволяет изменять значения Voxy fade fog. Может сломать рендеринг.",
+
+  "text.autoconfig.voxy-extra.option.fadeFogStart": "Fog Start",
+  "text.autoconfig.voxy-extra.option.fadeFogStart.@Tooltip": "Где начинается туман.",
+
+  "text.autoconfig.voxy-extra.option.fadeFogEnd": "Fog End",
+  "text.autoconfig.voxy-extra.option.fadeFogEnd.@Tooltip": "Где заканчивается туман.",
 
   "text.autoconfig.voxy-extra.option.flashbackSaveOldLods": "Копировать LoD с повторами",
   "text.autoconfig.voxy-extra.option.flashbackSaveOldLods.@Tooltip": "Включает копирование LoD в специальную папку (не поддерживает объединение повторов). Если выключено, локация LoD будет записана в метаданные (не сможет обновляться в повторе).",

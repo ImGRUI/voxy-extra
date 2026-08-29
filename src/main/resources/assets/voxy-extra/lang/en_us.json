@@ -4,8 +4,17 @@
   "text.autoconfig.voxy-extra.flashback": "Flashback",
   "text.autoconfig.voxy-extra.replaymod": "Replay Mod",
 
-  "text.autoconfig.voxy-extra.option.fixNetherFog": "Nether Fog Fix",
-  "text.autoconfig.voxy-extra.option.fixNetherFog.@Tooltip": "Disables nether fog with environmental fog enabled.",
+  "text.autoconfig.voxy-extra.option.fixNetherFog": "Nether Fog \"Fix\"",
+  "text.autoconfig.voxy-extra.option.fixNetherFog.@Tooltip": "When the \"Fog and fade\" or \"Fog only\" fog mode is set, Voxy chunks are hidden with nether fog. This setting changes fog behaviour in this case to \"Fade only\" with \"Fog and fade\", and disables fog with \"Fog only\".",
+
+  "text.autoconfig.voxy-extra.option.customFogFade": "Fade Fog Settings",
+  "text.autoconfig.voxy-extra.option.customFogFade.@Tooltip": "Allows changing Voxy fade fog values. May break rendering.",
+
+  "text.autoconfig.voxy-extra.option.fadeFogStart": "Fog Start",
+  "text.autoconfig.voxy-extra.option.fadeFogStart.@Tooltip": "Where fog begins.",
+
+  "text.autoconfig.voxy-extra.option.fadeFogEnd": "Fog End",
+  "text.autoconfig.voxy-extra.option.fadeFogEnd.@Tooltip": "Where fog blends.",
 
   "text.autoconfig.voxy-extra.option.flashbackSaveOldLods": "Copy LoDs with Replays",
   "text.autoconfig.voxy-extra.option.flashbackSaveOldLods.@Tooltip": "Enables copying LoDs to special folder (doesn't support combining replays). If turned off, LoD location will be written to metadata instead (can't be ingested in the replay).",

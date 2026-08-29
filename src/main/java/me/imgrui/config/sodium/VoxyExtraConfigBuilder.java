@@ -6,8 +6,10 @@ import me.imgrui.config.VoxyExtraStorage;
 import me.shedaniel.autoconfig.AutoConfigClient;
 import net.caffeinemc.mods.sodium.api.config.ConfigEntryPoint;
 import net.caffeinemc.mods.sodium.api.config.StorageEventHandler;
+import net.caffeinemc.mods.sodium.api.config.option.OptionFlag;
 import net.caffeinemc.mods.sodium.api.config.structure.ConfigBuilder;
 import net.caffeinemc.mods.sodium.api.config.structure.OptionPageBuilder;
+import net.caffeinemc.mods.sodium.client.gui.options.control.ControlValueFormatterImpls;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
@@ -30,6 +32,40 @@ public class VoxyExtraConfigBuilder implements ConfigEntryPoint {
                                 .setStorageHandler(this.handler)
                                 .setBinding(this.storage::setFixNetherFog, this.storage::getFixNetherFog)
                                 .setDefaultValue(true)
+                                .setFlags(OptionFlag.REQUIRES_RENDERER_RELOAD)
+                )
+        );
+
+        VoxyExtraGeneralPage.addOptionGroup(builder.createOptionGroup()
+                .addOption(
+                        builder.createBooleanOption(Identifier.parse("voxy-extra:customfogfade"))
+                                .setName(Component.translatable("text.autoconfig.voxy-extra.option.customFogFade"))
+                                .setTooltip(Component.translatable("text.autoconfig.voxy-extra.option.customFogFade.@Tooltip"))
+                                .setStorageHandler(this.handler)
+                                .setBinding(this.storage::setCustomFogFade, this.storage::getCustomFogFade)
+                                .setDefaultValue(false)
+                )
+                .addOption(
+                        builder.createIntegerOption(Identifier.parse("voxy-extra:fadefogstart"))
+                                .setName(Component.translatable("text.autoconfig.voxy-extra.option.fadeFogStart"))
+                                .setTooltip(Component.translatable("text.autoconfig.voxy-extra.option.fadeFogStart.@Tooltip"))
+                                .setStorageHandler(this.handler)
+                                .setBinding(this.storage::setFogStart, this.storage::getFogStart)
+                                .setEnabledProvider(c -> c.readBooleanOption(Identifier.parse("voxy-extra:customfogfade")), Identifier.parse("voxy-extra:customfogfade"))
+                                .setRange(0,300,1)
+                                .setValueFormatter(ControlValueFormatterImpls.percentage())
+                                .setDefaultValue(100)
+                )
+                .addOption(
+                        builder.createIntegerOption(Identifier.parse("voxy-extra:fadefogend"))
+                                .setName(Component.translatable("text.autoconfig.voxy-extra.option.fadeFogEnd"))
+                                .setTooltip(Component.translatable("text.autoconfig.voxy-extra.option.fadeFogEnd.@Tooltip"))
+                                .setStorageHandler(this.handler)
+                                .setBinding(this.storage::setFogEnd, this.storage::getFogEnd)
+                                .setEnabledProvider(c -> c.readBooleanOption(Identifier.parse("voxy-extra:customfogfade")), Identifier.parse("voxy-extra:customfogfade"))
+                                .setRange(0,300,1)
+                                .setValueFormatter(ControlValueFormatterImpls.percentage())
+                                .setDefaultValue(100)
                 )
         );
 

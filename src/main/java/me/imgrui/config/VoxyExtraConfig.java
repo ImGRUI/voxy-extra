@@ -35,4 +35,10 @@ public class VoxyExtraConfig implements ConfigData {
     public boolean replayModSaveCustomMeta = true;
     @ConfigEntry.Gui.Excluded
     public boolean replayModLoadLods = true;
+    @ConfigEntry.Gui.Excluded
+    public boolean customFogFade;
+    @ConfigEntry.Gui.Excluded
+    public int fadeFogStart = 100;
+    @ConfigEntry.Gui.Excluded
+    public int fadeFogEnd = 100;
 }
