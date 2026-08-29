@@ -5,7 +5,8 @@ Voxy Extra is a Voxy addon, which adds features that shouldn't be in Voxy. It ma
 # Features
 
 ### General
-- **Nether Fog Fix**: Disables nether fog with environmental fog enabled;
+- **Nether Fog "Fix"**: Allows seeing Voxy chunks in the nether;
+- **Fade Fog Settings**: Allows changing Voxy 0.2.19+ fade fog values (0.2.5 and up).
 - **Server Blacklist**: Allows disabling Voxy on specific servers;
 - **Server Whitelist**: Allows enabling Voxy only on specific servers (0.2.1 and up);
 - **LoD Mirror**: Allows setting one LoD storage for multiple servers.
