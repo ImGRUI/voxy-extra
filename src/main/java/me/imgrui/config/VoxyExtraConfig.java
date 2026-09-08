@@ -27,8 +27,12 @@ public class VoxyExtraConfig implements ConfigData {
     public List<String> serverWhitelistList = new ArrayList<>();
     @ConfigEntry.Gui.Excluded
     public boolean lodMirror;
-    @ConfigEntry.Gui.Tooltip(count = 2)
+    @ConfigEntry.Gui.Tooltip(count = 3)
     public List<String> lodMirrorList = new ArrayList<>();
+    @ConfigEntry.Gui.Excluded
+    public boolean lodMerge;
+    @ConfigEntry.Gui.Tooltip(count = 2)
+    public List<String> lodMergeList = new ArrayList<>();
     @ConfigEntry.Gui.Excluded
     public boolean disableInSingleplayer;
     @ConfigEntry.Gui.Excluded

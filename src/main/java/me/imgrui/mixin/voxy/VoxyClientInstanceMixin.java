@@ -91,14 +91,35 @@ public class VoxyClientInstanceMixin {
     private static Path voxyExtra$lodMirrorCheck(Path path, String serverAddress) {
         if (!VoxyExtra.CONFIG.lodMirror) return path;
         if (VoxyExtra.CONFIG.lodMirrorList.isEmpty()) return path;
+        var serverAddressNormalized = serverAddress.replace("_",":");
         for (int i = 0; i < VoxyExtra.CONFIG.lodMirrorList.size(); i++) {
             String[] list = VoxyExtra.CONFIG.lodMirrorList.get(i).trim().split("\\s+");
-            var listFirst = list[0];
-            var serverAddressReplaced = serverAddress.replace("_",":");
-            if (listFirst.equals(serverAddressReplaced)) return path;
-            if (ArrayUtils.contains(list, serverAddressReplaced)) {
-                path = path.resolveSibling(listFirst);
-                VoxyExtra.LOGGER.warn("[Voxy Extra] Replaced path to {}", listFirst);
+            var baseAddress = list[0];
+            if (baseAddress.equals(serverAddressNormalized)) return path;
+            if (ArrayUtils.contains(list, serverAddressNormalized)) {
+                path = path.resolveSibling(baseAddress);
+                VoxyExtra.LOGGER.warn("[Voxy Extra] Replaced path to {}", baseAddress);
+                break;
+            }
+        }
+        return path;
+    }
+
+    @WrapOperation(method = "getBasePath", at = @At(value = "INVOKE", target = "Ljava/nio/file/Path;resolve(Ljava/lang/String;)Ljava/nio/file/Path;", ordinal = 6))
+    private static Path voxyExtra$lodMerge(Path basePath, String serverAddress, Operation<Path> original) {
+        return voxyExtra$lodMergeCheck(original.call(basePath, serverAddress), serverAddress);
+    }
+
+    @Unique
+    private static Path voxyExtra$lodMergeCheck(Path path, String serverAddress) {
+        if (!VoxyExtra.CONFIG.lodMerge) return path;
+        if (VoxyExtra.CONFIG.lodMergeList.isEmpty()) return path;
+        var serverAddressNormalized = serverAddress.replace("_",":");
+        for (int i = 0; i < VoxyExtra.CONFIG.lodMergeList.size(); i++) {
+            String baseAddress = VoxyExtra.CONFIG.lodMergeList.get(i);
+            if (serverAddressNormalized.contains(baseAddress)) {
+                path = path.resolveSibling(baseAddress);
+                VoxyExtra.LOGGER.warn("[Voxy Extra] Replaced path to {}", baseAddress);
                 break;
             }
         }

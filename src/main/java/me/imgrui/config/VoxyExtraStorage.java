@@ -68,6 +68,14 @@ public class VoxyExtraStorage {
         config().lodMirror = lodMirror;
     }
 
+    public boolean getLodMerge() {
+        return config().lodMerge;
+    }
+
+    public void setLodMerge(boolean lodMerge) {
+        config().lodMerge = lodMerge;
+    }
+
     public boolean getFlashbackCheckLodCache() {
         return config().flashbackCheckLodCache;
     }

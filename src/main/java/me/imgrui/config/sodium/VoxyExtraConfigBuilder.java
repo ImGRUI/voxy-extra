@@ -88,11 +88,19 @@ public class VoxyExtraConfigBuilder implements ConfigEntryPoint {
                                 .setDefaultValue(false)
                 )
                 .addOption(
-                        builder.createBooleanOption(Identifier.parse("voxy-extra:redirectlod"))
+                        builder.createBooleanOption(Identifier.parse("voxy-extra:lodmirror"))
                                 .setName(Component.translatable("text.autoconfig.voxy-extra.option.lodMirror"))
                                 .setTooltip(Component.translatable("text.autoconfig.voxy-extra.option.lodMirror.@Tooltip"))
                                 .setStorageHandler(this.handler)
                                 .setBinding(this.storage::setLodMirror, this.storage::getLodMirror)
+                                .setDefaultValue(false)
+                )
+                .addOption(
+                        builder.createBooleanOption(Identifier.parse("voxy-extra:lodmerge"))
+                                .setName(Component.translatable("text.autoconfig.voxy-extra.option.lodMerge"))
+                                .setTooltip(Component.translatable("text.autoconfig.voxy-extra.option.lodMerge.@Tooltip"))
+                                .setStorageHandler(this.handler)
+                                .setBinding(this.storage::setLodMerge, this.storage::getLodMerge)
                                 .setDefaultValue(false)
                 )
         );

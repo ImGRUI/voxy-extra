@@ -41,8 +41,16 @@
   "text.autoconfig.voxy-extra.option.lodMirror.@Tooltip": "Allows setting one LoD storage for multiple servers. Add in Cloth Config.",
 
   "text.autoconfig.voxy-extra.option.lodMirrorList": "Mirrored servers",
-  "text.autoconfig.voxy-extra.option.lodMirrorList.@Tooltip[0]": "Each field represents a single server.",
+  "text.autoconfig.voxy-extra.option.lodMirrorList.@Tooltip[0]": "Each field represents a single storage.",
   "text.autoconfig.voxy-extra.option.lodMirrorList.@Tooltip[1]": "Format for every field: BaseIP AltIP AltIP",
+  "text.autoconfig.voxy-extra.option.lodMirrorList.@Tooltip[2]": "BaseIP - storage folder. AltIP - addresses that are redirected to BaseIP folder.",
+
+  "text.autoconfig.voxy-extra.option.lodMerge": "LoD Merge",
+  "text.autoconfig.voxy-extra.option.lodMerge.@Tooltip": "Allows setting one LoD storage for servers containing similar addresses. Add in Cloth Config.",
+
+  "text.autoconfig.voxy-extra.option.lodMergeList": "Merged servers",
+  "text.autoconfig.voxy-extra.option.lodMergeList.@Tooltip[0]": "Each field represents a single server.",
+  "text.autoconfig.voxy-extra.option.lodMergeList.@Tooltip[1]": "Example: e4mc.link - for merging all e4mc links into one e4mc.link folder.",
 
   "text.autoconfig.voxy-extra.option.disableInSingleplayer": "Disable Voxy in Singleplayer",
   "text.autoconfig.voxy-extra.option.disableInSingleplayer.@Tooltip": "Disables Voxy when playing in a local singleplayer world.",
