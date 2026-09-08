@@ -49,7 +49,7 @@
   "text.autoconfig.voxy-extra.option.lodMerge.@Tooltip": "Позволяет выставлять одно хранилище LoD для серверов, содержащих схожие адреса. Добавляйте в Cloth Config.",
 
   "text.autoconfig.voxy-extra.option.lodMergeList": "Объединенные серверы",
-  "text.autoconfig.voxy-extra.option.lodMergeList.@Tooltip[0]": "Каждое поле - это отдельный сервер.",
+  "text.autoconfig.voxy-extra.option.lodMergeList.@Tooltip[0]": "Каждое поле - это схожий адрес для проверки и название папки хранилища.",
   "text.autoconfig.voxy-extra.option.lodMergeList.@Tooltip[1]": "Пример: e4mc.link - для объединения адресов e4mc в одну папку e4mc.link.",
 
   "text.autoconfig.voxy-extra.option.disableInSingleplayer": "Отключить Voxy в одиночке",

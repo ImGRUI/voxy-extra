@@ -49,7 +49,7 @@
   "text.autoconfig.voxy-extra.option.lodMerge.@Tooltip": "Allows setting one LoD storage for servers containing similar addresses. Add in Cloth Config.",
 
   "text.autoconfig.voxy-extra.option.lodMergeList": "Merged servers",
-  "text.autoconfig.voxy-extra.option.lodMergeList.@Tooltip[0]": "Each field represents a single server.",
+  "text.autoconfig.voxy-extra.option.lodMergeList.@Tooltip[0]": "Each field represents a similar address to check for, also naming storage folder.",
   "text.autoconfig.voxy-extra.option.lodMergeList.@Tooltip[1]": "Example: e4mc.link - for merging all e4mc links into one e4mc.link folder.",
 
   "text.autoconfig.voxy-extra.option.disableInSingleplayer": "Disable Voxy in Singleplayer",
