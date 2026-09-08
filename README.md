@@ -10,6 +10,7 @@ Voxy Extra is a Voxy addon, which adds features that shouldn't be in Voxy. It ma
 - **Server Blacklist**: Allows disabling Voxy on specific servers;
 - **Server Whitelist**: Allows enabling Voxy only on specific servers (0.2.1 and up);
 - **LoD Mirror**: Allows setting one LoD storage for multiple servers.
+- **LoD Merge**: Allows setting one LoD storage for servers containing similar addresses (0.2.6 and up);
 - **Disabling Voxy in singleplayer** (0.2.1 and up);
 
 ### Flashback
