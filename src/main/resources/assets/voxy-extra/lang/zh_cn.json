@@ -1,0 +1,66 @@
+{
+  "text.autoconfig.voxy-extra.title": "配置",
+  "text.autoconfig.voxy-extra.general": "常规",
+  "text.autoconfig.voxy-extra.flashback": "flashback",
+  "text.autoconfig.voxy-extra.replaymod": "replaymod",
+
+  "text.autoconfig.voxy-extra.option.fixNetherFog": "下界迷雾\"修复\"",
+  "text.autoconfig.voxy-extra.option.fixNetherFog.@Tooltip": "当设置为\"雾与渐隐\"或\"仅迷雾\"迷雾模式时，Voxy 区块会被下界迷雾隐藏。此设置会将此情况下的迷雾行为改为\"渐隐\"（配合\"雾与渐隐\"），并在\"仅迷雾\"模式下禁用迷雾。",
+
+  "text.autoconfig.voxy-extra.option.customFogFade": "渐隐雾设置",
+  "text.autoconfig.voxy-extra.option.customFogFade.@Tooltip": "允许修改 Voxy 渐隐雾数值。可能会破坏渲染。",
+
+  "text.autoconfig.voxy-extra.option.fadeFogStart": "迷雾起始",
+  "text.autoconfig.voxy-extra.option.fadeFogStart.@Tooltip": "迷雾开始的距离。",
+
+  "text.autoconfig.voxy-extra.option.fadeFogEnd": "迷雾结束",
+  "text.autoconfig.voxy-extra.option.fadeFogEnd.@Tooltip": "迷雾消散的距离。",
+
+  "text.autoconfig.voxy-extra.option.flashbackSaveOldLods": "回放时复制 LoD",
+  "text.autoconfig.voxy-extra.option.flashbackSaveOldLods.@Tooltip": "启用将 LoD 复制到特殊文件夹（不支持合并回放）。如果关闭，LoD 位置将写入元数据（无法在回放中读取）。",
+
+  "text.autoconfig.voxy-extra.option.flashbackIngest": "在回放中读取",
+  "text.autoconfig.voxy-extra.option.flashbackIngest.@Tooltip": "启用在兼容的回放中读取（已复制 LoD 的回放）。",
+
+  "text.autoconfig.voxy-extra.option.flashbackCheckLodCache": "检查已复制的 LoD",
+  "text.autoconfig.voxy-extra.option.flashbackCheckLodCache.@Tooltip": "如果启用，启动时检查所有回放并删除已删除回放的已复制 LoD。节省磁盘空间。",
+
+  "text.autoconfig.voxy-extra.option.serverBlacklist": "服务器黑名单",
+  "text.autoconfig.voxy-extra.option.serverBlacklist.@Tooltip": "允许将服务器加入黑名单以在其中禁用 Voxy。在 Cloth Config 中添加。",
+
+  "text.autoconfig.voxy-extra.option.serverBlacklistList": "已加黑名单的服务器",
+  "text.autoconfig.voxy-extra.option.serverBlacklistList.@Tooltip": "每个字段代表一个服务器。",
+
+  "text.autoconfig.voxy-extra.option.serverWhitelist": "服务器白名单",
+  "text.autoconfig.voxy-extra.option.serverWhitelist.@Tooltip": "允许将服务器加入白名单以仅在这些服务器上启用 Voxy。在 Cloth Config 中添加。",
+
+  "text.autoconfig.voxy-extra.option.serverWhitelistList": "已加白名单的服务器",
+  "text.autoconfig.voxy-extra.option.serverWhitelistList.@Tooltip": "每个字段代表一个服务器。",
+
+  "text.autoconfig.voxy-extra.option.lodMirror": "LoD 镜像",
+  "text.autoconfig.voxy-extra.option.lodMirror.@Tooltip": "允许为多个服务器设置一个 LoD 存储。在 Cloth Config 中添加。",
+
+  "text.autoconfig.voxy-extra.option.lodMirrorList": "镜像服务器",
+  "text.autoconfig.voxy-extra.option.lodMirrorList.@Tooltip[0]": "每个字段代表一个存储。",
+  "text.autoconfig.voxy-extra.option.lodMirrorList.@Tooltip[1]": "每个字段的格式：BaseIP AltIP AltIP",
+  "text.autoconfig.voxy-extra.option.lodMirrorList.@Tooltip[2]": "BaseIP - 存储文件夹。AltIP - 重定向到 BaseIP 文件夹的地址。",
+
+  "text.autoconfig.voxy-extra.option.lodMerge": "LoD 合并",
+  "text.autoconfig.voxy-extra.option.lodMerge.@Tooltip": "允许为包含相似地址的服务器设置一个 LoD 存储。在 Cloth Config 中添加。",
+
+  "text.autoconfig.voxy-extra.option.lodMergeList": "合并服务器",
+  "text.autoconfig.voxy-extra.option.lodMergeList.@Tooltip[0]": "每个字段代表一个要检查的相似地址，同时也作为存储文件夹的名称。",
+  "text.autoconfig.voxy-extra.option.lodMergeList.@Tooltip[1]": "示例：e4mc.link - 用于将所有 e4mc 链接合并到一个 e4mc.link 文件夹中。",
+
+  "text.autoconfig.voxy-extra.option.disableInSingleplayer": "在单人游戏中禁用 Voxy",
+  "text.autoconfig.voxy-extra.option.disableInSingleplayer.@Tooltip": "在本地单人世界游戏中禁用 Voxy。",
+
+  "text.autoconfig.voxy-extra.option.edit": "打开 Cloth Config",
+  "text.autoconfig.voxy-extra.option.edit.@Tooltip": "打开配置界面。",
+
+  "text.autoconfig.voxy-extra.option.replayModSaveCustomMeta": "保存自定义元数据",
+  "text.autoconfig.voxy-extra.option.replayModSaveCustomMeta.@Tooltip": "允许在回放元数据中写入世界文件夹名称，以在单人回放中加载正确的 LoD。",
+
+  "text.autoconfig.voxy-extra.option.replayModLoadLods": "在回放中加载 LoD",
+  "text.autoconfig.voxy-extra.option.replayModLoadLods.@Tooltip": "允许在回放中加载 LoD（仅读取）。如果\"保存自定义元数据\"已禁用，可能会在单人回放中加载错误的 LoD。"
+}
