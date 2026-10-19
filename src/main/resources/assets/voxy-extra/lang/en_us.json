@@ -62,5 +62,8 @@
   "text.autoconfig.voxy-extra.option.replayModSaveCustomMeta.@Tooltip": "Allows writing world folder name in replay metadata to load correct LoDs in singleplayer replays.",
 
   "text.autoconfig.voxy-extra.option.replayModLoadLods": "Load LoDs in Replays",
-  "text.autoconfig.voxy-extra.option.replayModLoadLods.@Tooltip": "Allows loading LoDs in replays (Read-Only). May load wrong LoDs in singleplayer replays when \"Save Custom Meta\" was disabled."
+  "text.autoconfig.voxy-extra.option.replayModLoadLods.@Tooltip": "Allows loading LoDs in replays (Read-Only). May load wrong LoDs in singleplayer replays when \"Save Custom Meta\" was disabled.",
+
+  "key.category.voxy-extra.keybinds": "Voxy Extra",
+  "key.voxy-extra.toggleVoxy": "Toggle Voxy"
 }

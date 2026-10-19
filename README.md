@@ -6,18 +6,19 @@ Voxy Extra is a Voxy addon, which adds features that shouldn't be in Voxy. It ma
 
 ### General
 - **Nether Fog "Fix"**: Allows seeing Voxy chunks in the nether;
-- **Fade Fog Settings**: Allows changing Voxy 0.2.19+ fade fog values (0.2.5 and up);
+- **Fade Fog Settings**: Allows changing Voxy 0.2.19+ fade fog values (0.2.5+);
 - **Server Blacklist**: Allows disabling Voxy on specific servers;
-- **Server Whitelist**: Allows enabling Voxy only on specific servers (0.2.1 and up);
-- **LoD Mirror**: Allows setting one LoD storage for multiple servers.
-- **LoD Merge**: Allows setting one LoD storage for servers containing similar addresses (0.2.6 and up);
-- **Disabling Voxy in singleplayer** (0.2.1 and up);
+- **Server Whitelist**: Allows enabling Voxy only on specific servers (0.2.1+);
+- **LoD Mirror**: Allows setting one LoD storage for multiple servers;
+- **LoD Merge**: Allows setting one LoD storage for servers containing similar addresses (0.2.6+);
+- **Disabling Voxy in singleplayer** (0.2.1+);
+- **Toggle Voxy keybind** (0.2.7+).
 
 ### Flashback
-- **Copying LoDs with replays**: Allows to show proper LoD state in old replays, also enabling ingesting.
+- **Copying LoDs with replays**: Allows to show proper LoD state in old replays, also enabling ingesting. **Disabled by default.**
 
 ### ReplayMod
-- **Functionality of [Voxy ReplayMod Compat](https://modrinth.com/mod/voxy-replaymod-compat)** (0.2.2 and up)
+- **Functionality of [Voxy ReplayMod Compat](https://modrinth.com/mod/voxy-replaymod-compat)** (0.2.2+).
 
 All options are configurable in Sodium menu.
 

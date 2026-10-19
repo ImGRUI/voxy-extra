@@ -35,9 +35,9 @@
 	],
 	"depends": {
 		"fabricloader": "*",
-		"minecraft": "~26.2",
+		"minecraft": "~26.3",
 		"fabric-api": "*",
-        "voxy": ">=0.2.19-beta",
+        "voxy": ">=0.2.20-beta",
 		"cloth-config": "*"
 	},
 	"breaks": {

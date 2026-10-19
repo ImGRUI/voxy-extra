@@ -62,5 +62,8 @@
   "text.autoconfig.voxy-extra.option.replayModSaveCustomMeta.@Tooltip": "Позволяет записывать название мира в метаданные повтора, чтобы загружать нужные LoD в повторах одиночки.",
 
   "text.autoconfig.voxy-extra.option.replayModLoadLods": "Загружать LoD в повторах",
-  "text.autoconfig.voxy-extra.option.replayModLoadLods.@Tooltip": "Позволяет загружать LoD в повторах (только чтение). Может загружать неверные LoD в повторах одиночки, когда «Сохранять название мира» было выключено."
+  "text.autoconfig.voxy-extra.option.replayModLoadLods.@Tooltip": "Позволяет загружать LoD в повторах (только чтение). Может загружать неверные LoD в повторах одиночки, когда «Сохранять название мира» было выключено.",
+
+  "key.category.voxy-extra.keybinds": "Voxy Extra",
+  "key.voxy-extra.toggleVoxy": "Вкл/Выкл Voxy"
 }
