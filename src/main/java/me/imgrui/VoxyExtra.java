@@ -17,6 +17,8 @@ import net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.multiplayer.chat.ChatListener;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,6 +37,7 @@ public class VoxyExtra implements ModInitializer {
 
 	KeyMapping.Category CATEGORY = KeyMapping.Category.register(Identifier.fromNamespaceAndPath("voxy-extra","keybinds"));
 	KeyMapping toggleVoxy = KeyMappingHelper.registerKeyMapping(new KeyMapping("key.voxy-extra.toggleVoxy", InputConstants.Type.KEYBOARD, InputConstants.UNKNOWN.getValue(), CATEGORY));
+	KeyMapping toggleVoxyRendering = KeyMappingHelper.registerKeyMapping(new KeyMapping("key.voxy-extra.toggleVoxyRendering", InputConstants.Type.KEYBOARD, InputConstants.UNKNOWN.getValue(), CATEGORY));
 
 	@Override
 	public void onInitialize() {
@@ -46,18 +49,42 @@ public class VoxyExtra implements ModInitializer {
 			if (toggleVoxy.consumeClick()) {
 				if (client.level == null) return;
 				VoxyConfig.CONFIG.enabled = !VoxyConfig.CONFIG.enabled;
-				voxyReload();
+				voxyFullReload();
+			}
+			if (toggleVoxyRendering.consumeClick()) {
+				if (client.level == null) return;
+				if (VoxyConfig.CONFIG.enabled) {
+					VoxyConfig.CONFIG.enableRendering = !VoxyConfig.CONFIG.enableRendering;
+					voxyRendererReload();
+				} else {
+					Minecraft.getInstance().gui.chatListener().handleSystemMessage(Component.literal("Voxy Extra: Voxy is not enabled, toggling rendering is disabled"), false);
+				}
 			}
 		});
 	}
 
-	public void voxyReload() {
-		IVoxyRenderSystemHolder.getNullableHolder().voxy$shutdownRenderer();
+	private void voxyFullReload() {
+		var vrsh = IVoxyRenderSystemHolder.getNullableHolder();
+		if (vrsh != null) {
+			vrsh.voxy$shutdownRenderer();
+		}
 		VoxyCommon.shutdownInstance();
 		if (VoxyConfig.CONFIG.enabled && ClientSessionEvents.inSession) {
 			VoxyCommon.createInstance();
 		}
 		Minecraft.getInstance().levelExtractor.allChanged();
+		IrisUtil.reload();
+	}
+
+	private void voxyRendererReload() {
+		var vrsh = IVoxyRenderSystemHolder.getNullableHolder();
+		if (vrsh != null) {
+			if (VoxyConfig.CONFIG.enableRendering) {
+				vrsh.voxy$createRenderer();
+			} else {
+				vrsh.voxy$shutdownRenderer();
+			}
+		}
 		IrisUtil.reload();
 	}
 }
