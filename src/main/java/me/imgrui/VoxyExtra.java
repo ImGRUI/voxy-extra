@@ -46,18 +46,21 @@ public class VoxyExtra implements ModInitializer {
 		CONFIG = AutoConfig.getConfigHolder(VoxyExtraConfig.class).getConfig();
 		if (CONFIG.flashbackCheckLodCache && isFlashbackLoaded) FlashbackCopy.CheckReplays();
 		ClientTickEvents.END_CLIENT_TICK.register(client -> {
+			ChatListener chatListener = Minecraft.getInstance().gui.chatListener();
 			if (toggleVoxy.consumeClick()) {
 				if (client.level == null) return;
 				VoxyConfig.CONFIG.enabled = !VoxyConfig.CONFIG.enabled;
 				voxyFullReload();
+				chatListener.handleSystemMessage(Component.literal("Toggled Voxy!"), false);
 			}
 			if (toggleVoxyRendering.consumeClick()) {
 				if (client.level == null) return;
 				if (VoxyConfig.CONFIG.enabled) {
 					VoxyConfig.CONFIG.enableRendering = !VoxyConfig.CONFIG.enableRendering;
 					voxyRendererReload();
+					chatListener.handleSystemMessage(Component.literal("Toggled Voxy Rendering!"), false);
 				} else {
-					Minecraft.getInstance().gui.chatListener().handleSystemMessage(Component.literal("Voxy Extra: Voxy is not enabled, toggling rendering is disabled"), false);
+					chatListener.handleSystemMessage(Component.literal("Voxy is not enabled, toggling rendering is disabled!"), false);
 				}
 			}
 		});

@@ -65,5 +65,6 @@
   "text.autoconfig.voxy-extra.option.replayModLoadLods.@Tooltip": "Позволяет загружать LoD в повторах (только чтение). Может загружать неверные LoD в повторах одиночки, когда «Сохранять название мира» было выключено.",
 
   "key.category.voxy-extra.keybinds": "Voxy Extra",
-  "key.voxy-extra.toggleVoxy": "Вкл/Выкл Voxy"
+  "key.voxy-extra.toggleVoxy": "Вкл/Выкл Voxy",
+  "key.voxy-extra.toggleVoxyRendering": "Вкл/Выкл рендер Voxy"
 }
