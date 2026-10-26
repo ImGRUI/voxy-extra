@@ -97,6 +97,7 @@ public class VoxyClientInstanceMixin {
             var baseAddress = list[0];
             if (baseAddress.equals(serverAddressNormalized)) return path;
             if (ArrayUtils.contains(list, serverAddressNormalized)) {
+                baseAddress = baseAddress.replace(":","_");
                 path = path.resolveSibling(baseAddress);
                 VoxyExtra.LOGGER.warn("[Voxy Extra] Replaced path to {}", baseAddress);
                 break;
@@ -118,6 +119,7 @@ public class VoxyClientInstanceMixin {
         for (int i = 0; i < VoxyExtra.CONFIG.lodMergeList.size(); i++) {
             String baseAddress = VoxyExtra.CONFIG.lodMergeList.get(i);
             if (serverAddressNormalized.contains(baseAddress)) {
+                baseAddress = baseAddress.replace(":","_");
                 path = path.resolveSibling(baseAddress);
                 VoxyExtra.LOGGER.warn("[Voxy Extra] Replaced path to {}", baseAddress);
                 break;
