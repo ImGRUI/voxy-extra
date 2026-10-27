@@ -38,7 +38,6 @@ public class VoxyExtra implements ModInitializer {
 	KeyMapping.Category CATEGORY = KeyMapping.Category.register(Identifier.fromNamespaceAndPath("voxy-extra","keybinds"));
 	KeyMapping toggleVoxy = KeyMappingHelper.registerKeyMapping(new KeyMapping("key.voxy-extra.toggleVoxy",
 			//? 26.3 {
-			
 			InputConstants.Type.KEYBOARD,
 			//?} else {
 			/*InputConstants.Type.KEYSYM,
@@ -46,7 +45,6 @@ public class VoxyExtra implements ModInitializer {
 	InputConstants.UNKNOWN.getValue(), CATEGORY));
 	KeyMapping toggleVoxyRendering = KeyMappingHelper.registerKeyMapping(new KeyMapping("key.voxy-extra.toggleVoxyRendering",
 			//? 26.3 {
-			
 			InputConstants.Type.KEYBOARD,
 			//?} else {
 			/*InputConstants.Type.KEYSYM,
