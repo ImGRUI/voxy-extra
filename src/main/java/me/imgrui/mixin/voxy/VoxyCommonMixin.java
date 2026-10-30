@@ -24,6 +24,7 @@ public class VoxyCommonMixin {
             boolean isBlacklisted = false;
             boolean isNotWhitelisted = false;
             String serverAddress = "";
+            boolean disableOverride = false;
 
             MultiPlayerGameMode gameMode = Minecraft.getInstance().gameMode;
             if (gameMode != null) {
@@ -42,11 +43,13 @@ public class VoxyCommonMixin {
                 VoxyExtra.LOGGER.warn("[Voxy Extra] Singleplayer is disabled, disabling Voxy");
             } else if (isNotWhitelisted) {
                 VoxyExtra.LOGGER.warn("[Voxy Extra] Server {} is not whitelisted, disabling Voxy", serverAddress);
-            } else if (isBlacklisted) {
+            } else if (isBlacklisted && !VoxyExtra.CONFIG.serverWhitelist) {
                 VoxyExtra.LOGGER.warn("[Voxy Extra] Server {} is blacklisted, disabling Voxy", serverAddress);
+            } else {
+                disableOverride = true;
             }
 
-            if (disableForSingleplayer || isBlacklisted || isNotWhitelisted) {
+            if ((disableForSingleplayer || isBlacklisted || isNotWhitelisted) && !disableOverride) {
                 VoxyConfig.CONFIG.enabled = false;
                 ci.cancel();
                 IrisUtil.reload();

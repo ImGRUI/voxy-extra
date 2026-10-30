@@ -1,7 +1,7 @@
 {
 	"schemaVersion": 1,
 	"id": "voxy-extra",
-	"version": "${version}",
+	"version": "${mod_version}",
 	"name": "Voxy Extra",
 	"description": "Adds features that shouldn't be in Voxy.",
 	"authors": [
@@ -35,9 +35,9 @@
 	],
 	"depends": {
 		"fabricloader": "*",
-		"minecraft": "~26.3",
+		"minecraft": "${mod_target}",
 		"fabric-api": "*",
-        "voxy": ">=0.2.20-beta",
+        "voxy": "${voxy_target}",
 		"cloth-config": "*"
 	},
 	"breaks": {
