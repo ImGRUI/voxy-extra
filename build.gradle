@@ -1,6 +1,7 @@
 plugins {
 	id 'net.fabricmc.fabric-loom' version "${loom_version}"
 	id 'maven-publish'
+	id "com.modrinth.minotaur" version "2.+"
 }
 
 def minecraftVer = sc.current.version
@@ -85,7 +86,7 @@ java {
 jar {
 	inputs.property "archivesName", project.base.archivesName
 
-	from("LICENSE") {
+	from(rootProject.file("LICENSE")) {
 		rename { "${it}_${inputs.properties.archivesName}"}
 	}
 }
@@ -117,4 +118,24 @@ def collectJars = tasks.register("collectJars", Copy) {copy ->
 
 assemble {
 	dependsOn(collectJars)
+}
+
+modrinth {
+	token = System.getenv("MODRINTH_TOKEN")
+	projectId = "voxy-extra"
+	changelog = rootProject.file("CHANGELOG.md").text
+	versionNumber = version
+	versionName = version
+	versionType = property("mod.versionType")
+	property("mod.gameVersions").split(", ").each {
+		gameVersions.add it
+	}
+	loaders = ["fabric"]
+	environment = "client_only"
+	uploadFile = jar
+	dependencies {
+		required.project "cloth-config"
+		required.project "voxy"
+		required.project "fabric-api"
+	}
 }
