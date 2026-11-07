@@ -1,4 +1,4 @@
-package me.imgrui;
+package me.imgrui.voxyextra;
 
 import com.mojang.blaze3d.platform.InputConstants;
 import me.cortex.voxy.client.ClientSessionEvents;
@@ -6,8 +6,8 @@ import me.cortex.voxy.client.config.VoxyConfig;
 import me.cortex.voxy.client.core.IVoxyRenderSystemHolder;
 import me.cortex.voxy.client.core.util.IrisUtil;
 import me.cortex.voxy.commonImpl.VoxyCommon;
-import me.imgrui.config.VoxyExtraConfig;
-import me.imgrui.flashback.FlashbackCopy;
+import me.imgrui.voxyextra.config.VoxyExtraConfig;
+import me.imgrui.voxyextra.flashback.FlashbackCopy;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import net.fabricmc.api.ModInitializer;

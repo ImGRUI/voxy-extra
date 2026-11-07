@@ -1,6 +1,6 @@
 {
   "required": true,
-  "package": "me.imgrui.mixin",
+  "package": "me.imgrui.voxyextra.mixin",
   "compatibilityLevel": "JAVA_25",
   "mixins": [
     "flashback.FlashbackMetaMixin",

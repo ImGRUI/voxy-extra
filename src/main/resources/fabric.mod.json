@@ -21,13 +21,13 @@
 	"environment": "client",
 	"entrypoints": {
 		"main": [
-			"me.imgrui.VoxyExtra"
+          "me.imgrui.voxyextra.VoxyExtra"
 		],
         "sodium:config_api_user": [
-          "me.imgrui.config.sodium.VoxyExtraConfigBuilder"
+          "me.imgrui.voxyextra.config.sodium.VoxyExtraConfigBuilder"
         ],
         "modmenu": [
-          "me.imgrui.config.ModMenuIntegration"
+          "me.imgrui.voxyextra.config.ModMenuIntegration"
         ]
 	},
 	"mixins": [

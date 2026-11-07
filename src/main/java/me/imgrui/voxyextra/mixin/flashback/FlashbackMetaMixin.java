@@ -1,12 +1,12 @@
-package me.imgrui.mixin.flashback;
+package me.imgrui.voxyextra.mixin.flashback;
 
 import com.google.gson.JsonObject;
 import com.moulberry.flashback.record.FlashbackMeta;
 import com.moulberry.flashback.screen.EditReplayScreen;
 import me.cortex.voxy.client.compat.IFlashbackMeta;
 import me.cortex.voxy.client.config.VoxyConfig;
-import me.imgrui.VoxyExtra;
-import me.imgrui.flashback.FlashbackCopy;
+import me.imgrui.voxyextra.VoxyExtra;
+import me.imgrui.voxyextra.flashback.FlashbackCopy;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
 import org.spongepowered.asm.mixin.Mixin;
@@ -18,7 +18,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import java.nio.file.Path;
 import java.util.UUID;
 
-import static me.imgrui.VoxyExtra.mcPath;
+import static me.imgrui.voxyextra.VoxyExtra.mcPath;
 
 @Mixin(value = FlashbackMeta.class, remap = false, priority = 1100)
 public class FlashbackMetaMixin {

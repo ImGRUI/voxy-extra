@@ -1,10 +1,10 @@
-package me.imgrui.replay;
+package me.imgrui.voxyextra.replay;
 
 import com.moulberry.flashback.Flashback;
 import com.moulberry.flashback.playback.ReplayServer;
 import com.replaymod.replay.ReplayHandler;
 import com.replaymod.replay.ReplayModReplay;
-import me.imgrui.VoxyExtra;
+import me.imgrui.voxyextra.VoxyExtra;
 
 public class ReplayCompat {
     public static ReplayHandler getReplayModHandler() {

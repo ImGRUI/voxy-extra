@@ -1,8 +1,8 @@
-package me.imgrui.mixin.flashback;
+package me.imgrui.voxyextra.mixin.flashback;
 
 import com.moulberry.flashback.record.Recorder;
 import me.cortex.voxy.commonImpl.WorldIdentifier;
-import me.imgrui.flashback.FlashbackCopy;
+import me.imgrui.voxyextra.flashback.FlashbackCopy;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.level.Level;
 import org.spongepowered.asm.mixin.Mixin;
