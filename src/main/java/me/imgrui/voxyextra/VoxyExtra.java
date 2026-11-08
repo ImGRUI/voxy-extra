@@ -63,6 +63,7 @@ public class VoxyExtra implements ModInitializer {
 			if (toggleVoxy.consumeClick()) {
 				if (client.level == null) return;
 				VoxyConfig.CONFIG.enabled = !VoxyConfig.CONFIG.enabled;
+				VoxyConfig.CONFIG.save();
 				voxyFullReload();
 				chatListener.handleSystemMessage(Component.literal("Toggled Voxy!"), false);
 			}
@@ -70,6 +71,7 @@ public class VoxyExtra implements ModInitializer {
 				if (client.level == null) return;
 				if (VoxyConfig.CONFIG.enabled) {
 					VoxyConfig.CONFIG.enableRendering = !VoxyConfig.CONFIG.enableRendering;
+					VoxyConfig.CONFIG.save();
 					voxyRendererReload();
 					chatListener.handleSystemMessage(Component.literal("Toggled Voxy Rendering!"), false);
 				} else {
