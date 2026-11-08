@@ -1,8 +1,8 @@
-package me.imgrui.config.sodium;
+package me.imgrui.voxyextra.config.sodium;
 
-import me.imgrui.VoxyExtra;
-import me.imgrui.config.VoxyExtraConfig;
-import me.imgrui.config.VoxyExtraStorage;
+import me.imgrui.voxyextra.VoxyExtra;
+import me.imgrui.voxyextra.config.VoxyExtraConfig;
+import me.imgrui.voxyextra.config.VoxyExtraStorage;
 import me.shedaniel.autoconfig.AutoConfigClient;
 import net.caffeinemc.mods.sodium.api.config.ConfigEntryPoint;
 import net.caffeinemc.mods.sodium.api.config.StorageEventHandler;

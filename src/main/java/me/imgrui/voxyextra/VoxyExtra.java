@@ -1,4 +1,4 @@
-package me.imgrui;
+package me.imgrui.voxyextra;
 
 import com.mojang.blaze3d.platform.InputConstants;
 import me.cortex.voxy.client.ClientSessionEvents;
@@ -6,8 +6,8 @@ import me.cortex.voxy.client.config.VoxyConfig;
 import me.cortex.voxy.client.core.IVoxyRenderSystemHolder;
 import me.cortex.voxy.client.core.util.IrisUtil;
 import me.cortex.voxy.commonImpl.VoxyCommon;
-import me.imgrui.config.VoxyExtraConfig;
-import me.imgrui.flashback.FlashbackCopy;
+import me.imgrui.voxyextra.config.VoxyExtraConfig;
+import me.imgrui.voxyextra.flashback.FlashbackCopy;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
@@ -36,8 +36,21 @@ public class VoxyExtra implements ModInitializer {
 	public static boolean isVoxyDisabled;
 
 	KeyMapping.Category CATEGORY = KeyMapping.Category.register(Identifier.fromNamespaceAndPath("voxy-extra","keybinds"));
-	KeyMapping toggleVoxy = KeyMappingHelper.registerKeyMapping(new KeyMapping("key.voxy-extra.toggleVoxy", InputConstants.Type.KEYBOARD, InputConstants.UNKNOWN.getValue(), CATEGORY));
-	KeyMapping toggleVoxyRendering = KeyMappingHelper.registerKeyMapping(new KeyMapping("key.voxy-extra.toggleVoxyRendering", InputConstants.Type.KEYBOARD, InputConstants.UNKNOWN.getValue(), CATEGORY));
+	KeyMapping toggleVoxy = KeyMappingHelper.registerKeyMapping(new KeyMapping("key.voxy-extra.toggleVoxy",
+			//? 26.3 {
+			InputConstants.Type.KEYBOARD,
+			//?} else {
+			/*InputConstants.Type.KEYSYM,
+			*///?}
+	InputConstants.UNKNOWN.getValue(), CATEGORY));
+	KeyMapping toggleVoxyRendering = KeyMappingHelper.registerKeyMapping(new KeyMapping("key.voxy-extra.toggleVoxyRendering",
+			//? 26.3 {
+			InputConstants.Type.KEYBOARD,
+			//?} else {
+			/*InputConstants.Type.KEYSYM,
+			*///?}
+	InputConstants.UNKNOWN.getValue(), CATEGORY));
+
 
 	@Override
 	public void onInitialize() {
@@ -50,6 +63,7 @@ public class VoxyExtra implements ModInitializer {
 			if (toggleVoxy.consumeClick()) {
 				if (client.level == null) return;
 				VoxyConfig.CONFIG.enabled = !VoxyConfig.CONFIG.enabled;
+				VoxyConfig.CONFIG.save();
 				voxyFullReload();
 				chatListener.handleSystemMessage(Component.literal("Toggled Voxy!"), false);
 			}
@@ -57,6 +71,7 @@ public class VoxyExtra implements ModInitializer {
 				if (client.level == null) return;
 				if (VoxyConfig.CONFIG.enabled) {
 					VoxyConfig.CONFIG.enableRendering = !VoxyConfig.CONFIG.enableRendering;
+					VoxyConfig.CONFIG.save();
 					voxyRendererReload();
 					chatListener.handleSystemMessage(Component.literal("Toggled Voxy Rendering!"), false);
 				} else {

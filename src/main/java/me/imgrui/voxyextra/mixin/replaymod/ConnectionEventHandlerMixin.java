@@ -1,8 +1,8 @@
-package me.imgrui.mixin.replaymod;
+package me.imgrui.voxyextra.mixin.replaymod;
 
 import com.llamalad7.mixinextras.sugar.Local;
 import com.replaymod.recording.handler.ConnectionEventHandler;
-import me.imgrui.VoxyExtra;
+import me.imgrui.voxyextra.VoxyExtra;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.level.storage.LevelResource;
 import org.spongepowered.asm.mixin.Final;

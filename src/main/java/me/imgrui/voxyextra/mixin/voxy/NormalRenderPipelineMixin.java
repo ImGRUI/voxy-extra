@@ -1,10 +1,10 @@
-package me.imgrui.mixin.voxy;
+package me.imgrui.voxyextra.mixin.voxy;
 
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import me.cortex.voxy.client.core.NormalRenderPipeline;
-import me.imgrui.VoxyExtra;
+import me.imgrui.voxyextra.VoxyExtra;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.world.level.Level;

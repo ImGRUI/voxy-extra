@@ -1,4 +1,4 @@
-package me.imgrui.mixin.voxy;
+package me.imgrui.voxyextra.mixin.voxy;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
@@ -8,9 +8,9 @@ import com.replaymod.replaystudio.replay.ReplayMetaData;
 import me.cortex.voxy.client.VoxyClientInstance;
 import me.cortex.voxy.client.compat.FlashbackCompat;
 import me.cortex.voxy.common.Logger;
-import me.imgrui.VoxyExtra;
-import me.imgrui.flashback.FlashbackCopy;
-import me.imgrui.replay.ReplayCompat;
+import me.imgrui.voxyextra.VoxyExtra;
+import me.imgrui.voxyextra.flashback.FlashbackCopy;
+import me.imgrui.voxyextra.replay.ReplayCompat;
 import org.apache.commons.lang3.ArrayUtils;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.At;
@@ -22,7 +22,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Objects;
 
-import static me.imgrui.VoxyExtra.mcPath;
+import static me.imgrui.voxyextra.VoxyExtra.mcPath;
 
 @Mixin(value = VoxyClientInstance.class, remap = false)
 public class VoxyClientInstanceMixin {

@@ -1,9 +1,9 @@
-package me.imgrui.mixin.flashback;
+package me.imgrui.voxyextra.mixin.flashback;
 
 import com.moulberry.flashback.screen.SaveReplayScreen;
 import me.cortex.voxy.client.config.VoxyConfig;
-import me.imgrui.VoxyExtra;
-import me.imgrui.flashback.FlashbackCopy;
+import me.imgrui.voxyextra.VoxyExtra;
+import me.imgrui.voxyextra.flashback.FlashbackCopy;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;

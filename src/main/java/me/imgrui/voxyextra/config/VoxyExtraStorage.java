@@ -1,4 +1,4 @@
-package me.imgrui.config;
+package me.imgrui.voxyextra.config;
 
 import me.shedaniel.autoconfig.AutoConfig;
 

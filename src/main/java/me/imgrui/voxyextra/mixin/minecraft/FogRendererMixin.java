@@ -1,9 +1,9 @@
-package me.imgrui.mixin.minecraft;
+package me.imgrui.voxyextra.mixin.minecraft;
 
 import com.llamalad7.mixinextras.sugar.Local;
 import me.cortex.voxy.client.config.VoxyConfig;
 import me.cortex.voxy.client.core.NormalRenderPipeline;
-import me.imgrui.VoxyExtra;
+import me.imgrui.voxyextra.VoxyExtra;
 import net.minecraft.client.Camera;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.multiplayer.ClientLevel;

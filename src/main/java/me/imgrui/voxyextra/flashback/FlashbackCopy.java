@@ -1,8 +1,8 @@
-package me.imgrui.flashback;
+package me.imgrui.voxyextra.flashback;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import me.imgrui.VoxyExtra;
+import me.imgrui.voxyextra.VoxyExtra;
 import org.apache.commons.io.FileUtils;
 
 import java.io.FileFilter;
@@ -19,7 +19,7 @@ import java.util.Set;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
-import static me.imgrui.VoxyExtra.mcPath;
+import static me.imgrui.voxyextra.VoxyExtra.mcPath;
 
 public class FlashbackCopy {
     public static HashSet<String> IDENTIFIERS = new HashSet<>();
