@@ -2,3 +2,4 @@
 - Fix addresses with ports in LoD Merge and LoD Mirror again
 - Fix whitelist with blacklist enabled (both servers in both lists)
 - Fix mod group
+- Save config when toggling keybinds
