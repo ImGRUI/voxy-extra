@@ -5,13 +5,11 @@ plugins {
 }
 
 def minecraftVer = sc.current.version
+def modTarget = property("mod.target")
+def voxyTarget = property("voxy.target")
+def version = "${property("mod.version")}+${minecraftVer}"
 
-version = "${property("mod.version")}+${minecraftVer}"
-group = property("mod.maven_group")
-
-base {
-	archivesName = property("mod.name")
-}
+base.archivesName = "${property("mod.name")}-${version}"
 
 repositories {
     exclusiveContent {
@@ -62,10 +60,18 @@ dependencies {
 }
 
 processResources {
+	inputs.property "mod_version", version
+	inputs.property "mod_target", modTarget
+	inputs.property "voxy_target", voxyTarget
+
+	def expandProperties = [
+			"mod_version": version,
+			"mod_target": modTarget,
+			"voxy_target": voxyTarget
+	]
+
 	filesMatching("fabric.mod.json") {
-		expand "mod_version": version,
-		"mod_target": project.property("mod.target"),
-		"voxy_target": project.property('voxy.target')
+		expand(expandProperties)
 	}
 }
 
@@ -84,10 +90,11 @@ java {
 }
 
 jar {
-	inputs.property "archivesName", project.base.archivesName
+	def projectName = rootProject.name
+	inputs.property "projectName", projectName
 
 	from(rootProject.file("LICENSE")) {
-		rename { "${it}_${inputs.properties.archivesName}"}
+		rename { "${it}_$projectName"}
 	}
 }
 
